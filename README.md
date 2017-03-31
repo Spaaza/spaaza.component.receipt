@@ -1,9 +1,5 @@
 # Receipt component
 
-### Install
-
-  `npm install spaaza-receipt --save`
-
 ### Use
 
 ```

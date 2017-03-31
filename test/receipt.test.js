@@ -9,7 +9,6 @@ describe('Test Receipts WebComponent', function() {
   });
 
   it('should show data if we assign a value.', function() {
-    console.log('ReceiptData', ReceiptData)
 
     let dataElement = document.createElement('pre');
     dataElement.id = "data";
