@@ -2,7 +2,6 @@ box: node
 
 build:
   steps:
-    - define environment
     - script:
         code: export NODE_ENV='$NODE_ENV'
   steps:
@@ -12,7 +11,6 @@ build:
         code: |
           npm install -g webpack
   steps:
-    - building webcomponent
     - script:
         name: build webcomponent
         code: |
