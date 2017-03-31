@@ -7,7 +7,7 @@ build:
         name: install dependencies
         code: |
           export NODE_ENV='$NODE_ENV'
-          npm install -g wercker
+          npm install -g webpack
   steps:
     - script:
         name: build webcomponent
