@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --history-api-fallback",
-    "build": "webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors",
+    "build": "./node_modules/webpack/bin/webpack.js -p --define process.env.NODE_ENV='\"production\"' --progress --colors",
     "start": "babel src --out-dir dist",
     "test": "karma start"
   },
