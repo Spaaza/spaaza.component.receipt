@@ -1,0 +1,35 @@
+box: node
+
+build:
+  steps:
+    - define environment
+    - script:
+        code: export NODE_ENV='$NODE_ENV'
+  steps:
+    - npm-install
+    - script:
+        name: install dependencies
+        code: |
+          npm install -g webpack
+  steps:
+    - building webcomponent
+    - script:
+        name: build webcomponent
+        code: |
+          npm run build
+  # after-steps:
+  #     - slack-notifier:
+  #         url: $SLACK_WEBHOOK_URL
+
+
+deploy-s3:
+  steps:
+    - s3sync:
+      key_id: $AWS_ACCESS_KEY_ID
+      key_secret: $AWS_SECRET_ACCESS_KEY
+      bucket_url: $AWS_BUCKET_URL
+      source_dir: dist/
+      opts: --acl-public --add-header=Cache-Control:max-age=3600 --cf-invalidate
+  # after-steps:
+  #     - slack-notifier:
+  #         url: $SLACK_WEBHOOK_URL
