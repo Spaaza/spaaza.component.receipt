@@ -12,7 +12,7 @@ build:
     - script:
         name: build webcomponent
         code: |
-          webpack.js -p --define process.env.NODE_ENV='\"production\"' --progress --colors
+          webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors
   # after-steps:
   #     - slack-notifier:
   #         url: $SLACK_WEBHOOK_URL
