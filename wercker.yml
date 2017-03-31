@@ -2,16 +2,16 @@ box: node
 
 build:
   steps:
-    - npm-install
     - script:
-        name: install dependencies
+        name: setting NODE_ENV
         code: |
           export NODE_ENV='$NODE_ENV'
-          npm install -g webpack
+    - npm-install
   steps:
     - script:
-        name: build webcomponent
+        name: build
         code: |
+          npm install -g webpack
           webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors
   # after-steps:
   #     - slack-notifier:
