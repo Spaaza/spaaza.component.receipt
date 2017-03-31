@@ -2,19 +2,17 @@ box: node
 
 build:
   steps:
-    - script:
-        code: export NODE_ENV='$NODE_ENV'
-  steps:
     - npm-install
     - script:
         name: install dependencies
         code: |
-          npm install
+          export NODE_ENV='$NODE_ENV'
+          npm install -g wercker
   steps:
     - script:
         name: build webcomponent
         code: |
-          npm run build
+          ./node_modules/webpack/bin/webpack.js -p --define process.env.NODE_ENV='\"production\"' --progress --colors
   # after-steps:
   #     - slack-notifier:
   #         url: $SLACK_WEBHOOK_URL
