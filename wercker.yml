@@ -11,11 +11,10 @@ build:
         name: build
         code: |
           npm install -g webpack
-          echo "Webpack Installed!"
           webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors
-  # after-steps:
-  #     - slack-notifier:
-  #         url: $SLACK_WEBHOOK_URL
+  after-steps:
+      - slack-notifier:
+          url: $SLACK_WEBHOOK_URL
 
 
 deploy-s3:
@@ -26,6 +25,6 @@ deploy-s3:
       bucket_url: $AWS_BUCKET_URL
       source_dir: dist/
       opts: --acl-public --add-header=Cache-Control:max-age=3600 --cf-invalidate
-  # after-steps:
-  #     - slack-notifier:
-  #         url: $SLACK_WEBHOOK_URL
+  after-steps:
+      - slack-notifier:
+          url: $SLACK_WEBHOOK_URL
