@@ -1,5 +1,6 @@
 const env = require('process');
 const path = require('path');
+const package = require("./package.json");
 const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
@@ -13,7 +14,7 @@ const NodeEnvWebpackPlugin = new webpack.DefinePlugin({
   }
 });
 const PackageWebpackPlugin = new webpack.DefinePlugin({
-  package: JSON.stringify(require("./package.json"))
+  package: package
 });
 
 module.exports = {
@@ -26,12 +27,9 @@ module.exports = {
     receipt: ["./babel.helpers.js", "./receipt.js"]
   },
 
-  output:{
-    // filename: 'bundle.js',
-    // path: __dirname + '/dist',
-    // chunkFilename: '[id].[chunkhash].js'
+  output: {
     path: path.resolve(__dirname, './dist'),
-    filename: '[name].bundle.js',
+    filename: '[name]-v' + package.version + '.js'
   },
 
   resolve: {
