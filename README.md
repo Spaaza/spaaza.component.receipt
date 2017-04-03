@@ -1,14 +1,41 @@
-# Receipt component
+# Spaaza Receipt Component
 
-### Use
+Render a Spaaza Receipt
+
+### About
+
+The main goal is to provide an easy way to render a Receipt in a web context.
+
+The component was build using [CustomElements API](https://w3c.github.io/webcomponents/spec/custom/) and [ShadowDOM API](https://w3c.github.io/webcomponents/spec/shadow/). It uses [Handlebars](http://handlebarsjs.com/) for templating.
+
+### Demo
+
+There is available a [live demo](https://s3-eu-west-1.amazonaws.com/receipt-component-test01-spaaza-com/index.html) of the component.
+
+### How to use
+
+First need to include the component source code:
+`TODO: Provide a better URL through CDN`
 
 ```
-<link href="path/to/component/receipt.html" />
+<script src="https://s3-eu-west-1.amazonaws.com/receipt-component-test01-spaaza-com/receipt-v1.0.0.js"></script>
 ```
-
+Get receipt data from Spaaza API `TODO: Add reference to API`
+Then in your HTML site or app use:
 ```
 <spaaza-receipt>
-  <pre id="data">
+  <code id="data">
+    {
+      ... INSERT RECEIPT API RESPONSE HERE ...
+    }
+  </code>
+</spaaza-receipt>
+```
+
+#### Full example
+```
+<spaaza-receipt>
+  <code id="data">
     {
       "Id": "13245678",
       "Timestamp": "2017-02-08 12:26:01",
@@ -93,19 +120,31 @@
       "CustomerEmail": "bugsbunny@looneytunes.com"
 
     }
-  </pre>
+  </code>
 </spaaza-receipt>
 ```
 
 
-## Dev
+## Development
 
-  `npm run dev`
+To install project dependencies run:
 
-## Build
+``` npm install ```
 
-  `npm run build`
+### Run development flow
 
-## Test
+To run development with webpack and hot reload:
 
-  `npm run test`
+``` npm run dev ```
+
+### Test
+
+Run karma tests
+
+``` npm run test ```
+
+### Build production bundle
+
+Will minimize and optimize the bundle for live environments
+
+``` npm run build ```
