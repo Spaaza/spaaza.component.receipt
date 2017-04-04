@@ -17,10 +17,16 @@
           {{/if}}
           <tr>
             <td>
+              {{#if LAYOUT.HEADER.TITLE}}
               <h1 class="align-center">Your receipt</h1>
+              {{/if}}
+
+              {{#if LAYOUT.HEADER.MESSAGE}}
               <p>Hi there {{ FirstName }}, thanks for your purchase!</p>
               <p>Your order details from {{ ChainName }}:</p>
+              {{/if}}
 
+              {{#if LAYOUT.HEADER.MESSAGE}}
               <table>
                 <tr>
                   <td class="receipt-total">
@@ -86,7 +92,10 @@
                   </td>
                 </tr>
               </table>
+              {{/if}}
 
+
+              {{#if LAYOUT.CONTENT.LINEITEMS}}
               <table>
                 <tr>
                   <!-- {{#LineItems.0.metadata.image}}
@@ -148,7 +157,9 @@
                 </tr>
                 {{/LineItems}}
               </table>
+              {{/if}}
 
+              {{#if LAYOUT.CONTENT.TOTALS}}
               <table class="receipt-subtotals">
                 <tr>
                   <td>
@@ -162,9 +173,10 @@
                   </td>
                 </tr>
               </table>
+              {{/if}}
 
+              {{#if LAYOUT.CONTENT.LINETAXES}}
               {{#if LineTaxes}}
-
               <table class="divider-wrapper">
                 <tr>
                   <td class="divider-spacer">
@@ -204,8 +216,6 @@
                 {{/LineTaxes}}
               </table>
 
-              {{/if}}
-
               <table class="divider-wrapper">
                 <tr>
                   <td class="divider-spacer">
@@ -217,7 +227,10 @@
                   </td>
                 </tr>
               </table>
+              {{/if}}
+              {{/if}}
 
+              {{#if LAYOUT.CONTENT.TOTALS}}
               <table class="receipt-totals">
                 {{#Vouchers}}
                 <tr>
@@ -244,6 +257,7 @@
                   </td>
                 </tr>
               </table>
+              {{/if}}
 
               <table class="divider-wrapper">
                 <tr>
@@ -257,6 +271,7 @@
                 </tr>
               </table>
 
+              {{#if LAYOUT.CONTENT.WALLET}}
               {{#Wallet}}
               <table class="wallet">
                 <tr>
@@ -281,7 +296,6 @@
                   </td>
                 </tr>
               </table>
-              {{/Wallet}}
 
               <table class="divider-wrapper">
                 <tr>
@@ -294,7 +308,10 @@
                   </td>
                 </tr>
               </table>
+              {{/Wallet}}
+              {{/if}}
 
+              {{#if LAYOUT.CONTENT.DOWNLOAD}}
               <table class="btn btn-primary" cellpadding="0" cellspacing="0">
                 <tr>
                   <td align="center">
@@ -320,6 +337,7 @@
                   </td>
                 </tr>
               </table>
+              {{/if}}
 
               <table>
                 <tr>
@@ -328,6 +346,7 @@
                   </td>
                 </tr>
               </table>
+              {{#if LAYOUT.FOOTER.MAP}}
               {{#if MapURL }}
               <table>
                 <tr>
@@ -337,9 +356,11 @@
                 </tr>
               </table>
               {{/if}}
+              {{/if}}
               <table>
                 <tr>
                   <td>
+                    {{#if LAYOUT.FOOTER.ADDRESS}}
                     <p>
                       {{#Address_1}}
                         {{ . }}<br>
@@ -351,18 +372,22 @@
                         {{ . }}
                       {{/Towncity}}
                     </p>
+                    {{/if}}
                   </td>
                   <td align="right">
+                    {{#if LAYOUT.FOOTER.CONTACT}}
                     {{#PhoneNumber}}
                       <a href="tel:{{ . }}">{{ . }}</a>
                     {{/PhoneNumber}}
                     {{#EmailAddress}}
                       <a href="tel:{{ . }}">{{ . }}</a>
                     {{/EmailAddress}}
+                    {{/if}}
                   </td>
                 </tr>
               </table>
 
+              {{#if LAYOUT.FOOTER.MESSAGE}}
               <table class="divider-wrapper">
                 <tr>
                   <td class="divider-spacer">
@@ -374,9 +399,8 @@
                   </td>
                 </tr>
               </table>
-
               <p class="align-center">Thank you for choosing {{ ChainName }}.</p>
-
+              {{/if}}
             </td>
           </tr>
         </table>

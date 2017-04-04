@@ -7,10 +7,34 @@
 <body>
 
   <spaaza-receipt>
-    <pre id="data">
+
+    <layout>
+      <header>
+        <brand></brand>
+        <title></title>
+        <message></message>
+        <details></details>
+      </header>
+      <content>
+        <lineItems></lineItems>
+        <lineTaxes></lineTaxes>
+        <totals></totals>
+        <wallet></wallet>
+        <download></download>
+      </content>
+      <footer>
+        <map></map>
+        <contact></contact>
+        <address></address>
+        <message></message>
+      </footer>
+    </layout>
+
+    <data>
       {
         "Id": "13245678",
         "Timestamp": "2017-02-08 12:26:01",
+        "LogoUrl": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/c3d0f834884877.56060c8349f64.jpg",
         "DownloadUrl": "https://sercives.spaaza.com/dowload?receipt_id=13245678",
         "Quantity": 2,
         "Subtotal": 140,
@@ -83,7 +107,7 @@
 
       }
 
-    </pre>
+    </data>
   </spaaza-receipt>
 </body>
 </html>
