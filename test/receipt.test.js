@@ -5,6 +5,9 @@ describe('Test Receipts WebComponent', function() {
 
   it('should get working with no object', function() {
     var spaazaReceipt = document.createElement('spaaza-receipt');
+    var data = document.createElement('data');
+    data.innerHTML = JSON.stringify(ReceiptData);
+    window.document.appendChild(spaazaReceipt);
     expect(spaazaReceipt.innerHTML).toEqual('<div>working....</div>');
   });
 
