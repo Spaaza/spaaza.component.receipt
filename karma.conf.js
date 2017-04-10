@@ -1,5 +1,5 @@
-// var babel = require('rollup-plugin-babel');
-// var babel = require('karma-rollup-plugin');
+var webpack = require('karma-webpack');
+var webpackConfig = require('./webpack.config.js');
 
 // Karma configuration
 
@@ -15,9 +15,22 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
 
+    // list of files / patterns to load in the browser
+    files: [
+      'test/**/*.js'//,
+      // fixtures
+      // { pattern: 'test/mock/*.json', watched: true, served: true, included: false }
+    ],
+
+    // list of files to exclude
+    exclude: [
+      'doc'
+    ],
+
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'dist/**/*.js': ['coverage'],
       'src/**/*.js': ['webpack', 'sourcemap'],
       'test/**/*.test.js': ['webpack', 'sourcemap']
     },
@@ -38,28 +51,25 @@ module.exports = function(config) {
     },
 
     plugins: [
+      'karma-phantomjs-launcher',
       'karma-chrome-launcher',
       'karma-jasmine',
       'karma-webpack',
-      'karma-sourcemap-loader'
+      'karma-sourcemap-loader',
+      'karma-coverage'
     ],
 
-    // list of files / patterns to load in the browser
-    files: [
-      'test/**/*.js'//,
-      // fixtures
-      // { pattern: 'test/mock/*.json', watched: true, served: true, included: false }
-    ],
-
-
-    // list of files to exclude
-    exclude: [
-    ],
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress','coverage'],
+
+    // optionally, configure the reporter
+    coverageReporter: {
+      type : 'html',
+      dir : 'test-coverage/'
+    },
 
 
     // web server port
@@ -72,7 +82,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
 
 
     // enable / disable watching file and executing tests whenever any file changes
@@ -82,7 +92,9 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome'],
+    // browsers: ['PhantomJS'],
 
+    webpack: webpackConfig,
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
