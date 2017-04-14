@@ -30,7 +30,9 @@ class ReceiptDataParser {
     switch (component) {
       // <spaaza-brand>
       case "BRAND":
-        data.logoURL = this.data.chain.logo_url;
+        data.logoURL = typeof this.layout.HEADER.BRAND.LOGO === 'string'
+          ? this.layout.HEADER.BRAND.LOGO
+          : this.data.chain.logo_url;
         data.title = typeof this.layout.HEADER.BRAND.TITLE === 'string'
           ? this.layout.HEADER.BRAND.TITLE
           : "Your Receipt";
