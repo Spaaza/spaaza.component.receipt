@@ -6,124 +6,7 @@ Render a Spaaza Receipt
 
 The main goal is to provide an easy way to render a Receipt in a web context.
 
-The component was build using [CustomElements API](https://w3c.github.io/webcomponents/spec/custom/) and [ShadowDOM API](https://w3c.github.io/webcomponents/spec/shadow/). It uses [Handlebars](http://handlebarsjs.com/) for templating.
-
-### Demo
-
-There is available a [live demo](https://s3-eu-west-1.amazonaws.com/receipt-component-test01-spaaza-com/index.html) of the component.
-
-### How to use
-
-First need to include the component source code:
-`TODO: Provide a better URL through CDN`
-
-```
-<script src="https://s3-eu-west-1.amazonaws.com/receipt-component-test01-spaaza-com/receipt-v1.0.0.js"></script>
-```
-Get receipt data from Spaaza API `TODO: Add reference to API`
-Then in your HTML site or app use:
-```
-<spaaza-receipt>
-  <code id="data">
-    {
-      ... INSERT RECEIPT API RESPONSE HERE ...
-    }
-  </code>
-</spaaza-receipt>
-```
-
-#### Full example
-```
-<spaaza-receipt>
-  <code id="data">
-    {
-      "Id": "13245678",
-      "Timestamp": "2017-02-08 12:26:01",
-      "DownloadUrl": "https://sercives.spaaza.com/dowload?receipt_id=13245678",
-      "Quantity": 2,
-      "Subtotal": 140,
-      "TotalValue": 141.96,
-      "PaymentMethod": "MasterCard **** 3401",
-
-      "Currency": "EUR",
-      "CurrencySymbol": "€",
-
-      "LineItems": [
-        {
-          "Name": "Anvil with box",
-          "Description": "Best anvil is ACME, comes with original wooden box and instructions in all cristian languages.",
-          "DistinguisherType": "id",
-          "DistinguisherValue": "123456789",
-          "OriginalPrice": 84,
-          "Quantity": 1,
-          "SalePrice": 60,
-          "Points": 6,
-          "Vouchers": 0,
-          "Currency": "EUR",
-          "CurrencySymbol": "€",
-          "Metadata": {
-            "Color": "Metal",
-            "Size": "Medium",
-            "Image": "https://s-media-cache-ak0.pinimg.com/736x/c9/21/f5/c921f5b5e2f84ea22ccae85e0fad9a72.jpg"
-          }
-        }, {
-          "Name": "Rocket powered rollerskates",
-          "Description": "Why rollerskate when you can rocketskate! Ideal to jump over cliffs or over hard/sharp objects.",
-          "DistinguisherType": "id",
-          "DistinguisherValue": "234567891",
-          "OriginalPrice": 110,
-          "Quantity": 1,
-          "SalePrice": 80,
-          "Points": 8,
-          "Vouchers": 0,
-          "Currency": "EUR",
-          "CurrencySymbol": "€",
-          "Metadata": {
-            "Color": "Red",
-            "Size": "Medium",
-            "Image": "https://img1.etsystatic.com/051/0/8917543/il_570xN.665890621_50he.jpg"
-          }
-        }
-      ],
-      "LineTaxes": [
-        {
-          "Currency": "EUR",
-          "CurrencySymbol": "€",
-          "Rate": "10%",
-          "OrderValue": 100,
-          "TaxCalue": 10
-        }, {
-          "Currency": "EUR",
-          "CurrencySymbol": "€",
-          "Rate": "",
-          "OrderValue": 196.70,
-          "TaxValue": 1.96
-        }, {
-          "Currency": "EUR",
-          "CurrencySymbol": "€",
-          "Rate": "",
-          "OrderValue": 296.70,
-          "TaxValue": 11.96
-        }
-      ],
-
-      "ChainId": 12345678,
-      "ChainName": "ACME",
-      "Address1": "Herengratch 504",
-      "Address2": "",
-      "Address3": "",
-      "Towncity": "Amsterdam",
-
-      "CustomerId": "1",
-      "FirstName": "Bugs",
-      "LastName": "Bunny",
-      "CustomerEmail": "bugsbunny@looneytunes.com"
-
-    }
-  </code>
-</spaaza-receipt>
-```
-
+The component was build using [CustomElements API](https://w3c.github.io/webcomponents/spec/custom/) and [ShadowDOM API](https://w3c.github.io/webcomponents/spec/shadow/).
 
 ## Development
 
@@ -139,7 +22,7 @@ To run development with webpack and hot reload:
 
 ### Test
 
-Run karma tests
+Run tests
 
 ``` npm run test ```
 
@@ -148,3 +31,181 @@ Run karma tests
 Will minimize and optimize the bundle for live environments
 
 ``` npm run build ```
+
+### Demo
+
+There is available a [live demo](https://s3-eu-west-1.amazonaws.com/receipt-component-test01-spaaza-com/1.1.0/index.html) of the component.
+
+### How to use
+
+First need to include the component source code: `@TODO: Provide a better URL through CDN`
+
+```
+<script src="https://s3-eu-west-1.amazonaws.com/receipt-component-test01-spaaza-com/1.1.0/receipt-v1.1.0.js"></script>
+```
+Get receipt data from Spaaza API `@TODO: Add reference to API`
+Then in your HTML site or app use:
+```
+<spaaza-receipt>
+  <data>
+    {
+      ... INSERT RECEIPT API RESPONSE HERE ...
+    }
+  </data>
+</spaaza-receipt>
+```
+
+#### Example
+```
+<!-- define component -->
+<spaaza-receipt>
+  <data>
+    {
+    "id": "123456",
+    "timestamp": "2017-02-08T12:26:01",
+    "quantity": 3,
+    "subtotal": 500,
+    "total_value": 499.99,
+    "payment_method": "PIN",
+    "line_items": [
+      {
+        "name": "Lee Jeans",
+        "description": "Limited edition 2017",
+        "type": "",
+        "original_price": 144.99,
+        "quantity": 1,
+        "sale_price": 144.99,
+        "vouchers": 0,
+        "metadata": {
+          "color": "blue",
+          "size": "44",
+          "image": "http://images.lee.com/is/image/Lee/2011264-ALT5"
+        },
+        "sale_discount": ""
+      },
+      {
+        "name": "Necklace",
+        "description": "Golden",
+        "type": "",
+        "original_price": 49.99,
+        "quantity": 1,
+        "sale_price": 49.99,
+        "vouchers": 0,
+        "metadata": {
+          "color": "gold",
+          "size": "M",
+          "image": ""
+        },
+        "sale_discount": ""
+      },
+      {
+        "name": "Cotton T-Shirt",
+        "description": "100% Natural",
+        "type": "",
+        "original_price": 94.99,
+        "quantity": 1,
+        "sale_price": 94.99,
+        "vouchers": 0,
+        "metadata": {
+          "color": "white",
+          "size": "S",
+          "image": ""
+        },
+        "sale_discount": ""
+      }
+    ],
+    "tax_lines": [
+      {
+        "tax_value": 30.25,
+        "order_value": 100.99,
+        "rate": 0.21
+      },
+      {
+        "tax_value": 20.55,
+        "order_value": 99.99,
+        "rate": 0.06
+      },
+      {
+        "tax_value": 19.99,
+        "order_value": 200,
+        "rate": 1.5
+      }
+    ],
+    "chain": {
+      "id": 8989898,
+      "name": "Vera Moda",
+      "email": "info@spaaza.com",
+      "logo_url": "https://www.placemontrealtrust.com/media/stores/logos/VeroModa-vetements-femmes-women-clothing-logo.svg",
+      "website_url": "http://www.veramoda.com",
+      "currency": "Euro",
+      "currency_symbol": "€",
+      "business": {
+        "id": 77666525,
+        "name": "Vera Moda Herengracht",
+        "address": {
+          "address_1": "Herengracht 504",
+          "address_2": "",
+          "address_3": "",
+          "towncity": "Amsterdam",
+          "postal_code": "1011AB",
+          "country_code": "",
+          "location": {
+            "lat": 0,
+            "lon": 0
+          }
+        },
+        "phone_number": "+312773874",
+        "email": "herengracht@veramoda.com",
+        "website_url": "http://www.veramod.com/herengracht"
+      }
+    },
+    "shopper": {
+      "id": 9877111,
+      "user_name": "",
+      "entity_code": "",
+      "first_name": "hossein",
+      "last_name": "kazemi",
+      "country_code": "NL",
+      "gender": "M",
+      "birthday": "10/10/74",
+      "total_points_balance": 0,
+      "email": "hossein.kazemi@spaaza.com",
+      "shipping_address": {
+        "address_1": "Vijzelstraat 221",
+        "address_2": "",
+        "address_3": "",
+        "towncity": "Amsterdam",
+        "postal_code": "1222AB",
+        "country_code": "",
+        "location": {
+          "lat": 0,
+          "lon": 0
+        }
+      },
+      "billing_address": {
+        "address_1": "Vijzelstraat 221",
+        "address_2": "",
+        "address_3": "",
+        "towncity": "Amsterdam",
+        "postal_code": "1222AB",
+        "country_code": "",
+        "location": {
+          "lat": 0,
+          "lon": 0
+        }
+      }
+    },
+    "Receipt": {
+      "download_url": "https://s3-eu-west-1.amazonaws.com/spaaza-events-service-dev/receipts/123456.pdf",
+      "template_content": {
+        "subject": "",
+        "background_color": ""
+      }
+    }
+  }
+  </data>
+</spaaza-receipt>
+
+<!-- attach component -->
+<script src="https://s3-eu-west-1.amazonaws.com/receipt-component-test01-spaaza-com/1.1.0/receipt-v1.1.0.js"></script>
+```
