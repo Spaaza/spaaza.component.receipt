@@ -1,0 +1,1955 @@
+[
+  {
+    "__docId__": 0,
+    "kind": "file",
+    "name": "src/common/component.js",
+    "content": "/**\n * @class Component\n * @extends HTMLElement\n */\n\nclass Component extends HTMLElement {\n\n  /**\n   * Extract data from <data></data> element\n   * @return {object} Return an literal object with the component's data\n   */\n  get data() {\n    // if data is already present ignore\n    if (this._data) return this._data;\n    // get data tag from host\n    let d = this.shadowRoot.host.querySelector('data');\n    // store data or false\n    this._data = d.innerHTML ? JSON.parse(d.innerHTML) : false;\n    // return data object\n    return this._data;\n  }\n\n  /**\n   * Append a chunk of HTML to the component's template\n   * @return {string} Return the compiled HTML template\n   */\n  get template() {\n    return this._template;\n  }\n\n  /**\n   * Append a chunk of HTML to the component's template\n   * @param {string} chunk HTML chunk to add\n   */\n  append(chunk) {\n    this._template += chunk;\n  }\n\n  /**\n   * Draw template into shadow root\n   */\n  draw() {\n    this.compileTemplate();\n    this.shadowRoot.innerHTML = this._template;\n  }\n\n  /**\n   * @return {HTMLElement} Returns element instance\n   */\n  constructor() {\n    super();\n    // create the shadowDOM\n    this.attachShadow({ mode: 'open' });\n    // template placeholder\n    this._template = ``;\n  }\n\n// End Component\n}\n\nexport default Component\n",
+    "static": true,
+    "longname": "src/common/component.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 1,
+    "kind": "class",
+    "name": "Component",
+    "memberof": "src/common/component.js",
+    "static": true,
+    "longname": "src/common/component.js~Component",
+    "access": null,
+    "export": true,
+    "importPath": "spaaza.component.receipt/src/common/component.js",
+    "importStyle": "Component",
+    "description": "",
+    "lineNumber": 6,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "Component"
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "*"
+    ]
+  },
+  {
+    "__docId__": 2,
+    "kind": "get",
+    "name": "data",
+    "memberof": "src/common/component.js~Component",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/common/component.js~Component#data",
+    "access": null,
+    "description": "Extract data from <data></data> element",
+    "lineNumber": 12,
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "Return an literal object with the component's data"
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 3,
+    "kind": "member",
+    "name": "_data",
+    "memberof": "src/common/component.js~Component",
+    "static": false,
+    "longname": "src/common/component.js~Component#_data",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 4,
+    "kind": "get",
+    "name": "template",
+    "memberof": "src/common/component.js~Component",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/common/component.js~Component#template",
+    "access": null,
+    "description": "Append a chunk of HTML to the component's template",
+    "lineNumber": 27,
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": "Return the compiled HTML template"
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 5,
+    "kind": "method",
+    "name": "append",
+    "memberof": "src/common/component.js~Component",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/common/component.js~Component#append",
+    "access": null,
+    "description": "Append a chunk of HTML to the component's template",
+    "lineNumber": 35,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "chunk",
+        "description": "HTML chunk to add"
+      }
+    ]
+  },
+  {
+    "__docId__": 6,
+    "kind": "member",
+    "name": "_template",
+    "memberof": "src/common/component.js~Component",
+    "static": false,
+    "longname": "src/common/component.js~Component#_template",
+    "access": null,
+    "description": null,
+    "lineNumber": 36,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 7,
+    "kind": "method",
+    "name": "draw",
+    "memberof": "src/common/component.js~Component",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/common/component.js~Component#draw",
+    "access": null,
+    "description": "Draw template into shadow root",
+    "lineNumber": 42,
+    "params": []
+  },
+  {
+    "__docId__": 8,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/common/component.js~Component",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/common/component.js~Component#constructor",
+    "access": null,
+    "description": "",
+    "lineNumber": 50,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "HTMLElement"
+      ],
+      "spread": false,
+      "description": "Returns element instance"
+    }
+  },
+  {
+    "__docId__": 9,
+    "kind": "member",
+    "name": "_template",
+    "memberof": "src/common/component.js~Component",
+    "static": false,
+    "longname": "src/common/component.js~Component#_template",
+    "access": null,
+    "description": null,
+    "lineNumber": 55,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 10,
+    "kind": "file",
+    "name": "src/common/receipt.layout.js",
+    "content": "let layout = {\n  \"HEADER\": {\n    \"BRAND\": {\n      \"LOGO\": true,\n      \"TITLE\": true,\n      \"MESSAGE\": true\n    },\n    \"DETAILS\": true\n  },\n  \"CONTENT\": {\n    \"LINEITEMS\": true,\n    \"LINETAXES\": true,\n    \"TOTALS\": true,\n    \"WALLET\": true,\n    \"DOWNLOAD\": true\n  },\n  \"FOOTER\": {\n    \"STORE\": {\n      \"CONTACT\": true,\n      \"ADDRESS\": true,\n      \"MESSAGE\": true\n    }\n  }\n};\n\nlet divider = `\n  <table class=\"divider-wrapper\">\n      <tr>\n        <td class=\"divider-spacer\">\n          <table class=\"divider\" cellpadding=\"0\" cellspacing=\"0\">\n            <tr>\n              <td></td>\n            </tr>\n          </table>\n        </td>\n      </tr>\n    </table>\n`;\n\nexport { layout, divider };\n",
+    "static": true,
+    "longname": "src/common/receipt.layout.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 11,
+    "kind": "variable",
+    "name": "layout",
+    "memberof": "src/common/receipt.layout.js",
+    "static": true,
+    "longname": "src/common/receipt.layout.js~layout",
+    "access": null,
+    "export": true,
+    "importPath": "spaaza.component.receipt/src/common/receipt.layout.js",
+    "importStyle": "{layout}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "{\"HEADER\": *, \"CONTENT\": *, \"FOOTER\": *}"
+      ]
+    }
+  },
+  {
+    "__docId__": 12,
+    "kind": "variable",
+    "name": "divider",
+    "memberof": "src/common/receipt.layout.js",
+    "static": true,
+    "longname": "src/common/receipt.layout.js~divider",
+    "access": null,
+    "export": true,
+    "importPath": "spaaza.component.receipt/src/common/receipt.layout.js",
+    "importStyle": "{divider}",
+    "description": null,
+    "lineNumber": 26,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 13,
+    "kind": "file",
+    "name": "src/component/brand.js",
+    "content": "import Component from '../common/component.js';\n\nclass Brand extends Component {\n\n  constructor() {\n    super();\n  }\n\n  // Called every time the element is inserted into the DOM.\n  connectedCallback() {\n    this.append(`<style>${require('./brand.less')}</style>`);\n    this.draw();\n  }\n\n  compileTemplate() {\n\n    let hasData = this.data.logoURL || this.data.title || this.data.message;\n\n    if (hasData) {\n      this.append(`<table>`);\n    }\n\n    if (this.data.logoURL) {\n      this.append(`\n        <tr>\n          <td><img src=\"${this.data.logoURL}\"></td>\n        </tr>\n      `);\n    }\n    if (this.data.title) {\n      this.append(`\n        <tr>\n          <td><h1>${this.data.title}</h1></td>\n        </tr>\n      `);\n    }\n    if (this.data.message) {\n      this.append(`\n        <tr>\n          <td><p>${this.data.message}</p></td>\n        </tr>\n      `);\n    }\n\n    if (hasData) {\n      this.append(`</table>`);\n    }\n  }\n}\nexport default Brand\n\ncustomElements.define('spaaza-brand', Brand);\n",
+    "static": true,
+    "longname": "src/component/brand.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 14,
+    "kind": "class",
+    "name": "Brand",
+    "memberof": "src/component/brand.js",
+    "static": true,
+    "longname": "src/component/brand.js~Brand",
+    "access": null,
+    "export": true,
+    "importPath": "spaaza.component.receipt/src/component/brand.js",
+    "importStyle": "Brand",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "src/common/component.js~Component"
+    ]
+  },
+  {
+    "__docId__": 15,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/component/brand.js~Brand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/brand.js~Brand#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 16,
+    "kind": "method",
+    "name": "connectedCallback",
+    "memberof": "src/component/brand.js~Brand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/brand.js~Brand#connectedCallback",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 17,
+    "kind": "method",
+    "name": "compileTemplate",
+    "memberof": "src/component/brand.js~Brand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/brand.js~Brand#compileTemplate",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 18,
+    "kind": "file",
+    "name": "src/component/details.js",
+    "content": "import Component from '../common/component.js';\n\nclass Details extends Component {\n\n  constructor() {\n    super();\n  }\n\n  // Called every time the element is inserted into the DOM.\n  connectedCallback() {\n    this.append(`<style>${require('./details.less')}</style>`);\n    this.draw();\n  }\n\n  compileTemplate() {\n\n    let hasData = this.data.message || this.data.total || this.data.id || this.data.date;\n\n    if (hasData) {\n      this.append(`<table>`);\n    }\n\n    if (this.data.message) {\n      this.append(`<tr><td colspan=\"2\">${this.data.message}</td></tr>`);\n    }\n\n    if (this.data.total) {\n      this.append(`\n        <tr class=\"receipt-strong\">\n          <td class=\"\">${this.data.method}</td>\n          <td class=\"align-right\">${this.data.currencySymbol} ${this.data.total}</td>\n        </tr>\n      `);\n    }\n    if (this.data.id) {\n      this.append(`\n        <tr>\n          <td class=\"\">Order number</td>\n          <td class=\"align-right\">#${this.data.id}</td>\n        </tr>\n      `);\n    }\n    if (this.data.date) {\n      this.append(`\n        <tr>\n          <td class=\"\">Date</td>\n          <td class=\"align-right\">${new Date(this.data.date).toLocaleString('en-GB')}</td>\n        </tr>\n      `);\n    }\n\n    if (hasData) {\n      this.append(`</table>`);\n    }\n  }\n}\nexport default Details\n\ncustomElements.define('spaaza-details', Details);\n",
+    "static": true,
+    "longname": "src/component/details.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 19,
+    "kind": "class",
+    "name": "Details",
+    "memberof": "src/component/details.js",
+    "static": true,
+    "longname": "src/component/details.js~Details",
+    "access": null,
+    "export": true,
+    "importPath": "spaaza.component.receipt/src/component/details.js",
+    "importStyle": "Details",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "src/common/component.js~Component"
+    ]
+  },
+  {
+    "__docId__": 20,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/component/details.js~Details",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/details.js~Details#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 21,
+    "kind": "method",
+    "name": "connectedCallback",
+    "memberof": "src/component/details.js~Details",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/details.js~Details#connectedCallback",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 22,
+    "kind": "method",
+    "name": "compileTemplate",
+    "memberof": "src/component/details.js~Details",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/details.js~Details#compileTemplate",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 23,
+    "kind": "file",
+    "name": "src/component/download.js",
+    "content": "import { divider } from '../common/receipt.layout.js';\nimport Component from '../common/component.js';\n\nclass Download extends Component {\n\n  constructor() {\n    super();\n  }\n\n  // Called every time the element is inserted into the DOM.\n  connectedCallback() {\n    this.append(`<style>${require('./download.less')}</style>`);\n    this.draw();\n  }\n\n  compileTemplate() {\n    if (this.data.downloadURL) {\n      this.append(divider);\n      this.append(`<div class=\"btn btn-primary\"><a href=\"${this.data.downloadURL}\" target=\"_blank\">${this.data.label}</a><div>`);\n    }\n  }\n}\nexport default Download\n\ncustomElements.define('spaaza-download', Download);\n",
+    "static": true,
+    "longname": "src/component/download.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 24,
+    "kind": "class",
+    "name": "Download",
+    "memberof": "src/component/download.js",
+    "static": true,
+    "longname": "src/component/download.js~Download",
+    "access": null,
+    "export": true,
+    "importPath": "spaaza.component.receipt/src/component/download.js",
+    "importStyle": "Download",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "src/common/component.js~Component"
+    ]
+  },
+  {
+    "__docId__": 25,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/component/download.js~Download",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/download.js~Download#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 26,
+    "kind": "method",
+    "name": "connectedCallback",
+    "memberof": "src/component/download.js~Download",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/download.js~Download#connectedCallback",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 27,
+    "kind": "method",
+    "name": "compileTemplate",
+    "memberof": "src/component/download.js~Download",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/download.js~Download#compileTemplate",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 28,
+    "kind": "file",
+    "name": "src/component/lineitems.js",
+    "content": "import { divider } from '../common/receipt.layout.js';\nimport Component from '../common/component.js';\n\nclass LineItems extends Component {\n\n  constructor() {\n    super();\n  }\n\n  // Called every time the element is inserted into the DOM.\n  connectedCallback() {\n    this.append(`<style>${require('./lineitems.less')}</style>`);\n    this.draw();\n  }\n\n  compileTemplate() {\n\n    // when line items collections is available\n    if (!this.data.lineitems || !this.data.lineitems.length) return;\n\n    let currencySymbol = this.data.currencySymbol;\n\n    this.append(divider);\n\n    // create table header\n    this.append(`\n      <table class=\"receipt-lineitems\">\n        <tr>\n          <th class=\"align-left\">Name</th>\n          <th class=\"align-center\">Qty</th>\n          <th class=\"align-right\">Price</th>\n        </tr>\n    `);\n\n    // create a template for each element\n    this.data.lineitems.map(item => {\n      // check if items needs to show original price\n      console.log('item', item)\n      let isOnSale = item.original_price > item.sale_price;\n      this.append(`\n        <tr class=\"line-item\">\n          <td class=\"align-left\">\n            <div class=\"line-item-name\">${item.name}</div>\n          </td>\n          <td class=\"align-center\">${item.quantity}</td>\n          <td class=\"align-right\">\n            <span class=\"receipt-original-price ${isOnSale?'receipt-line-through':''}\">${currencySymbol} ${item.original_price}</span>\n            <span class=\"receipt-sale-price receipt-strong\">${currencySymbol} ${item.sale_price}</span>\n          </td>\n        </tr>\n      `);\n    });\n\n    // close table\n    this.append(`</table>`);\n  }\n}\nexport default LineItems\n\ncustomElements.define('spaaza-lineitems', LineItems);\n",
+    "static": true,
+    "longname": "src/component/lineitems.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 29,
+    "kind": "class",
+    "name": "LineItems",
+    "memberof": "src/component/lineitems.js",
+    "static": true,
+    "longname": "src/component/lineitems.js~LineItems",
+    "access": null,
+    "export": true,
+    "importPath": "spaaza.component.receipt/src/component/lineitems.js",
+    "importStyle": "LineItems",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "src/common/component.js~Component"
+    ]
+  },
+  {
+    "__docId__": 30,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/component/lineitems.js~LineItems",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/lineitems.js~LineItems#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 31,
+    "kind": "method",
+    "name": "connectedCallback",
+    "memberof": "src/component/lineitems.js~LineItems",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/lineitems.js~LineItems#connectedCallback",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 32,
+    "kind": "method",
+    "name": "compileTemplate",
+    "memberof": "src/component/lineitems.js~LineItems",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/lineitems.js~LineItems#compileTemplate",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 33,
+    "kind": "file",
+    "name": "src/component/linetaxes.js",
+    "content": "import { divider } from '../common/receipt.layout.js';\nimport Component from '../common/component.js';\n\nclass LineTaxes extends Component {\n\n  constructor() {\n    super();\n  }\n\n  // Called every time the element is inserted into the DOM.\n  connectedCallback() {\n    this.append(`<style>${require('./linetaxes.less')}</style>`);\n    this.draw();\n  }\n\n  compileTemplate() {\n\n    // when line taxes collections is available\n    if (!this.data.linetaxes || !this.data.linetaxes.length) return;\n\n    let currencySymbol = this.data.currencySymbol;\n\n    this.append(divider);\n\n    // create table header\n    this.append(`\n      <table class=\"receipt-linetaxes\">\n        <tr>\n          <th class=\"align-left\">VAR Rate</th>\n          <th class=\"align-center\">Order value</th>\n          <th class=\"align-right\">VAT</th>\n        </tr>\n    `);\n\n    // create a template for each element\n    this.data.linetaxes.map(tax => {\n      this.append(`\n        <tr class=\"tax-line\">\n          <td class=\"var-rate align-left\">${tax.rate}%</td>\n          <td class=\"order-value align-center\">${currencySymbol} ${tax.order_value}</td>\n          <td class=\"vat align-right\">${currencySymbol} ${tax.tax_value}</td>\n        </tr>\n      `);\n    });\n\n    // close table\n    this.append(`</table>`);\n  }\n}\nexport default LineTaxes\n\ncustomElements.define('spaaza-linetaxes', LineTaxes);\n",
+    "static": true,
+    "longname": "src/component/linetaxes.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 34,
+    "kind": "class",
+    "name": "LineTaxes",
+    "memberof": "src/component/linetaxes.js",
+    "static": true,
+    "longname": "src/component/linetaxes.js~LineTaxes",
+    "access": null,
+    "export": true,
+    "importPath": "spaaza.component.receipt/src/component/linetaxes.js",
+    "importStyle": "LineTaxes",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "src/common/component.js~Component"
+    ]
+  },
+  {
+    "__docId__": 35,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/component/linetaxes.js~LineTaxes",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/linetaxes.js~LineTaxes#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 36,
+    "kind": "method",
+    "name": "connectedCallback",
+    "memberof": "src/component/linetaxes.js~LineTaxes",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/linetaxes.js~LineTaxes#connectedCallback",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 37,
+    "kind": "method",
+    "name": "compileTemplate",
+    "memberof": "src/component/linetaxes.js~LineTaxes",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/linetaxes.js~LineTaxes#compileTemplate",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 38,
+    "kind": "file",
+    "name": "src/component/store.js",
+    "content": "import { divider } from '../common/receipt.layout.js';\nimport Component from '../common/component.js';\n\nclass Store extends Component {\n\n  constructor() {\n    super();\n  }\n\n  // Called every time the element is inserted into the DOM.\n  connectedCallback() {\n    this.append(`<style>${require('./store.less')}</style>`);\n    this.draw();\n  }\n\n  // Called before every draw().\n  compileTemplate() {\n\n    let hasData = this.data.name || this.data.message || this.data.address || this.data.contact || this.data.email || this.data.website || this.data.towncity || this.data.postalcode;\n\n    if (hasData) {\n      this.append(divider);\n      this.append(`<table class=\"receipt-store\">`);\n    }\n\n    this.append(`\n      <tr>\n        <td class=\"align-left\">\n    `);\n\n    if (this.data.name) {\n      this.append(`\n        <div>${this.data.name}</div>\n      `);\n    }\n    if (this.data.email) {\n      this.append(`\n        <div><a href=\"mailto:${this.data.email}\">${this.data.email}</a></div>\n      `);\n    }\n    if (this.data.website) {\n      this.append(`\n        <div><a href=\"${this.data.website}\" target=\"_blank\">${this.data.website}</a></div>\n      `);\n    }\n\n    this.append(`\n      </td>\n      <td class=\"align-right\">\n    `);\n\n    if (this.data.contact) {\n      this.append(`\n        <div>${this.data.contact}</div>\n      `);\n    }\n    if (this.data.address) {\n      this.append(`\n        <div>${this.data.address}</div>\n      `);\n    }\n    if (this.data.towncity && this.data.postalcode) {\n      this.append(`<div>${this.data.towncity}, ${this.data.postalcode}</div>`);\n    } else if (this.data.towncity && !this.data.postalcode) {\n      this.append(`<div>${this.data.towncity}</div>`);\n    } else if (!this.data.towncity && this.data.postalcode) {\n      this.append(`<div>${this.data.postalcode}</div>`);\n    }\n\n    this.append(`\n        </td>\n      </tr>\n    `);\n\n    if (hasData) {\n      this.append(`</table>`);\n    }\n\n    this.append(divider);\n\n    if (this.data.message) {\n      this.append(`<p class=\"receipt-emphasys receipt-footer-message\">${this.data.message}</p>`);\n    }\n  }\n}\nexport default Store\n\ncustomElements.define('spaaza-store', Store);\n",
+    "static": true,
+    "longname": "src/component/store.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 39,
+    "kind": "class",
+    "name": "Store",
+    "memberof": "src/component/store.js",
+    "static": true,
+    "longname": "src/component/store.js~Store",
+    "access": null,
+    "export": true,
+    "importPath": "spaaza.component.receipt/src/component/store.js",
+    "importStyle": "Store",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "src/common/component.js~Component"
+    ]
+  },
+  {
+    "__docId__": 40,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/component/store.js~Store",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/store.js~Store#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 41,
+    "kind": "method",
+    "name": "connectedCallback",
+    "memberof": "src/component/store.js~Store",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/store.js~Store#connectedCallback",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 42,
+    "kind": "method",
+    "name": "compileTemplate",
+    "memberof": "src/component/store.js~Store",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/store.js~Store#compileTemplate",
+    "access": null,
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 43,
+    "kind": "file",
+    "name": "src/component/totals.js",
+    "content": "import { divider } from '../common/receipt.layout.js';\nimport Component from '../common/component.js';\n\nclass Totals extends Component {\n\n  constructor() {\n    super();\n  }\n\n  // Called every time the element is inserted into the DOM.\n  connectedCallback() {\n    this.append(`<style>${require('./totals.less')}</style>`);\n    this.draw();\n  }\n\n  compileTemplate() {\n\n    // when totals are available\n    let hasData = this.data.subtotal || this.data.total;\n\n    if (hasData) {\n      this.append(divider);\n      this.append(`<table class=\"receipt-totals\">`);\n    }\n\n    if (this.data.subtotal) {\n      this.append(`\n        <tr class=\"receipt-subtotal\">\n          <td>Subtotal</td>\n          <td class=\"align-right\">${this.data.currencySymbol} ${this.data.subtotal}</td>\n        </tr>\n      `);\n    }\n\n    if (this.data.total) {\n      this.append(`\n        <tr class=\"receipt-strong\">\n          <td>Total</td>\n          <td class=\"align-right\">${this.data.currencySymbol} ${this.data.total}</td>\n        </tr>\n      `);\n    }\n\n    if (hasData) {\n      this.append(`</table>`)\n    }\n  }\n}\nexport default Totals\n\ncustomElements.define('spaaza-totals', Totals);\n",
+    "static": true,
+    "longname": "src/component/totals.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 44,
+    "kind": "class",
+    "name": "Totals",
+    "memberof": "src/component/totals.js",
+    "static": true,
+    "longname": "src/component/totals.js~Totals",
+    "access": null,
+    "export": true,
+    "importPath": "spaaza.component.receipt/src/component/totals.js",
+    "importStyle": "Totals",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "src/common/component.js~Component"
+    ]
+  },
+  {
+    "__docId__": 45,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/component/totals.js~Totals",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/totals.js~Totals#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 46,
+    "kind": "method",
+    "name": "connectedCallback",
+    "memberof": "src/component/totals.js~Totals",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/totals.js~Totals#connectedCallback",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 47,
+    "kind": "method",
+    "name": "compileTemplate",
+    "memberof": "src/component/totals.js~Totals",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/component/totals.js~Totals#compileTemplate",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "src/data/receiptdataparser.js",
+    "content": "/**\n * ReceiptDataParser knows the data that each component needs.\n */\nclass ReceiptDataParser {\n\n  /**\n   * @param {object} data - full set of data.\n   * @param {object} layout - layout information.\n   */\n  constructor(data, layout) {\n    if (!data) {\n      console.error('ReceiptDataParser',' Can\\'t construct without data!');\n    }\n    this.data = data;\n    this.layout = layout;\n  }\n\n  /**\n   * @param {string} component - name of the component.\n   * @throws {debug} when component name is missing.\n   * @return {object} an object with specific data for the named component.\n   */\n  getDataFor(component) {\n    if (!component) {\n      console.warn('ReceiptDataParser',' Calling getDataFor(component_name) but \\'component_name\\' is missing!');\n    }\n    let data = {};\n\n    // define data object for a component\n    switch (component) {\n      // <spaaza-brand>\n      case \"BRAND\":\n        data.logoURL = this.data.chain.logo_url;\n        data.title = typeof this.layout.HEADER.BRAND.TITLE === 'string'\n          ? this.layout.HEADER.BRAND.TITLE\n          : \"Your Receipt\";\n        data.message = typeof this.layout.HEADER.BRAND.MESSAGE === 'string'\n          ? this.layout.HEADER.BRAND.MESSAGE\n          : `Hi there ${this.data.shopper.first_name}, thanks for your purchase!`;\n      break;\n\n      // <spaaza-details>\n      case \"DETAILS\":\n        data.message = typeof this.layout.HEADER.DETAILS.MESSAGE === 'string'\n          ? this.layout.HEADER.DETAILS.MESSAGE\n          : `Your order details from ${this.data.chain.name}:`;\n        data.name = this.data.chain.id;\n        data.id = this.data.id;\n        data.total = this.data.total_value;\n        data.method = this.data.payment_method || \"Total\";\n        data.date = this.data.timestamp;\n        data.currencySymbol = this.data.chain.currency_symbol;\n      break;\n\n      // <spaaza-lineitems>\n      case \"LINEITEMS\":\n        data.lineitems = this.data.line_items;\n        data.currencySymbol = this.data.chain.currency_symbol;\n      break;\n\n      // <spaaza-linetaxes>\n      case \"LINETAXES\":\n        data.linetaxes = this.data.tax_lines;\n        data.currencySymbol = this.data.chain.currency_symbol;\n      break;\n\n      // <spaaza-totals>\n      case \"TOTALS\":\n        data.total = this.data.total_value;\n        data.subtotal = this.data.subtotal;\n        data.currencySymbol = this.data.chain.currency_symbol;\n      break;\n\n      // <spaaza-download>\n      case \"DOWNLOAD\":\n        data.downloadURL = this.data.Receipt.download_url;\n        data.label = typeof this.layout.CONTENT.DOWNLOAD === 'string'\n          ? this.layout.CONTENT.DOWNLOAD\n          : \"Download your PDF Receipt\";\n      break;\n\n      // <spaaza-store>\n      case \"STORE\":\n        data.name = this.data.chain.business.name;\n        data.contact = this.data.chain.business.phone_number;\n        data.email = this.data.chain.business.email;\n        data.website = this.data.chain.business.website_url;\n        data.address = `${this.data.chain.business.address.address_1} ${this.data.chain.business.address.address_2} ${this.data.chain.business.address.address_3}`.trim();\n        data.postalcode = this.data.chain.business.address.postal_code;\n        data.towncity = this.data.chain.business.address.towncity;\n        data.message = typeof this.layout.FOOTER.STORE.MESSAGE === 'string'\n          ? this.layout.FOOTER.STORE.MESSAGE\n          : \"Thank you!\";\n      break;\n\n    }\n    console.log('getDataFor', component, data);\n    // return data tag with data string\n    return `<data>${JSON.stringify(data)}</data>`;\n  }\n}\n\nexport default ReceiptDataParser\n",
+    "static": true,
+    "longname": "src/data/receiptdataparser.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "class",
+    "name": "ReceiptDataParser",
+    "memberof": "src/data/receiptdataparser.js",
+    "static": true,
+    "longname": "src/data/receiptdataparser.js~ReceiptDataParser",
+    "access": null,
+    "export": true,
+    "importPath": "spaaza.component.receipt/src/data/receiptdataparser.js",
+    "importStyle": "ReceiptDataParser",
+    "description": "ReceiptDataParser knows the data that each component needs.",
+    "lineNumber": 4,
+    "interface": false
+  },
+  {
+    "__docId__": 50,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/data/receiptdataparser.js~ReceiptDataParser",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/data/receiptdataparser.js~ReceiptDataParser#constructor",
+    "access": null,
+    "description": "",
+    "lineNumber": 10,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": "full set of data."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "layout",
+        "description": "layout information."
+      }
+    ]
+  },
+  {
+    "__docId__": 51,
+    "kind": "member",
+    "name": "data",
+    "memberof": "src/data/receiptdataparser.js~ReceiptDataParser",
+    "static": false,
+    "longname": "src/data/receiptdataparser.js~ReceiptDataParser#data",
+    "access": null,
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "member",
+    "name": "layout",
+    "memberof": "src/data/receiptdataparser.js~ReceiptDataParser",
+    "static": false,
+    "longname": "src/data/receiptdataparser.js~ReceiptDataParser#layout",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "method",
+    "name": "getDataFor",
+    "memberof": "src/data/receiptdataparser.js~ReceiptDataParser",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/data/receiptdataparser.js~ReceiptDataParser#getDataFor",
+    "access": null,
+    "description": "",
+    "lineNumber": 23,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "component",
+        "description": "name of the component."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "an object with specific data for the named component."
+    },
+    "throws": [
+      {
+        "types": [
+          "debug"
+        ],
+        "description": "when component name is missing."
+      }
+    ]
+  },
+  {
+    "__docId__": 54,
+    "kind": "file",
+    "name": "src/helpers/babel.helpers.js",
+    "content": "(function (global) {\n  var babelHelpers = global.babelHelpers = {};\n  babelHelpers.typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) {\n    return typeof obj;\n  } : function (obj) {\n    return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj;\n  };\n\n  babelHelpers.jsx = function () {\n    var REACT_ELEMENT_TYPE = typeof Symbol === \"function\" && Symbol.for && Symbol.for(\"react.element\") || 0xeac7;\n    return function createRawReactElement(type, props, key, children) {\n      var defaultProps = type && type.defaultProps;\n      var childrenLength = arguments.length - 3;\n\n      if (!props && childrenLength !== 0) {\n        props = {};\n      }\n\n      if (props && defaultProps) {\n        for (var propName in defaultProps) {\n          if (props[propName] === void 0) {\n            props[propName] = defaultProps[propName];\n          }\n        }\n      } else if (!props) {\n        props = defaultProps || {};\n      }\n\n      if (childrenLength === 1) {\n        props.children = children;\n      } else if (childrenLength > 1) {\n        var childArray = Array(childrenLength);\n\n        for (var i = 0; i < childrenLength; i++) {\n          childArray[i] = arguments[i + 3];\n        }\n\n        props.children = childArray;\n      }\n\n      return {\n        $$typeof: REACT_ELEMENT_TYPE,\n        type: type,\n        key: key === undefined ? null : '' + key,\n        ref: null,\n        props: props,\n        _owner: null\n      };\n    };\n  }();\n\n  babelHelpers.asyncIterator = function (iterable) {\n    if (typeof Symbol === \"function\") {\n      if (Symbol.asyncIterator) {\n        var method = iterable[Symbol.asyncIterator];\n        if (method != null) return method.call(iterable);\n      }\n\n      if (Symbol.iterator) {\n        return iterable[Symbol.iterator]();\n      }\n    }\n\n    throw new TypeError(\"Object is not async iterable\");\n  };\n\n  babelHelpers.asyncGenerator = function () {\n    function AwaitValue(value) {\n      this.value = value;\n    }\n\n    function AsyncGenerator(gen) {\n      var front, back;\n\n      function send(key, arg) {\n        return new Promise(function (resolve, reject) {\n          var request = {\n            key: key,\n            arg: arg,\n            resolve: resolve,\n            reject: reject,\n            next: null\n          };\n\n          if (back) {\n            back = back.next = request;\n          } else {\n            front = back = request;\n            resume(key, arg);\n          }\n        });\n      }\n\n      function resume(key, arg) {\n        try {\n          var result = gen[key](arg);\n          var value = result.value;\n\n          if (value instanceof AwaitValue) {\n            Promise.resolve(value.value).then(function (arg) {\n              resume(\"next\", arg);\n            }, function (arg) {\n              resume(\"throw\", arg);\n            });\n          } else {\n            settle(result.done ? \"return\" : \"normal\", result.value);\n          }\n        } catch (err) {\n          settle(\"throw\", err);\n        }\n      }\n\n      function settle(type, value) {\n        switch (type) {\n          case \"return\":\n            front.resolve({\n              value: value,\n              done: true\n            });\n            break;\n\n          case \"throw\":\n            front.reject(value);\n            break;\n\n          default:\n            front.resolve({\n              value: value,\n              done: false\n            });\n            break;\n        }\n\n        front = front.next;\n\n        if (front) {\n          resume(front.key, front.arg);\n        } else {\n          back = null;\n        }\n      }\n\n      this._invoke = send;\n\n      if (typeof gen.return !== \"function\") {\n        this.return = undefined;\n      }\n    }\n\n    if (typeof Symbol === \"function\" && Symbol.asyncIterator) {\n      AsyncGenerator.prototype[Symbol.asyncIterator] = function () {\n        return this;\n      };\n    }\n\n    AsyncGenerator.prototype.next = function (arg) {\n      return this._invoke(\"next\", arg);\n    };\n\n    AsyncGenerator.prototype.throw = function (arg) {\n      return this._invoke(\"throw\", arg);\n    };\n\n    AsyncGenerator.prototype.return = function (arg) {\n      return this._invoke(\"return\", arg);\n    };\n\n    return {\n      wrap: function (fn) {\n        return function () {\n          return new AsyncGenerator(fn.apply(this, arguments));\n        };\n      },\n      await: function (value) {\n        return new AwaitValue(value);\n      }\n    };\n  }();\n\n  babelHelpers.asyncGeneratorDelegate = function (inner, awaitWrap) {\n    var iter = {},\n        waiting = false;\n\n    function pump(key, value) {\n      waiting = true;\n      value = new Promise(function (resolve) {\n        resolve(inner[key](value));\n      });\n      return {\n        done: false,\n        value: awaitWrap(value)\n      };\n    }\n\n    ;\n\n    if (typeof Symbol === \"function\" && Symbol.iterator) {\n      iter[Symbol.iterator] = function () {\n        return this;\n      };\n    }\n\n    iter.next = function (value) {\n      if (waiting) {\n        waiting = false;\n        return value;\n      }\n\n      return pump(\"next\", value);\n    };\n\n    if (typeof inner.throw === \"function\") {\n      iter.throw = function (value) {\n        if (waiting) {\n          waiting = false;\n          throw value;\n        }\n\n        return pump(\"throw\", value);\n      };\n    }\n\n    if (typeof inner.return === \"function\") {\n      iter.return = function (value) {\n        return pump(\"return\", value);\n      };\n    }\n\n    return iter;\n  };\n\n  babelHelpers.asyncToGenerator = function (fn) {\n    return function () {\n      var gen = fn.apply(this, arguments);\n      return new Promise(function (resolve, reject) {\n        function step(key, arg) {\n          try {\n            var info = gen[key](arg);\n            var value = info.value;\n          } catch (error) {\n            reject(error);\n            return;\n          }\n\n          if (info.done) {\n            resolve(value);\n          } else {\n            return Promise.resolve(value).then(function (value) {\n              step(\"next\", value);\n            }, function (err) {\n              step(\"throw\", err);\n            });\n          }\n        }\n\n        return step(\"next\");\n      });\n    };\n  };\n\n  babelHelpers.classCallCheck = function (instance, Constructor) {\n    if (!(instance instanceof Constructor)) {\n      throw new TypeError(\"Cannot call a class as a function\");\n    }\n  };\n\n  babelHelpers.createClass = function () {\n    function defineProperties(target, props) {\n      for (var i = 0; i < props.length; i++) {\n        var descriptor = props[i];\n        descriptor.enumerable = descriptor.enumerable || false;\n        descriptor.configurable = true;\n        if (\"value\" in descriptor) descriptor.writable = true;\n        Object.defineProperty(target, descriptor.key, descriptor);\n      }\n    }\n\n    return function (Constructor, protoProps, staticProps) {\n      if (protoProps) defineProperties(Constructor.prototype, protoProps);\n      if (staticProps) defineProperties(Constructor, staticProps);\n      return Constructor;\n    };\n  }();\n\n  babelHelpers.defineEnumerableProperties = function (obj, descs) {\n    for (var key in descs) {\n      var desc = descs[key];\n      desc.configurable = desc.enumerable = true;\n      if (\"value\" in desc) desc.writable = true;\n      Object.defineProperty(obj, key, desc);\n    }\n\n    return obj;\n  };\n\n  babelHelpers.defaults = function (obj, defaults) {\n    var keys = Object.getOwnPropertyNames(defaults);\n\n    for (var i = 0; i < keys.length; i++) {\n      var key = keys[i];\n      var value = Object.getOwnPropertyDescriptor(defaults, key);\n\n      if (value && value.configurable && obj[key] === undefined) {\n        Object.defineProperty(obj, key, value);\n      }\n    }\n\n    return obj;\n  };\n\n  babelHelpers.defineProperty = function (obj, key, value) {\n    if (key in obj) {\n      Object.defineProperty(obj, key, {\n        value: value,\n        enumerable: true,\n        configurable: true,\n        writable: true\n      });\n    } else {\n      obj[key] = value;\n    }\n\n    return obj;\n  };\n\n  babelHelpers.extends = Object.assign || function (target) {\n    for (var i = 1; i < arguments.length; i++) {\n      var source = arguments[i];\n\n      for (var key in source) {\n        if (Object.prototype.hasOwnProperty.call(source, key)) {\n          target[key] = source[key];\n        }\n      }\n    }\n\n    return target;\n  };\n\n  babelHelpers.get = function get(object, property, receiver) {\n    if (object === null) object = Function.prototype;\n    var desc = Object.getOwnPropertyDescriptor(object, property);\n\n    if (desc === undefined) {\n      var parent = Object.getPrototypeOf(object);\n\n      if (parent === null) {\n        return undefined;\n      } else {\n        return get(parent, property, receiver);\n      }\n    } else if (\"value\" in desc) {\n      return desc.value;\n    } else {\n      var getter = desc.get;\n\n      if (getter === undefined) {\n        return undefined;\n      }\n\n      return getter.call(receiver);\n    }\n  };\n\n  babelHelpers.inherits = function (subClass, superClass) {\n    if (typeof superClass !== \"function\" && superClass !== null) {\n      throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass);\n    }\n\n    subClass.prototype = Object.create(superClass && superClass.prototype, {\n      constructor: {\n        value: subClass,\n        enumerable: false,\n        writable: true,\n        configurable: true\n      }\n    });\n    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;\n  };\n\n  babelHelpers.instanceof = function (left, right) {\n    if (right != null && typeof Symbol !== \"undefined\" && right[Symbol.hasInstance]) {\n      return right[Symbol.hasInstance](left);\n    } else {\n      return left instanceof right;\n    }\n  };\n\n  babelHelpers.interopRequireDefault = function (obj) {\n    return obj && obj.__esModule ? obj : {\n      default: obj\n    };\n  };\n\n  babelHelpers.interopRequireWildcard = function (obj) {\n    if (obj && obj.__esModule) {\n      return obj;\n    } else {\n      var newObj = {};\n\n      if (obj != null) {\n        for (var key in obj) {\n          if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];\n        }\n      }\n\n      newObj.default = obj;\n      return newObj;\n    }\n  };\n\n  babelHelpers.newArrowCheck = function (innerThis, boundThis) {\n    if (innerThis !== boundThis) {\n      throw new TypeError(\"Cannot instantiate an arrow function\");\n    }\n  };\n\n  babelHelpers.objectDestructuringEmpty = function (obj) {\n    if (obj == null) throw new TypeError(\"Cannot destructure undefined\");\n  };\n\n  babelHelpers.objectWithoutProperties = function (obj, keys) {\n    var target = {};\n\n    for (var i in obj) {\n      if (keys.indexOf(i) >= 0) continue;\n      if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;\n      target[i] = obj[i];\n    }\n\n    return target;\n  };\n\n  babelHelpers.possibleConstructorReturn = function (self, call) {\n    if (!self) {\n      throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\");\n    }\n\n    return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self;\n  };\n\n  babelHelpers.selfGlobal = typeof global === \"undefined\" ? self : global;\n\n  babelHelpers.set = function set(object, property, value, receiver) {\n    var desc = Object.getOwnPropertyDescriptor(object, property);\n\n    if (desc === undefined) {\n      var parent = Object.getPrototypeOf(object);\n\n      if (parent !== null) {\n        set(parent, property, value, receiver);\n      }\n    } else if (\"value\" in desc && desc.writable) {\n      desc.value = value;\n    } else {\n      var setter = desc.set;\n\n      if (setter !== undefined) {\n        setter.call(receiver, value);\n      }\n    }\n\n    return value;\n  };\n\n  babelHelpers.slicedToArray = function () {\n    function sliceIterator(arr, i) {\n      var _arr = [];\n      var _n = true;\n      var _d = false;\n      var _e = undefined;\n\n      try {\n        for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {\n          _arr.push(_s.value);\n\n          if (i && _arr.length === i) break;\n        }\n      } catch (err) {\n        _d = true;\n        _e = err;\n      } finally {\n        try {\n          if (!_n && _i[\"return\"]) _i[\"return\"]();\n        } finally {\n          if (_d) throw _e;\n        }\n      }\n\n      return _arr;\n    }\n\n    return function (arr, i) {\n      if (Array.isArray(arr)) {\n        return arr;\n      } else if (Symbol.iterator in Object(arr)) {\n        return sliceIterator(arr, i);\n      } else {\n        throw new TypeError(\"Invalid attempt to destructure non-iterable instance\");\n      }\n    };\n  }();\n\n  babelHelpers.slicedToArrayLoose = function (arr, i) {\n    if (Array.isArray(arr)) {\n      return arr;\n    } else if (Symbol.iterator in Object(arr)) {\n      var _arr = [];\n\n      for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {\n        _arr.push(_step.value);\n\n        if (i && _arr.length === i) break;\n      }\n\n      return _arr;\n    } else {\n      throw new TypeError(\"Invalid attempt to destructure non-iterable instance\");\n    }\n  };\n\n  babelHelpers.taggedTemplateLiteral = function (strings, raw) {\n    return Object.freeze(Object.defineProperties(strings, {\n      raw: {\n        value: Object.freeze(raw)\n      }\n    }));\n  };\n\n  babelHelpers.taggedTemplateLiteralLoose = function (strings, raw) {\n    strings.raw = raw;\n    return strings;\n  };\n\n  babelHelpers.temporalRef = function (val, name, undef) {\n    if (val === undef) {\n      throw new ReferenceError(name + \" is not defined - temporal dead zone\");\n    } else {\n      return val;\n    }\n  };\n\n  babelHelpers.temporalUndefined = {};\n\n  babelHelpers.toArray = function (arr) {\n    return Array.isArray(arr) ? arr : Array.from(arr);\n  };\n\n  babelHelpers.toConsumableArray = function (arr) {\n    if (Array.isArray(arr)) {\n      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];\n\n      return arr2;\n    } else {\n      return Array.from(arr);\n    }\n  };\n})(typeof global === \"undefined\" ? self : global);\n",
+    "static": true,
+    "longname": "src/helpers/babel.helpers.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 55,
+    "kind": "file",
+    "name": "src/receipt.js",
+    "content": "import { layout } from './common/receipt.layout.js';\nimport Component from './common/component.js';\nimport ReceiptDataParser from './data/receiptdataparser.js';\n\n/**\n * @class Receipt\n * @extends Component\n */\n\nclass Receipt extends Component {\n\n  constructor() {\n    super();\n    // fetch layout information from <layout> or use defaults\n    this.layout = this.getLayout() || layout;\n    // create a instance of data parser\n    this.parser = new ReceiptDataParser(this.data, this.layout);\n  }\n\n  // Called every time the element is inserted into the DOM.\n  connectedCallback() {\n    this.append(`<style>${require('./receipt.less')}</style>`);\n    this.draw();\n  };\n\n  // Called every time the element is removed from the DOM.\n  // disconnectedCallback() {};\n\n  // The behavior occurs when an attribute of the element is added, removed, updated, or replaced.\n  // attributeChangedCallback(attr, oldVal, newVal) {};\n\n  /**\n   * Compiles data and layout information into the template\n   */\n  compileTemplate() {\n    let output = {};\n    let namespace = 'spaaza';\n\n    console.log('layout', this.layout);\n\n    for (let section in this.layout) {\n      for (let component in this.layout[section]) {\n        // compose a tag <spaaza-component>\n        let tag = `${namespace}-${component.toLowerCase()}`;\n        // make sure the output collections exists\n        output[section] = output[section] || ``;\n        // get data for that comoponent\n        output[section] += `<${tag}>${this.parser.getDataFor(component)}</${tag}>\\n`;\n      }\n    }\n\n    this.append(`\n      <div class=\"main content\">\n        <section id=\"header\">\n          ${output.HEADER}\n        </section>\n        <section id=\"content\">\n          ${output.CONTENT}\n        </section>\n        <section id=\"footer\">\n          ${output.FOOTER}\n        </section>\n      </div>\n    `);\n  }\n\n  /**\n   * @return {object} layout - layout information extracted from <layout></layout> element\n   */\n  getLayout() {\n    // get layout definition\n    let layoutElement = this.shadowRoot.host.querySelector('layout');\n    // return default layout when no layout present\n    if (!layoutElement) { return; }\n\n    // extract children information from element\n    function extractChildren(element) {\n      // when no children, return content or element reference\n      if (!element.children.length) {\n        return element.innerHTML || element;\n      };\n      let children = {};\n      // for all children\n      for (let child, i = 0; i < element.children.length; i += 1) {\n        child = element.children[i];\n        // extract all children\n        children[child.tagName] = extractChildren(child);\n      }\n      // return collection\n      return children;\n    }\n\n    // extract children information from layoutElement\n    return extractChildren(layoutElement);\n  }\n\n// End Receipt\n}\n\nexport default Receipt\n\ncustomElements.define('spaaza-receipt', Receipt);\n",
+    "static": true,
+    "longname": "src/receipt.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 56,
+    "kind": "class",
+    "name": "Receipt",
+    "memberof": "src/receipt.js",
+    "static": true,
+    "longname": "src/receipt.js~Receipt",
+    "access": null,
+    "export": true,
+    "importPath": "spaaza.component.receipt/src/receipt.js",
+    "importStyle": "Receipt",
+    "description": "",
+    "lineNumber": 10,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "Receipt"
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "*"
+    ]
+  },
+  {
+    "__docId__": 57,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/receipt.js~Receipt",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/receipt.js~Receipt#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 58,
+    "kind": "member",
+    "name": "layout",
+    "memberof": "src/receipt.js~Receipt",
+    "static": false,
+    "longname": "src/receipt.js~Receipt#layout",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "member",
+    "name": "parser",
+    "memberof": "src/receipt.js~Receipt",
+    "static": false,
+    "longname": "src/receipt.js~Receipt#parser",
+    "access": null,
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 60,
+    "kind": "method",
+    "name": "connectedCallback",
+    "memberof": "src/receipt.js~Receipt",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/receipt.js~Receipt#connectedCallback",
+    "access": null,
+    "description": null,
+    "lineNumber": 21,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": []
+  },
+  {
+    "__docId__": 61,
+    "kind": "method",
+    "name": "compileTemplate",
+    "memberof": "src/receipt.js~Receipt",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/receipt.js~Receipt#compileTemplate",
+    "access": null,
+    "description": "Compiles data and layout information into the template",
+    "lineNumber": 35,
+    "params": []
+  },
+  {
+    "__docId__": 62,
+    "kind": "method",
+    "name": "getLayout",
+    "memberof": "src/receipt.js~Receipt",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/receipt.js~Receipt#getLayout",
+    "access": null,
+    "description": "",
+    "lineNumber": 70,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "layout - layout information extracted from <layout></layout> element"
+    }
+  },
+  {
+    "__docId__": 64,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 65,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 66,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 67,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 68,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 69,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 70,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 71,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 72,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 73,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 74,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 75,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 76,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 77,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 78,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 79,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 80,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 81,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 82,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 83,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 84,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 85,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 86,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 87,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 88,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 89,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 90,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 91,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 92,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 93,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 94,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 95,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 96,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 97,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 98,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 99,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 100,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 101,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 102,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 103,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 104,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 105,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 106,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 107,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 108,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 109,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 110,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": "",
+    "lineNumber": 193,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 112,
+    "kind": "external",
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 113,
+    "kind": "external",
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 114,
+    "kind": "external",
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 115,
+    "kind": "external",
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 116,
+    "kind": "external",
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 117,
+    "kind": "external",
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 118,
+    "kind": "external",
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 119,
+    "kind": "external",
+    "name": "AudioContext",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~AudioContext",
+    "access": null,
+    "description": "",
+    "lineNumber": 34,
+    "builtinExternal": true
+  }
+]

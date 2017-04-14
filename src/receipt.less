@@ -2,6 +2,13 @@
   display: block;
 }
 
+/* hide data */
+
+data {
+  display: none;
+}
+
+
 /* -------------------------------------
     GLOBAL RESETS
 ------------------------------------- */
@@ -15,7 +22,7 @@ img {
   -ms-interpolation-mode: bicubic;
   max-width: 100%; }
 
-body {
+:host {
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 14px;
@@ -32,10 +39,16 @@ table {
   mso-table-lspace: 0pt;
   mso-table-rspace: 0pt;
   width: 100%; }
-  table td {
+  table th, table td {
     font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-size: 14px;
     vertical-align: top; }
+  table th {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: normal;
+    color: #aaaaaa; }
+
 
 .ExternalClass {
   width: 100%; }
@@ -82,7 +95,9 @@ body {
   background: #ffffff;
   border: 1px solid #e9e9e9;
   border-radius: 3px;
-  width: 100%; }
+  width: 100%;
+  padding: 2em;
+}
 
 .wrapper {
   padding: 30px; }
@@ -324,45 +339,24 @@ pre,
 /* -------------------------------------
     RECEIPTS
 ------------------------------------- */
-.receipt-total {
-  font-weight: bold; }
 
-.receipt-subtotals {
+.receipt-strong {
+  font-weight: bold;
+  text-transform: uppercase; }
+
+.receipt-emphasys {
   font-style: italic; }
 
-.receipt-taxes {
-  color: #666666; }
-
-.receipt-order-details_header {
-  font-size: .75em;
-  color: #aaaaaa; }
-
-.receipt-line-item_image {
-  border-radius: 5px; }
-
-.receipt-line-item_image-box {
-  width: 20%;
-  padding-right: 1em; }
-
-.receipt-line-item_name {
-  margin-bottom: .25em;
-  line-height: 1em; }
-
-.receipt-line-item_description {
-  font-size: .75em;
-  line-height: 1em;
-  height: 2em;
-  color: #666666;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis; }
-
-.receipt-line-item_sale-price {
-  color: #666666;
+.receipt-line-through {
   text-decoration: line-through; }
 
-/* hide data */
+/**
+* Table layout fix
+*/
 
-#data {
-  display: none;
+table.receipt-lineitems th,
+table.receipt-lineitems td,
+table.receipt-linetaxes th,
+table.receipt-linetaxes td {
+  width: 33%;
 }

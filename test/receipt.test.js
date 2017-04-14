@@ -5,11 +5,13 @@ describe('Test Receipts WebComponent', function() {
 
   it('should get working with no object', function() {
     var spaazaReceipt = document.createElement('spaaza-receipt');
+    var data = document.createElement('data');
+    data.innerHTML = JSON.stringify(ReceiptData);
+    window.document.appendChild(spaazaReceipt);
     expect(spaazaReceipt.innerHTML).toEqual('<div>working....</div>');
   });
 
   it('should show data if we assign a value.', function() {
-    console.log('ReceiptData', ReceiptData)
 
     let dataElement = document.createElement('pre');
     dataElement.id = "data";

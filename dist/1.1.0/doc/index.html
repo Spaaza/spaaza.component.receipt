@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/receipt.js~Receipt.html">Receipt</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">common</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/common/component.js~Component.html">Component</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-divider">divider</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-layout">layout</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">component</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/brand.js~Brand.html">Brand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/details.js~Details.html">Details</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/download.js~Download.html">Download</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/lineitems.js~LineItems.html">LineItems</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/linetaxes.js~LineTaxes.html">LineTaxes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/store.js~Store.html">Store</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/totals.js~Totals.html">Totals</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/receiptdataparser.js~ReceiptDataParser.html">ReceiptDataParser</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="spaaza-receipt-component">Spaaza Receipt Component</h1>
+<p>Render a Spaaza Receipt</p>
+<h3 id="about">About</h3>
+<p>The main goal is to provide an easy way to render a Receipt in a web context.</p>
+<p>The component was build using <a href="https://w3c.github.io/webcomponents/spec/custom/">CustomElements API</a> and <a href="https://w3c.github.io/webcomponents/spec/shadow/">ShadowDOM API</a>. It uses <a href="http://handlebarsjs.com/">Handlebars</a> for templating.</p>
+<h3 id="demo">Demo</h3>
+<p>There is available a <a href="https://s3-eu-west-1.amazonaws.com/receipt-component-test01-spaaza-com/index.html">live demo</a> of the component.</p>
+<h3 id="how-to-use">How to use</h3>
+<p>First need to include the component source code:
+<code>TODO: Provide a better URL through CDN</code></p>
+<pre><code><code class="source-code prettyprint">&lt;script src=&quot;https://s3-eu-west-1.amazonaws.com/receipt-component-test01-spaaza-com/receipt-v1.0.0.js&quot;&gt;&lt;/script&gt;</code>
+</code></pre><p>Get receipt data from Spaaza API <code>TODO: Add reference to API</code>
+Then in your HTML site or app use:</p>
+<pre><code><code class="source-code prettyprint">&lt;spaaza-receipt&gt;
+  &lt;code id=&quot;data&quot;&gt;
+    {
+      ... INSERT RECEIPT API RESPONSE HERE ...
+    }
+  &lt;/code&gt;
+&lt;/spaaza-receipt&gt;</code>
+</code></pre><h4 id="full-example">Full example</h4>
+<pre><code><code class="source-code prettyprint">&lt;spaaza-receipt&gt;
+  &lt;code id=&quot;data&quot;&gt;
+    {
+      &quot;Id&quot;: &quot;13245678&quot;,
+      &quot;Timestamp&quot;: &quot;2017-02-08 12:26:01&quot;,
+      &quot;DownloadUrl&quot;: &quot;https://sercives.spaaza.com/dowload?receipt_id=13245678&quot;,
+      &quot;Quantity&quot;: 2,
+      &quot;Subtotal&quot;: 140,
+      &quot;TotalValue&quot;: 141.96,
+      &quot;PaymentMethod&quot;: &quot;MasterCard **** 3401&quot;,
+
+      &quot;Currency&quot;: &quot;EUR&quot;,
+      &quot;CurrencySymbol&quot;: &quot;&#x20AC;&quot;,
+
+      &quot;LineItems&quot;: [
+        {
+          &quot;Name&quot;: &quot;Anvil with box&quot;,
+          &quot;Description&quot;: &quot;Best anvil is ACME, comes with original wooden box and instructions in all cristian languages.&quot;,
+          &quot;DistinguisherType&quot;: &quot;id&quot;,
+          &quot;DistinguisherValue&quot;: &quot;123456789&quot;,
+          &quot;OriginalPrice&quot;: 84,
+          &quot;Quantity&quot;: 1,
+          &quot;SalePrice&quot;: 60,
+          &quot;Points&quot;: 6,
+          &quot;Vouchers&quot;: 0,
+          &quot;Currency&quot;: &quot;EUR&quot;,
+          &quot;CurrencySymbol&quot;: &quot;&#x20AC;&quot;,
+          &quot;Metadata&quot;: {
+            &quot;Color&quot;: &quot;Metal&quot;,
+            &quot;Size&quot;: &quot;Medium&quot;,
+            &quot;Image&quot;: &quot;https://s-media-cache-ak0.pinimg.com/736x/c9/21/f5/c921f5b5e2f84ea22ccae85e0fad9a72.jpg&quot;
+          }
+        }, {
+          &quot;Name&quot;: &quot;Rocket powered rollerskates&quot;,
+          &quot;Description&quot;: &quot;Why rollerskate when you can rocketskate! Ideal to jump over cliffs or over hard/sharp objects.&quot;,
+          &quot;DistinguisherType&quot;: &quot;id&quot;,
+          &quot;DistinguisherValue&quot;: &quot;234567891&quot;,
+          &quot;OriginalPrice&quot;: 110,
+          &quot;Quantity&quot;: 1,
+          &quot;SalePrice&quot;: 80,
+          &quot;Points&quot;: 8,
+          &quot;Vouchers&quot;: 0,
+          &quot;Currency&quot;: &quot;EUR&quot;,
+          &quot;CurrencySymbol&quot;: &quot;&#x20AC;&quot;,
+          &quot;Metadata&quot;: {
+            &quot;Color&quot;: &quot;Red&quot;,
+            &quot;Size&quot;: &quot;Medium&quot;,
+            &quot;Image&quot;: &quot;https://img1.etsystatic.com/051/0/8917543/il_570xN.665890621_50he.jpg&quot;
+          }
+        }
+      ],
+      &quot;LineTaxes&quot;: [
+        {
+          &quot;Currency&quot;: &quot;EUR&quot;,
+          &quot;CurrencySymbol&quot;: &quot;&#x20AC;&quot;,
+          &quot;Rate&quot;: &quot;10%&quot;,
+          &quot;OrderValue&quot;: 100,
+          &quot;TaxCalue&quot;: 10
+        }, {
+          &quot;Currency&quot;: &quot;EUR&quot;,
+          &quot;CurrencySymbol&quot;: &quot;&#x20AC;&quot;,
+          &quot;Rate&quot;: &quot;&quot;,
+          &quot;OrderValue&quot;: 196.70,
+          &quot;TaxValue&quot;: 1.96
+        }, {
+          &quot;Currency&quot;: &quot;EUR&quot;,
+          &quot;CurrencySymbol&quot;: &quot;&#x20AC;&quot;,
+          &quot;Rate&quot;: &quot;&quot;,
+          &quot;OrderValue&quot;: 296.70,
+          &quot;TaxValue&quot;: 11.96
+        }
+      ],
+
+      &quot;ChainId&quot;: 12345678,
+      &quot;ChainName&quot;: &quot;ACME&quot;,
+      &quot;Address1&quot;: &quot;Herengratch 504&quot;,
+      &quot;Address2&quot;: &quot;&quot;,
+      &quot;Address3&quot;: &quot;&quot;,
+      &quot;Towncity&quot;: &quot;Amsterdam&quot;,
+
+      &quot;CustomerId&quot;: &quot;1&quot;,
+      &quot;FirstName&quot;: &quot;Bugs&quot;,
+      &quot;LastName&quot;: &quot;Bunny&quot;,
+      &quot;CustomerEmail&quot;: &quot;bugsbunny@looneytunes.com&quot;
+
+    }
+  &lt;/code&gt;
+&lt;/spaaza-receipt&gt;</code>
+</code></pre><h2 id="development">Development</h2>
+<p>To install project dependencies run:</p>
+<p><code>npm install</code></p>
+<h3 id="run-development-flow">Run development flow</h3>
+<p>To run development with webpack and hot reload:</p>
+<p><code>npm run dev</code></p>
+<h3 id="test">Test</h3>
+<p>Run karma tests</p>
+<p><code>npm run test</code></p>
+<h3 id="build-production-bundle">Build production bundle</h3>
+<p>Will minimize and optimize the bundle for live environments</p>
+<p><code>npm run build</code></p>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
