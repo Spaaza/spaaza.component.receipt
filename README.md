@@ -8,6 +8,10 @@ The main goal is to provide an easy way to render a Receipt in a web context.
 
 The component was build using [CustomElements API](https://w3c.github.io/webcomponents/spec/custom/) and [ShadowDOM API](https://w3c.github.io/webcomponents/spec/shadow/).
 
+* Test01: http://receipt-test01.component.spaaza.com/
+* Prod: http://receipt.component.spaaza.com/
+
+
 ## Development
 
 To install project dependencies run:
@@ -34,14 +38,14 @@ Will minimize and optimize the bundle for live environments
 
 ### Demo
 
-There is available a [live demo](https://s3-eu-west-1.amazonaws.com/receipt-component-test01-spaaza-com/1.1.0/index.html) of the component.
+There is available a [live demo](http://receipt-test01.component.spaaza.com/1.1.0/index.html) of the component.
 
 ### How to use
 
 First need to include the component source code: `@TODO: Provide a better URL through CDN`
 
 ```
-<script src="https://s3-eu-west-1.amazonaws.com/receipt-component-test01-spaaza-com/1.1.0/receipt-v1.1.0.js"></script>
+<script src="http://receipt-test01.component.spaaza.com/1.1.0/receipt-v1.1.0.js"></script>
 ```
 Get receipt data from Spaaza API `@TODO: Add reference to API`
 Then in your HTML site or app use:
@@ -207,5 +211,5 @@ Then in your HTML site or app use:
 </spaaza-receipt>
 
 <!-- attach component -->
-<script src="https://s3-eu-west-1.amazonaws.com/receipt-component-test01-spaaza-com/1.1.0/receipt-v1.1.0.js"></script>
+<script src="http://receipt-test01.component.spaaza.com/1.1.0/receipt-v1.1.0.js"></script>
 ```
