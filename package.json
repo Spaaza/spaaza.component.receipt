@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --history-api-fallback",
     "build": "node ./node_modules/webpack/bin/webpack.js -p --define process.env.NODE_ENV='\"production\"' --progress --colors && ./node_modules/.bin/esdoc",
-    "start": "npm run ",
+    "start": "npm run dev",
     "test": "karma start"
   },
   "author": "Natan Santolo",
