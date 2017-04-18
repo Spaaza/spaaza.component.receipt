@@ -8,8 +8,8 @@ The main goal is to provide an easy way to render a Receipt in a web context.
 
 The component was build using [CustomElements API](https://w3c.github.io/webcomponents/spec/custom/) and [ShadowDOM API](https://w3c.github.io/webcomponents/spec/shadow/).
 
-* Test01: http://receipt-test01.component.spaaza.com/
-* Prod: http://receipt.component.spaaza.com/
+* Test01: http://receipt-test01.component.spaaza.com
+* Prod: http://receipt.component.spaaza.com
 
 
 ## Development
