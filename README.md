@@ -1,6 +1,6 @@
 # Spaaza Receipt Component
 
-Render a Spaaza Receipt
+A WebComponent that render a Spaaza Receipt
 
 ### About
 
