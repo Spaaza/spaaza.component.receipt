@@ -35,7 +35,6 @@ class LineItems extends Component {
     // create a template for each element
     this.data.lineitems.map(item => {
       // check if items needs to show original price
-      console.log('item', item)
       let isOnSale = item.original_price > item.sale_price;
       this.append(`
         <tr class="line-item">

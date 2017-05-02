@@ -9,34 +9,47 @@ import ReceiptDataParser from './data/receiptdataparser.js';
 
 class Receipt extends Component {
 
+  // Monitor the 'async' attribute for changes.
+  static get observedAttributes() { return ['redraw']; }
+
   constructor() {
     super();
     // fetch layout information from <layout> or use defaults
     this.layout = this.getLayout() || layout;
-    // create a instance of data parser
-    this.parser = new ReceiptDataParser(this.data, this.layout);
+    // first paint
+    this.redraw()
   }
 
   // Called every time the element is inserted into the DOM.
   connectedCallback() {
     this.append(`<style>${require('./receipt.less')}</style>`);
-    this.draw();
+    // this.draw();
   };
 
   // Called every time the element is removed from the DOM.
   // disconnectedCallback() {};
 
   // The behavior occurs when an attribute of the element is added, removed, updated, or replaced.
-  // attributeChangedCallback(attr, oldVal, newVal) {};
+  attributeChangedCallback(attr, oldVal, newVal) {
+    if (attr === 'redraw') {
+      this.redraw();
+    }
+  };
+
+  redraw() {
+    // create a instance of data parser
+    this.parser = new ReceiptDataParser(this.data, this.layout);
+    // draw content
+    this.draw();
+  }
 
   /**
    * Compiles data and layout information into the template
    */
   compileTemplate() {
+    if (typeof this.data === 'undefined') return;
     let output = {};
     let namespace = 'spaaza';
-
-    console.log('layout', this.layout);
 
     for (let section in this.layout) {
       for (let component in this.layout[section]) {
@@ -45,7 +58,7 @@ class Receipt extends Component {
         // make sure the output collections exists
         output[section] = output[section] || ``;
         // get data for that comoponent
-        output[section] += `<${tag}>${this.parser.getDataFor(component)}</${tag}>\n`;
+        output[section] += `<${tag}><script id="data" type="application/json">${this.parser.getDataFor(component)}</script></${tag}>\n`;
       }
     }
 

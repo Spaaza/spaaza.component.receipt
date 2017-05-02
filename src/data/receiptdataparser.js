@@ -8,9 +8,6 @@ class ReceiptDataParser {
    * @param {object} layout - layout information.
    */
   constructor(data, layout) {
-    if (!data) {
-      console.error('ReceiptDataParser',' Can\'t construct without data!');
-    }
     this.data = data;
     this.layout = layout;
   }
@@ -21,6 +18,7 @@ class ReceiptDataParser {
    * @return {object} an object with specific data for the named component.
    */
   getDataFor(component) {
+    if (typeof this.data === 'undefined') return;
     if (!component) {
       console.warn('ReceiptDataParser',' Calling getDataFor(component_name) but \'component_name\' is missing!');
     }
@@ -96,9 +94,8 @@ class ReceiptDataParser {
       break;
 
     }
-    console.log('getDataFor', component, data);
     // return data tag with data string
-    return `<data>${JSON.stringify(data)}</data>`;
+    return JSON.stringify(data);
   }
 }
 

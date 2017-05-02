@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/component/lineitems.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/receipt.js~Receipt.html">Receipt</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">common</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/common/component.js~Component.html">Component</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-divider">divider</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-layout">layout</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">component</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/brand.js~Brand.html">Brand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/details.js~Details.html">Details</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/download.js~Download.html">Download</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/lineitems.js~LineItems.html">LineItems</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/linetaxes.js~LineTaxes.html">LineTaxes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/store.js~Store.html">Store</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/totals.js~Totals.html">Totals</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/receiptdataparser.js~ReceiptDataParser.html">ReceiptDataParser</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/component/lineitems.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { divider } from &apos;../common/receipt.layout.js&apos;;
+import Component from &apos;../common/component.js&apos;;
+
+class LineItems extends Component {
+
+  constructor() {
+    super();
+  }
+
+  // Called every time the element is inserted into the DOM.
+  connectedCallback() {
+    this.append(`&lt;style&gt;${require(&apos;./lineitems.less&apos;)}&lt;/style&gt;`);
+    this.draw();
+  }
+
+  compileTemplate() {
+
+    // when line items collections is available
+    if (!this.data.lineitems || !this.data.lineitems.length) return;
+
+    let currencySymbol = this.data.currencySymbol;
+
+    this.append(divider);
+
+    // create table header
+    this.append(`
+      &lt;table class=&quot;receipt-lineitems&quot;&gt;
+        &lt;tr&gt;
+          &lt;th class=&quot;align-left&quot;&gt;Name&lt;/th&gt;
+          &lt;th class=&quot;align-center&quot;&gt;Qty&lt;/th&gt;
+          &lt;th class=&quot;align-right&quot;&gt;Price&lt;/th&gt;
+        &lt;/tr&gt;
+    `);
+
+    // create a template for each element
+    this.data.lineitems.map(item =&gt; {
+      // check if items needs to show original price
+      let isOnSale = item.original_price &gt; item.sale_price;
+      this.append(`
+        &lt;tr class=&quot;line-item&quot;&gt;
+          &lt;td class=&quot;align-left&quot;&gt;
+            &lt;div class=&quot;line-item-name&quot;&gt;${item.name}&lt;/div&gt;
+          &lt;/td&gt;
+          &lt;td class=&quot;align-center&quot;&gt;${item.quantity}&lt;/td&gt;
+          &lt;td class=&quot;align-right&quot;&gt;
+            &lt;span class=&quot;receipt-original-price ${isOnSale?&apos;receipt-line-through&apos;:&apos;&apos;}&quot;&gt;${currencySymbol} ${item.original_price}&lt;/span&gt;
+            &lt;span class=&quot;receipt-sale-price receipt-strong&quot;&gt;${currencySymbol} ${item.sale_price}&lt;/span&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+      `);
+    });
+
+    // close table
+    this.append(`&lt;/table&gt;`);
+  }
+}
+export default LineItems
+
+customElements.define(&apos;spaaza-lineitems&apos;, LineItems);
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

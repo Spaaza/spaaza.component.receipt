@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/receipt.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/receipt.js~Receipt.html">Receipt</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">common</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/common/component.js~Component.html">Component</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-divider">divider</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-layout">layout</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">component</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/brand.js~Brand.html">Brand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/details.js~Details.html">Details</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/download.js~Download.html">Download</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/lineitems.js~LineItems.html">LineItems</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/linetaxes.js~LineTaxes.html">LineTaxes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/store.js~Store.html">Store</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/totals.js~Totals.html">Totals</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/receiptdataparser.js~ReceiptDataParser.html">ReceiptDataParser</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/receipt.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { layout } from &apos;./common/receipt.layout.js&apos;;
+import Component from &apos;./common/component.js&apos;;
+import ReceiptDataParser from &apos;./data/receiptdataparser.js&apos;;
+
+/**
+ * @class Receipt
+ * @extends Component
+ */
+
+class Receipt extends Component {
+
+  // Monitor the &apos;async&apos; attribute for changes.
+  static get observedAttributes() { return [&apos;redraw&apos;]; }
+
+  constructor() {
+    super();
+    // fetch layout information from &lt;layout&gt; or use defaults
+    this.layout = this.getLayout() || layout;
+    // first paint
+    this.redraw()
+  }
+
+  // Called every time the element is inserted into the DOM.
+  connectedCallback() {
+    this.append(`&lt;style&gt;${require(&apos;./receipt.less&apos;)}&lt;/style&gt;`);
+    // this.draw();
+  };
+
+  // Called every time the element is removed from the DOM.
+  // disconnectedCallback() {};
+
+  // The behavior occurs when an attribute of the element is added, removed, updated, or replaced.
+  attributeChangedCallback(attr, oldVal, newVal) {
+    if (attr === &apos;redraw&apos;) {
+      this.redraw();
+    }
+  };
+
+  redraw() {
+    // create a instance of data parser
+    this.parser = new ReceiptDataParser(this.data, this.layout);
+    // draw content
+    this.draw();
+  }
+
+  /**
+   * Compiles data and layout information into the template
+   */
+  compileTemplate() {
+    if (typeof this.data === &apos;undefined&apos;) return;
+    let output = {};
+    let namespace = &apos;spaaza&apos;;
+
+    for (let section in this.layout) {
+      for (let component in this.layout[section]) {
+        // compose a tag &lt;spaaza-component&gt;
+        let tag = `${namespace}-${component.toLowerCase()}`;
+        // make sure the output collections exists
+        output[section] = output[section] || ``;
+        // get data for that comoponent
+        output[section] += `&lt;${tag}&gt;&lt;script id=&quot;data&quot; type=&quot;application/json&quot;&gt;${this.parser.getDataFor(component)}&lt;/script&gt;&lt;/${tag}&gt;\n`;
+      }
+    }
+
+    this.append(`
+      &lt;div class=&quot;main content&quot;&gt;
+        &lt;section id=&quot;header&quot;&gt;
+          ${output.HEADER}
+        &lt;/section&gt;
+        &lt;section id=&quot;content&quot;&gt;
+          ${output.CONTENT}
+        &lt;/section&gt;
+        &lt;section id=&quot;footer&quot;&gt;
+          ${output.FOOTER}
+        &lt;/section&gt;
+      &lt;/div&gt;
+    `);
+  }
+
+  /**
+   * @return {object} layout - layout information extracted from &lt;layout&gt;&lt;/layout&gt; element
+   */
+  getLayout() {
+    // get layout definition
+    let layoutElement = this.shadowRoot.host.querySelector(&apos;layout&apos;);
+    // return default layout when no layout present
+    if (!layoutElement) { return; }
+
+    // extract children information from element
+    function extractChildren(element) {
+      // when no children, return content or element reference
+      if (!element.children.length) {
+        return element.innerHTML || element;
+      };
+      let children = {};
+      // for all children
+      for (let child, i = 0; i &lt; element.children.length; i += 1) {
+        child = element.children[i];
+        // extract all children
+        children[child.tagName] = extractChildren(child);
+      }
+      // return collection
+      return children;
+    }
+
+    // extract children information from layoutElement
+    return extractChildren(layoutElement);
+  }
+
+// End Receipt
+}
+
+export default Receipt
+
+customElements.define(&apos;spaaza-receipt&apos;, Receipt);
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

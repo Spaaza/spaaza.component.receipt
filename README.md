@@ -8,8 +8,8 @@ The main goal is to provide an easy way to render a Receipt in a web context.
 
 The component was build using [CustomElements API](https://w3c.github.io/webcomponents/spec/custom/) and [ShadowDOM API](https://w3c.github.io/webcomponents/spec/shadow/).
 
-* Test01: http://receipt-test01.component.spaaza.com/v1.1.0
-* Prod: http://receipt.component.spaaza.com/v1.1.0
+* Test01: http://receipt-test01.component.spaaza.com/v1.1.1
+* Prod: http://receipt.component.spaaza.com/v1.1.1
 
 
 ## Development
@@ -38,24 +38,24 @@ Will minimize and optimize the bundle for live environments
 
 ### Demo
 
-There is available a [live demo](http://receipt-test01.component.spaaza.com/1.1.0) of the component.
+There is available a [live demo](http://receipt-test01.component.spaaza.com/1.1.1) of the component.
 
 ### How to use
 
 First need to include the component source code: `@TODO: Provide a better URL through CDN`
 
 ```
-<script src="http://receipt-test01.component.spaaza.com/1.1.0/receipt-v1.1.0.js"></script>
+<script src="http://receipt-test01.component.spaaza.com/1.1.1/receipt-v1.1.1.js"></script>
 ```
 Get receipt data from Spaaza API `@TODO: Add reference to API`
 Then in your HTML site or app use:
 ```
 <spaaza-receipt>
-  <data>
+  <script id="data" type="application/json">
     {
       ... INSERT RECEIPT API RESPONSE HERE ...
     }
-  </data>
+  </script>
 </spaaza-receipt>
 ```
 
@@ -63,7 +63,7 @@ Then in your HTML site or app use:
 ```
 <!-- define component -->
 <spaaza-receipt>
-  <data>
+  <script id="data" type="application/json">
     {
     "id": "123456",
     "timestamp": "2017-02-08T12:26:01",
@@ -207,9 +207,9 @@ Then in your HTML site or app use:
       }
     }
   }
-  </data>
+  </script>
 </spaaza-receipt>
 
 <!-- attach component -->
-<script src="http://receipt-test01.component.spaaza.com/1.1.0/receipt-v1.1.0.js"></script>
+<script src="http://receipt-test01.component.spaaza.com/1.1.1/receipt-v1.1.1.js"></script>
 ```

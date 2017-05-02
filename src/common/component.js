@@ -12,10 +12,18 @@ class Component extends HTMLElement {
   get data() {
     // if data is already present ignore
     if (this._data) return this._data;
-    // get data tag from host
-    let d = this.shadowRoot.host.querySelector('data');
+    let element = this.shadowRoot.host;
+    // get data from attribute
+    let c = false;
+    let d = element.querySelector('#data');
+    if (!d || !d.innerText) return this._data;
+    try {
+      c = JSON.parse(d.innerText);
+    } catch (e) {
+      console.error(e);
+    }
     // store data or false
-    this._data = d.innerHTML ? JSON.parse(d.innerHTML) : false;
+    this._data = c;
     // return data object
     return this._data;
   }
@@ -40,7 +48,11 @@ class Component extends HTMLElement {
    * Draw template into shadow root
    */
   draw() {
+    // draw only when data is available
+    if (typeof this.data === 'undefined') return;
+    // compile template
     this.compileTemplate();
+    // attach render to shadowRoot
     this.shadowRoot.innerHTML = this._template;
   }
 
