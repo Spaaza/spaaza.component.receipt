@@ -12,6 +12,12 @@ The component was build using [CustomElements API](https://w3c.github.io/webcomp
 * Prod: http://receipt.component.spaaza.com/v1.1.1
 
 
+## TODO
+
+- [] Fix infrastructure definition to support HTTPS in Receipt Component CND for Test01 (http://receipt-test01.component.spaaza.com) and Production (http://receipt.component.spaaza.com)
+- [] Update component logic to fetch receipt information directly from API
+- [] Allow component's look and feel customizations: colors, fonts, backgrounds...
+
 ## Development
 
 To install project dependencies run:
