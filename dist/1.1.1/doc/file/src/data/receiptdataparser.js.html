@@ -124,7 +124,7 @@ class ReceiptDataParser {
 
       // &lt;spaaza-download&gt;
       case &quot;DOWNLOAD&quot;:
-        data.downloadURL = this.data.Receipt.download_url;
+        data.downloadURL = this.data.download_url;
         data.label = typeof this.layout.CONTENT.DOWNLOAD === &apos;string&apos;
           ? this.layout.CONTENT.DOWNLOAD
           : &quot;Download your PDF Receipt&quot;;
