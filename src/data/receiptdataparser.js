@@ -73,7 +73,7 @@ class ReceiptDataParser {
 
       // <spaaza-download>
       case "DOWNLOAD":
-        data.downloadURL = this.data.Receipt.download_url;
+        data.downloadURL = this.data.download_url;
         data.label = typeof this.layout.CONTENT.DOWNLOAD === 'string'
           ? this.layout.CONTENT.DOWNLOAD
           : "Download your PDF Receipt";
