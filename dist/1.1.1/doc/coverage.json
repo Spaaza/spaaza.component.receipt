@@ -62,13 +62,13 @@
       "expectCount": 10,
       "actualCount": 3,
       "undocumentLines": [
-        33,
-        24,
+        30,
+        20,
         15,
-        18,
+        38,
         13,
-        41,
-        39
+        40,
+        36
       ]
     },
     "src/data/receiptdataparser.js": {
