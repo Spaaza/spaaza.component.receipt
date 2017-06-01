@@ -20,7 +20,7 @@ class Receipt extends Component {
   connectedCallback() {
     this.append(`<style>${require('./receipt.less')}</style>`);
     // first paint
-    this.redraw()
+    this.redraw();
   };
 
   // Called every time the element is removed from the DOM.

@@ -6,6 +6,18 @@
 class Component extends HTMLElement {
 
   /**
+   * @return {HTMLElement} Returns element instance
+   */
+  constructor() {
+    super();
+    // create the shadowDOM
+    this.attachShadow({ mode: 'open' });
+    // template placeholder
+    this._template = ``;
+    this._data = null;
+  }
+
+  /**
    * Extract data from <data></data> element
    * @return {object} Return an literal object with the component's data
    */
@@ -13,18 +25,16 @@ class Component extends HTMLElement {
     // if data is already present ignore
     if (this._data) return this._data;
     let element = this.shadowRoot.host;
-    // get data from attribute
-    let c = false;
+
+    // get data from embedded data element
     let d = element.querySelector('#data');
-    if (!d || !d.innerText) return this._data;
-    try {
-      c = JSON.parse(d.innerText);
-    } catch (e) {
-      console.error(e);
+    if (d && d.textContent) {
+      try {
+        this._data = JSON.parse(d.textContent);
+      } catch (e) {
+        console.error(e);
+      }
     }
-    // store data or false
-    this._data = c;
-    // return data object
     return this._data;
   }
 
@@ -55,19 +65,6 @@ class Component extends HTMLElement {
     // attach render to shadowRoot
     this.shadowRoot.innerHTML = this._template;
   }
-
-  /**
-   * @return {HTMLElement} Returns element instance
-   */
-  constructor() {
-    super();
-    // create the shadowDOM
-    this.attachShadow({ mode: 'open' });
-    // template placeholder
-    this._template = ``;
-  }
-
-// End Component
 }
 
-export default Component
+export default Component;
