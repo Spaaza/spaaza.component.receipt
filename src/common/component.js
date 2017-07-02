@@ -14,11 +14,11 @@ class Component extends HTMLElement {
     if (this._data) return this._data;
     let element = this.shadowRoot.host;
     // get data from attribute
-    let c = false;
+    let c = null;
     let d = element.querySelector('#data');
-    if (!d || !d.innerText) return this._data;
+    if (!d || !d.textContent) return this._data;
     try {
-      c = JSON.parse(d.innerText);
+      c = JSON.parse(d.textContent);
     } catch (e) {
       console.error(e);
     }

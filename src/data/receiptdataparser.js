@@ -18,7 +18,9 @@ class ReceiptDataParser {
    * @return {object} an object with specific data for the named component.
    */
   getDataFor(component) {
-    if (typeof this.data === 'undefined') return;
+    if (typeof this.data === 'undefined') {
+       return "{}";
+    }
     if (!component) {
       console.warn('ReceiptDataParser',' Calling getDataFor(component_name) but \'component_name\' is missing!');
     }
@@ -77,6 +79,13 @@ class ReceiptDataParser {
         data.label = typeof this.layout.CONTENT.DOWNLOAD === 'string'
           ? this.layout.CONTENT.DOWNLOAD
           : "Download your PDF Receipt";
+      break;
+
+      // <spaaza-wallet>
+      case "WALLET":
+        data.currencySymbol = this.data.chain.currency_symbol;
+        data.wallet = this.data.monetary_wallet;
+        data.vouchers = this.data.basket_vouchers;
       break;
 
       // <spaaza-store>
