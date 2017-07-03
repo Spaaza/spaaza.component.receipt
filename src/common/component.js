@@ -25,6 +25,7 @@ class Component extends HTMLElement {
     // if data is already present ignore
     if (this._data) return this._data;
     let element = this.shadowRoot.host;
+<<<<<<< HEAD
 
     // get data from embedded data element
     let d = element.querySelector('#data');
@@ -34,6 +35,16 @@ class Component extends HTMLElement {
       } catch (e) {
         console.error(e);
       }
+=======
+    // get data from attribute
+    let c = null;
+    let d = element.querySelector('#data');
+    if (!d || !d.textContent) return this._data;
+    try {
+      c = JSON.parse(d.textContent);
+    } catch (e) {
+      console.error(e);
+>>>>>>> e2c0839c67ab3d07b5115228f69e6d78f902bccc
     }
     return this._data;
   }
