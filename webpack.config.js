@@ -45,6 +45,7 @@ module.exports = {
       "./component/totals.js",
       "./component/download.js",
       "./component/store.js",
+      "./component/wallet.js",
       "./receipt.js"
     ]
   },

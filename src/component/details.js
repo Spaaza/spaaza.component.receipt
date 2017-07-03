@@ -27,7 +27,7 @@ class Details extends Component {
     if (this.data.total) {
       this.append(`
         <tr class="receipt-strong">
-          <td class="">${this.data.method}</td>
+          <td class="">CHARGED</td>
           <td class="align-right">${this.data.currencySymbol} ${this.data.total}</td>
         </tr>
       `);
