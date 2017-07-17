@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/component/lineitems.js | API Document</title>
+  <title data-ice="title">src/component/wallet.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -49,66 +49,80 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/component/lineitems.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/component/wallet.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { divider } from &apos;../common/receipt.layout.js&apos;;
 import Component from &apos;../common/component.js&apos;;
 
-class LineItems extends Component {
+class Wallet extends Component {
+	constructor() {
+		super();
+	}
 
-  constructor() {
-    super();
-  }
+	// Called every time the element is inserted into the DOM.
+	connectedCallback() {
+		this.append(`&lt;style&gt;${require(&apos;./wallet.less&apos;)}&lt;/style&gt;`);
+		this.draw();
+	}
 
-  // Called every time the element is inserted into the DOM.
-  connectedCallback() {
-    this.append(`&lt;style&gt;${require(&apos;./lineitems.less&apos;)}&lt;/style&gt;`);
-    this.draw();
-  }
+	compileTemplate() {
+		console.info(&quot;WALLET&quot;, this.data);
+		const { wallet, vouchers } = this.data;
+		const currencySymbol = this.data.currencySymbol;
+		if (! (wallet &amp;&amp; vouchers)) {
+			return;
+		}
 
-  compileTemplate() {
+		const sumFieldValues = (arr, fieldName) =&gt; {
+			return (arr || [])
+				.map(i =&gt; i[fieldName])
+				.reduce((s, v) =&gt; s + v, 0);
+		};
+		const sumFieldValuesConditional = (arr, fieldName, ifFieldName, isValue) =&gt; {
+			return (arr || [])
+				.filter(i =&gt; i[ifFieldName] === isValue)
+				.map(i =&gt; i[fieldName])
+				.reduce((s, v) =&gt; s + v, 0);
+		};
 
-    // when line items collections is available
-    if (!this.data.lineitems || !this.data.lineitems.length) return;
+		this.append(divider);
+		this.append(`&lt;table class=&quot;receipt-wallet&quot;&gt;`);
+		this.append(`&lt;tr&gt;&lt;td class=&quot;receipt-strong&quot;&gt;${wallet.title}&lt;/td&gt;&lt;/tr&gt;`);
+		this.append(`
+			&lt;tr&gt;
+				&lt;td&gt;${wallet.title} earned&lt;/td&gt;
+				&lt;td align=&quot;right&quot;&gt;${currencySymbol}${sumFieldValues(wallet.contributions, &quot;amount&quot;)}&lt;/td&gt;
+			&lt;/tr&gt;
+		`);
 
-    let currencySymbol = this.data.currencySymbol;
+		if (wallet.contributions.length &gt; 1) {
+			for (const contrib of wallet.contributions) {
+				this.append(`
+					&lt;tr&gt;
+						&lt;td&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;${contrib.campaign_title}&lt;/td&gt;
+						&lt;td align=&quot;right&quot;&gt;${currencySymbol}${contrib.amount}&lt;/td&gt;
+					&lt;/tr&gt;
+				`);
+			}
+		}
 
-    this.append(divider);
+		this.append(`
+			&lt;tr&gt;
+				&lt;td&gt;${wallet.title} spent&lt;/td&gt;
+				&lt;td align=&quot;right&quot;&gt;${currencySymbol}${ sumFieldValuesConditional(vouchers, &quot;amount&quot;, &quot;type&quot;, &quot;wallet&quot;) }&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr class=&quot;receipt-total&quot;&gt;
+				&lt;td&gt;Your new balance&lt;/td&gt;
+				&lt;td align=&quot;right&quot; class=&quot;receipt-strong&quot;&gt;${currencySymbol}${wallet.total}&lt;/td&gt;
+			&lt;/tr&gt;
+		`);
 
-    // create table header
-    this.append(`
-      &lt;table class=&quot;receipt-lineitems&quot;&gt;
-        &lt;tr&gt;
-          &lt;th class=&quot;align-left&quot;&gt;Name&lt;/th&gt;
-          &lt;th class=&quot;align-center&quot;&gt;Qty&lt;/th&gt;
-          &lt;th class=&quot;align-right&quot;&gt;Price&lt;/th&gt;
-        &lt;/tr&gt;
-    `);
-
-    // create a template for each element
-    this.data.lineitems.map(item =&gt; {
-      // check if items needs to show original price
-      let isOnSale = item.original_price &gt; item.sale_price;
-      this.append(`
-        &lt;tr class=&quot;line-item&quot;&gt;
-          &lt;td class=&quot;align-left&quot;&gt;
-            &lt;div class=&quot;line-item-name&quot;&gt;${item.name || item.barcode}&lt;/div&gt;
-          &lt;/td&gt;
-          &lt;td class=&quot;align-center&quot;&gt;${item.quantity}&lt;/td&gt;
-          &lt;td class=&quot;align-right&quot;&gt;
-            &lt;span class=&quot;receipt-original-price ${isOnSale?&apos;receipt-line-through&apos;:&apos;&apos;}&quot;&gt;${currencySymbol} ${item.original_price}&lt;/span&gt;
-            &lt;span class=&quot;receipt-sale-price receipt-strong&quot;&gt;${currencySymbol} ${item.sale_price}&lt;/span&gt;
-          &lt;/td&gt;
-        &lt;/tr&gt;
-      `);
-    });
-
-    // close table
-    this.append(`&lt;/table&gt;`);
-  }
+		this.append(`&lt;/table&gt;`);
+	}
 }
-export default LineItems
 
-customElements.define(&apos;spaaza-lineitems&apos;, LineItems);
+export default Wallet;
+
+customElements.define(&apos;spaaza-wallet&apos;, Wallet);
 </code></pre>
 
 </div>

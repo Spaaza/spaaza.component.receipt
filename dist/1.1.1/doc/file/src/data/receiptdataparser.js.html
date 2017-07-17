@@ -43,6 +43,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/linetaxes.js~LineTaxes.html">LineTaxes</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/store.js~Store.html">Store</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/totals.js~Totals.html">Totals</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/wallet.js~Wallet.html">Wallet</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/receiptdataparser.js~ReceiptDataParser.html">ReceiptDataParser</a></span></span></li>
 </ul>
 </div>
@@ -69,7 +70,9 @@ class ReceiptDataParser {
    * @return {object} an object with specific data for the named component.
    */
   getDataFor(component) {
-    if (typeof this.data === &apos;undefined&apos;) return;
+    if (typeof this.data === &apos;undefined&apos;) {
+       return &quot;{}&quot;;
+    }
     if (!component) {
       console.warn(&apos;ReceiptDataParser&apos;,&apos; Calling getDataFor(component_name) but \&apos;component_name\&apos; is missing!&apos;);
     }
@@ -128,6 +131,13 @@ class ReceiptDataParser {
         data.label = typeof this.layout.CONTENT.DOWNLOAD === &apos;string&apos;
           ? this.layout.CONTENT.DOWNLOAD
           : &quot;Download your PDF Receipt&quot;;
+      break;
+
+      // &lt;spaaza-wallet&gt;
+      case &quot;WALLET&quot;:
+        data.currencySymbol = this.data.chain.currency_symbol;
+        data.wallet = this.data.monetary_wallet;
+        data.vouchers = this.data.basket_vouchers;
       break;
 
       // &lt;spaaza-store&gt;

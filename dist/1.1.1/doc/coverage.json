@@ -1,6 +1,6 @@
 {
-  "coverage": "23.52%",
-  "expectCount": 51,
+  "coverage": "21.81%",
+  "expectCount": 55,
   "actualCount": 12,
   "files": {
     "src/component/brand.js": {
@@ -97,6 +97,16 @@
         16,
         11,
         6
+      ]
+    },
+    "src/component/wallet.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        15,
+        10,
+        5
       ]
     },
     "src/common/receipt.layout.js": {

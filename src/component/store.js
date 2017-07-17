@@ -51,7 +51,7 @@ class Store extends Component {
 
     if (this.data.contact) {
       this.append(`
-        <div>${this.data.contact}</div>
+        <a href="tel:${this.data.contact}">${this.data.contact}</a>
       `);
     }
     if (this.data.address) {

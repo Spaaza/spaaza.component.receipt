@@ -60,6 +60,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "spaaza.component.receipt/src/component/wallet.js~wallet",
+    "class/src/component/wallet.js~Wallet.html",
+    "<span>Wallet</span> <span class=\"search-result-import-path\">spaaza.component.receipt/src/component/wallet.js</span>",
+    "class"
+  ],
+  [
     "spaaza.component.receipt/src/common/receipt.layout.js~divider",
     "variable/index.html#static-variable-divider",
     "<span>divider</span> <span class=\"search-result-import-path\">spaaza.component.receipt/src/common/receipt.layout.js</span>",
@@ -609,6 +615,30 @@ window.esdocSearchIndex = [
     "src/component/totals.js~totals#constructor",
     "class/src/component/totals.js~Totals.html#instance-constructor-constructor",
     "src/component/totals.js~Totals#constructor",
+    "method"
+  ],
+  [
+    "src/component/wallet.js",
+    "file/src/component/wallet.js.html",
+    "src/component/wallet.js",
+    "file"
+  ],
+  [
+    "src/component/wallet.js~wallet#compiletemplate",
+    "class/src/component/wallet.js~Wallet.html#instance-method-compileTemplate",
+    "src/component/wallet.js~Wallet#compileTemplate",
+    "method"
+  ],
+  [
+    "src/component/wallet.js~wallet#connectedcallback",
+    "class/src/component/wallet.js~Wallet.html#instance-method-connectedCallback",
+    "src/component/wallet.js~Wallet#connectedCallback",
+    "method"
+  ],
+  [
+    "src/component/wallet.js~wallet#constructor",
+    "class/src/component/wallet.js~Wallet.html#instance-constructor-constructor",
+    "src/component/wallet.js~Wallet#constructor",
     "method"
   ],
   [

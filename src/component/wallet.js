@@ -34,7 +34,7 @@ class Wallet extends Component {
 
 		this.append(divider);
 		this.append(`<table class="receipt-wallet">`);
-		this.append(`<tr><td>${wallet.title}</td></tr>`);
+		this.append(`<tr><td class="receipt-strong">${wallet.title}</td></tr>`);
 		this.append(`
 			<tr>
 				<td>${wallet.title} earned</td>
@@ -60,7 +60,7 @@ class Wallet extends Component {
 			</tr>
 			<tr class="receipt-total">
 				<td>Your new balance</td>
-				<td align="right">${currencySymbol}${wallet.total}</td>
+				<td align="right" class="receipt-strong">${currencySymbol}${wallet.total}</td>
 			</tr>
 		`);
 

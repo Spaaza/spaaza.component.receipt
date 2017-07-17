@@ -39,7 +39,7 @@ class LineItems extends Component {
       this.append(`
         <tr class="line-item">
           <td class="align-left">
-            <div class="line-item-name">${item.name || item.distinguisher_value}</div>
+            <div class="line-item-name">${item.name || item.barcode}</div>
           </td>
           <td class="align-center">${item.quantity}</td>
           <td class="align-right">
