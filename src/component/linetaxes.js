@@ -1,3 +1,4 @@
+import { amount } from '../common/format';
 import { divider } from '../common/receipt.layout.js';
 import Component from '../common/component.js';
 
@@ -37,8 +38,8 @@ class LineTaxes extends Component {
       this.append(`
         <tr class="tax-line">
           <td class="var-rate align-left">${tax.rate}%</td>
-          <td class="order-value align-center">${currencySymbol} ${tax.order_value}</td>
-          <td class="vat align-right">${currencySymbol} ${tax.tax_value}</td>
+          <td class="order-value align-center">${currencySymbol} ${amount(tax.order_value)}</td>
+          <td class="vat align-right">${currencySymbol} ${amount(tax.tax_value)}</td>
         </tr>
       `);
     });

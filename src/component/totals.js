@@ -1,3 +1,4 @@
+import { amount } from '../common/format';
 import { divider } from '../common/receipt.layout.js';
 import Component from '../common/component.js';
 
@@ -27,7 +28,7 @@ class Totals extends Component {
       this.append(`
         <tr class="receipt-subtotal">
           <td>Subtotal</td>
-          <td class="align-right">${this.data.currencySymbol} ${this.data.subtotal}</td>
+          <td class="align-right">${this.data.currencySymbol} ${amount(this.data.subtotal)}</td>
         </tr>
       `);
     }
@@ -36,7 +37,7 @@ class Totals extends Component {
       this.append(`
         <tr class="receipt-strong">
           <td>Total</td>
-          <td class="align-right">${this.data.currencySymbol} ${this.data.total}</td>
+          <td class="align-right">${this.data.currencySymbol} ${amount(this.data.total)}</td>
         </tr>
       `);
     }

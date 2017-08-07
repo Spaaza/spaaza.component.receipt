@@ -1,3 +1,4 @@
+import { amount } from '../common/format';
 import { divider } from '../common/receipt.layout.js';
 import Component from '../common/component.js';
 
@@ -39,12 +40,12 @@ class LineItems extends Component {
       this.append(`
         <tr class="line-item">
           <td class="align-left">
-            <div class="line-item-name">${item.name || item.distinguisher_value}</div>
+            <div class="line-item-name">${item.name || item.barcode}</div>
           </td>
           <td class="align-center">${item.quantity}</td>
           <td class="align-right">
-            <span class="receipt-original-price ${isOnSale?'receipt-line-through':''}">${currencySymbol} ${item.original_price}</span>
-            <span class="receipt-sale-price receipt-strong">${currencySymbol} ${item.sale_price}</span>
+            <span class="receipt-original-price ${isOnSale?'receipt-line-through':''}">${currencySymbol} ${amount(item.original_price)}</span>
+            <span class="receipt-sale-price receipt-strong">${currencySymbol} ${amount(item.sale_price)}</span>
           </td>
         </tr>
       `);

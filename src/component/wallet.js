@@ -1,3 +1,4 @@
+import { amount } from '../common/format';
 import { divider } from '../common/receipt.layout.js';
 import Component from '../common/component.js';
 
@@ -38,7 +39,7 @@ class Wallet extends Component {
 		this.append(`
 			<tr>
 				<td>${wallet.title} earned</td>
-				<td align="right">${currencySymbol}${sumFieldValues(wallet.contributions, "amount")}</td>
+				<td align="right">${currencySymbol} ${ amount(sumFieldValues(wallet.contributions, "amount")) }</td>
 			</tr>
 		`);
 
@@ -47,7 +48,7 @@ class Wallet extends Component {
 				this.append(`
 					<tr>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;${contrib.campaign_title}</td>
-						<td align="right">${currencySymbol}${contrib.amount}</td>
+						<td align="right">${currencySymbol} ${ amount(contrib.amount) }</td>
 					</tr>
 				`);
 			}
@@ -56,11 +57,11 @@ class Wallet extends Component {
 		this.append(`
 			<tr>
 				<td>${wallet.title} spent</td>
-				<td align="right">${currencySymbol}${ sumFieldValuesConditional(vouchers, "amount", "type", "wallet") }</td>
+				<td align="right">${currencySymbol} ${ amount(sumFieldValuesConditional(vouchers, "amount", "type", "wallet")) }</td>
 			</tr>
 			<tr class="receipt-total">
 				<td>Your new balance</td>
-				<td align="right">${currencySymbol}${wallet.total}</td>
+				<td align="right">${currencySymbol} ${amount(wallet.total)}</td>
 			</tr>
 		`);
 

@@ -1,4 +1,5 @@
 import Component from '../common/component.js';
+import { amount } from '../common/format';
 
 class Details extends Component {
 
@@ -13,7 +14,6 @@ class Details extends Component {
   }
 
   compileTemplate() {
-
     let hasData = this.data.message || this.data.total || this.data.id || this.data.date;
 
     if (hasData) {
@@ -28,7 +28,7 @@ class Details extends Component {
       this.append(`
         <tr class="receipt-strong">
           <td class="">CHARGED</td>
-          <td class="align-right">${this.data.currencySymbol} ${this.data.total}</td>
+          <td class="align-right">${this.data.currencySymbol} ${amount(this.data.total)}</td>
         </tr>
       `);
     }
@@ -54,6 +54,6 @@ class Details extends Component {
     }
   }
 }
-export default Details
+export default Details;
 
 customElements.define('spaaza-details', Details);
