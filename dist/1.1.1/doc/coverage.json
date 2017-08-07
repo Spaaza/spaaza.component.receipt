@@ -1,7 +1,13 @@
 {
+<<<<<<< HEAD
   "coverage": "23.21%",
   "expectCount": 56,
   "actualCount": 13,
+=======
+  "coverage": "21.81%",
+  "expectCount": 55,
+  "actualCount": 12,
+>>>>>>> 489dd27f8c95c045ee3f5194f26a06be6604edb7
   "files": {
     "src/component/brand.js": {
       "expectCount": 4,
@@ -109,10 +115,22 @@
         6
       ]
     },
+<<<<<<< HEAD
     "src/common/format.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
+=======
+    "src/component/wallet.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        15,
+        10,
+        5
+      ]
+>>>>>>> 489dd27f8c95c045ee3f5194f26a06be6604edb7
     },
     "src/common/receipt.layout.js": {
       "expectCount": 2,

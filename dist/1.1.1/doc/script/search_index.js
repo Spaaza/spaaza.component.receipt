@@ -66,12 +66,15 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+<<<<<<< HEAD
     "spaaza.component.receipt/src/common/format.js~amount",
     "function/index.html#static-function-amount",
     "<span>amount</span> <span class=\"search-result-import-path\">spaaza.component.receipt/src/common/format.js</span>",
     "function"
   ],
   [
+=======
+>>>>>>> 489dd27f8c95c045ee3f5194f26a06be6604edb7
     "spaaza.component.receipt/src/common/receipt.layout.js~divider",
     "variable/index.html#static-variable-divider",
     "<span>divider</span> <span class=\"search-result-import-path\">spaaza.component.receipt/src/common/receipt.layout.js</span>",

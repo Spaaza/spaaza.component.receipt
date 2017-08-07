@@ -34,7 +34,10 @@
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/receipt.js~Receipt.html">Receipt</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">common</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/common/component.js~Component.html">Component</a></span></span></li>
+<<<<<<< HEAD
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-amount">amount</a></span></span></li>
+=======
+>>>>>>> 489dd27f8c95c045ee3f5194f26a06be6604edb7
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-divider">divider</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-layout">layout</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">component</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/brand.js~Brand.html">Brand</a></span></span></li>
@@ -51,8 +54,12 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/component/wallet.js</h1>
+<<<<<<< HEAD
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { amount } from &apos;../common/format&apos;;
 import { divider } from &apos;../common/receipt.layout.js&apos;;
+=======
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { divider } from &apos;../common/receipt.layout.js&apos;;
+>>>>>>> 489dd27f8c95c045ee3f5194f26a06be6604edb7
 import Component from &apos;../common/component.js&apos;;
 
 class Wallet extends Component {
@@ -92,7 +99,11 @@ class Wallet extends Component {
 		this.append(`
 			&lt;tr&gt;
 				&lt;td&gt;${wallet.title} earned&lt;/td&gt;
+<<<<<<< HEAD
 				&lt;td align=&quot;right&quot;&gt;${currencySymbol} ${ amount(sumFieldValues(wallet.contributions, &quot;amount&quot;)) }&lt;/td&gt;
+=======
+				&lt;td align=&quot;right&quot;&gt;${currencySymbol}${sumFieldValues(wallet.contributions, &quot;amount&quot;)}&lt;/td&gt;
+>>>>>>> 489dd27f8c95c045ee3f5194f26a06be6604edb7
 			&lt;/tr&gt;
 		`);
 
@@ -101,7 +112,11 @@ class Wallet extends Component {
 				this.append(`
 					&lt;tr&gt;
 						&lt;td&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;${contrib.campaign_title}&lt;/td&gt;
+<<<<<<< HEAD
 						&lt;td align=&quot;right&quot;&gt;${currencySymbol} ${ amount(contrib.amount) }&lt;/td&gt;
+=======
+						&lt;td align=&quot;right&quot;&gt;${currencySymbol}${contrib.amount}&lt;/td&gt;
+>>>>>>> 489dd27f8c95c045ee3f5194f26a06be6604edb7
 					&lt;/tr&gt;
 				`);
 			}
@@ -110,11 +125,19 @@ class Wallet extends Component {
 		this.append(`
 			&lt;tr&gt;
 				&lt;td&gt;${wallet.title} spent&lt;/td&gt;
+<<<<<<< HEAD
 				&lt;td align=&quot;right&quot;&gt;${currencySymbol} ${ amount(sumFieldValuesConditional(vouchers, &quot;amount&quot;, &quot;type&quot;, &quot;wallet&quot;)) }&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr class=&quot;receipt-total&quot;&gt;
 				&lt;td&gt;Your new balance&lt;/td&gt;
 				&lt;td align=&quot;right&quot; class=&quot;receipt-strong&quot;&gt;${currencySymbol} ${amount(wallet.total)}&lt;/td&gt;
+=======
+				&lt;td align=&quot;right&quot;&gt;${currencySymbol}${ sumFieldValuesConditional(vouchers, &quot;amount&quot;, &quot;type&quot;, &quot;wallet&quot;) }&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr class=&quot;receipt-total&quot;&gt;
+				&lt;td&gt;Your new balance&lt;/td&gt;
+				&lt;td align=&quot;right&quot; class=&quot;receipt-strong&quot;&gt;${currencySymbol}${wallet.total}&lt;/td&gt;
+>>>>>>> 489dd27f8c95c045ee3f5194f26a06be6604edb7
 			&lt;/tr&gt;
 		`);
 

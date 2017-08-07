@@ -61,7 +61,11 @@ class Wallet extends Component {
 			</tr>
 			<tr class="receipt-total">
 				<td>Your new balance</td>
+<<<<<<< HEAD
 				<td align="right" class="receipt-strong">${currencySymbol} ${amount(wallet.total)}</td>
+=======
+				<td align="right" class="receipt-strong">${currencySymbol}${wallet.total}</td>
+>>>>>>> 489dd27f8c95c045ee3f5194f26a06be6604edb7
 			</tr>
 		`);
 
