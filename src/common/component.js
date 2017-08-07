@@ -19,7 +19,7 @@ class Component extends HTMLElement {
 
   /**
    * Extract data from <data></data> element
-   * @return {object} Return an literal object with the component's data
+   * @return {Object} Return an literal object with the component's data
    */
   get data() {
     // if data is already present ignore

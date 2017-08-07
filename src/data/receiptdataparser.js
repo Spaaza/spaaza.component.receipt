@@ -4,8 +4,8 @@
 class ReceiptDataParser {
 
   /**
-   * @param {object} data - full set of data.
-   * @param {object} layout - layout information.
+   * @param {Object} data - full set of data.
+   * @param {Object} layout - layout information.
    */
   constructor(data, layout) {
     this.data = data;
@@ -15,7 +15,7 @@ class ReceiptDataParser {
   /**
    * @param {string} component - name of the component.
    * @throws {debug} when component name is missing.
-   * @return {object} an object with specific data for the named component.
+   * @return {Object} an object with specific data for the named component.
    */
   getDataFor(component) {
     if (typeof this.data === 'undefined') {
