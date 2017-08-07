@@ -34,6 +34,7 @@
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/receipt.js~Receipt.html">Receipt</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">common</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/common/component.js~Component.html">Component</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-amount">amount</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-divider">divider</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-layout">layout</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">component</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/brand.js~Brand.html">Brand</a></span></span></li>
@@ -43,13 +44,15 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/linetaxes.js~LineTaxes.html">LineTaxes</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/store.js~Store.html">Store</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/totals.js~Totals.html">Totals</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/component/wallet.js~Wallet.html">Wallet</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/receiptdataparser.js~ReceiptDataParser.html">ReceiptDataParser</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/component/totals.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { divider } from &apos;../common/receipt.layout.js&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { amount } from &apos;../common/format&apos;;
+import { divider } from &apos;../common/receipt.layout.js&apos;;
 import Component from &apos;../common/component.js&apos;;
 
 class Totals extends Component {
@@ -78,7 +81,7 @@ class Totals extends Component {
       this.append(`
         &lt;tr class=&quot;receipt-subtotal&quot;&gt;
           &lt;td&gt;Subtotal&lt;/td&gt;
-          &lt;td class=&quot;align-right&quot;&gt;${this.data.currencySymbol} ${this.data.subtotal}&lt;/td&gt;
+          &lt;td class=&quot;align-right&quot;&gt;${this.data.currencySymbol} ${amount(this.data.subtotal)}&lt;/td&gt;
         &lt;/tr&gt;
       `);
     }
@@ -87,7 +90,7 @@ class Totals extends Component {
       this.append(`
         &lt;tr class=&quot;receipt-strong&quot;&gt;
           &lt;td&gt;Total&lt;/td&gt;
-          &lt;td class=&quot;align-right&quot;&gt;${this.data.currencySymbol} ${this.data.total}&lt;/td&gt;
+          &lt;td class=&quot;align-right&quot;&gt;${this.data.currencySymbol} ${amount(this.data.total)}&lt;/td&gt;
         &lt;/tr&gt;
       `);
     }

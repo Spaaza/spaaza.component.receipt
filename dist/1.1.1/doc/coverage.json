@@ -1,7 +1,7 @@
 {
-  "coverage": "23.52%",
-  "expectCount": 51,
-  "actualCount": 12,
+  "coverage": "23.21%",
+  "expectCount": 56,
+  "actualCount": 13,
   "files": {
     "src/component/brand.js": {
       "expectCount": 4,
@@ -22,10 +22,10 @@
       "expectCount": 4,
       "actualCount": 0,
       "undocumentLines": [
-        3,
-        15,
-        10,
-        5
+        4,
+        16,
+        11,
+        6
       ]
     },
     "src/component/download.js": {
@@ -42,20 +42,20 @@
       "expectCount": 4,
       "actualCount": 0,
       "undocumentLines": [
-        4,
-        16,
-        11,
-        6
+        5,
+        17,
+        12,
+        7
       ]
     },
     "src/component/linetaxes.js": {
       "expectCount": 4,
       "actualCount": 0,
       "undocumentLines": [
-        4,
-        16,
-        11,
-        6
+        5,
+        17,
+        12,
+        7
       ]
     },
     "src/receipt.js": {
@@ -93,11 +93,26 @@
       "expectCount": 4,
       "actualCount": 0,
       "undocumentLines": [
-        4,
+        5,
+        17,
+        12,
+        7
+      ]
+    },
+    "src/component/wallet.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        5,
         16,
         11,
         6
       ]
+    },
+    "src/common/format.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
     },
     "src/common/receipt.layout.js": {
       "expectCount": 2,
