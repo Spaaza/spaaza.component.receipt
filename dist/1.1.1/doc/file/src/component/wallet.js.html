@@ -88,7 +88,7 @@ class Wallet extends Component {
 
 		this.append(divider);
 		this.append(`&lt;table class=&quot;receipt-wallet&quot;&gt;`);
-		this.append(`&lt;tr&gt;&lt;td&gt;${wallet.title}&lt;/td&gt;&lt;/tr&gt;`);
+		this.append(`&lt;tr&gt;&lt;td class=&quot;receipt-strong&quot;&gt;${wallet.title}&lt;/td&gt;&lt;/tr&gt;`);
 		this.append(`
 			&lt;tr&gt;
 				&lt;td&gt;${wallet.title} earned&lt;/td&gt;
@@ -114,7 +114,7 @@ class Wallet extends Component {
 			&lt;/tr&gt;
 			&lt;tr class=&quot;receipt-total&quot;&gt;
 				&lt;td&gt;Your new balance&lt;/td&gt;
-				&lt;td align=&quot;right&quot;&gt;${currencySymbol} ${amount(wallet.total)}&lt;/td&gt;
+				&lt;td align=&quot;right&quot; class=&quot;receipt-strong&quot;&gt;${currencySymbol} ${amount(wallet.total)}&lt;/td&gt;
 			&lt;/tr&gt;
 		`);
 

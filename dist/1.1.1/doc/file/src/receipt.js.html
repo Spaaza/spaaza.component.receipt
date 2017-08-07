@@ -91,6 +91,9 @@ class Receipt extends Component {
     this.layout = this.getLayout() || layout;
     // create a instance of data parser
     this.parser = new ReceiptDataParser(this.data, this.layout);
+    // make sure it&apos;s empty
+    this.shadowRoot.innerHTML = &quot;&quot;;
+    console.log(&quot;setting to empty&quot;, this.shadowRoot.innerHTML);
     // draw content
     this.draw();
   }
