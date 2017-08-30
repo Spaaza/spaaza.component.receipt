@@ -21,17 +21,23 @@ class Wallet extends Component {
 			return;
 		}
 
-		const sumFieldValues = (arr, fieldName) => {
-			return (arr || [])
+		const sumFieldValues = (arr, fieldName) =>
+			(arr || [])
 				.map(i => i[fieldName])
 				.reduce((s, v) => s + v, 0);
-		};
-		const sumFieldValuesConditional = (arr, fieldName, ifFieldName, isValue) => {
-			return (arr || [])
+		const sumFieldValuesConditional = (arr, fieldName, ifFieldName, isValue) =>
+			(arr || [])
 				.filter(i => i[ifFieldName] === isValue)
 				.map(i => i[fieldName])
 				.reduce((s, v) => s + v, 0);
-		};
+
+		const totalEarned = sumFieldValues(wallet.contributions, "amount");
+		const totalSpent = sumFieldValuesConditional(vouchers, "amount", "type", "wallet");
+
+		if (! (totalEarned || totalSpent)) {
+			// don't add the wallet section if nothing changed to the wallet
+			return;
+		}
 
 		this.append(divider);
 		this.append(`<table class="receipt-wallet">`);
@@ -39,7 +45,7 @@ class Wallet extends Component {
 		this.append(`
 			<tr>
 				<td>${wallet.title} earned</td>
-				<td align="right">${currencySymbol} ${ amount(sumFieldValues(wallet.contributions, "amount")) }</td>
+				<td align="right">${currencySymbol} ${ amount(totalEarned) }</td>
 			</tr>
 		`);
 
@@ -57,7 +63,7 @@ class Wallet extends Component {
 		this.append(`
 			<tr>
 				<td>${wallet.title} spent</td>
-				<td align="right">${currencySymbol} ${ amount(sumFieldValuesConditional(vouchers, "amount", "type", "wallet")) }</td>
+				<td align="right">${currencySymbol} ${ amount(totalSpent) }</td>
 			</tr>
 			<tr class="receipt-total">
 				<td>Your new balance</td>
