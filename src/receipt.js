@@ -75,7 +75,7 @@ class Receipt extends Component {
         // make sure the output collections exists
         output[section] = output[section] || ``;
         // get data for that comoponent
-        output[section] += `<${tag}><script id="data" type="application/json">${this.parser.getDataFor(component)}</script></${tag}>\n`;
+        output[section] += `<${tag}><script type="application/json">${this.parser.getDataFor(component)}</script></${tag}>\n`;
       }
     }
 

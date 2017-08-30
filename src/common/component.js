@@ -23,7 +23,7 @@ class Component extends HTMLElement {
     let element = this.shadowRoot.host;
 
     // get data from embedded data element
-    let d = element.querySelector('#data');
+    let d = element.querySelector('script');
     if (d && d.textContent) {
       try {
         this._data = JSON.parse(d.textContent);

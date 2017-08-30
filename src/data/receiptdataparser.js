@@ -4,7 +4,6 @@ import strings, { blockSubstitute } from "../common/language";
  * ReceiptDataParser knows the data that each component needs.
  */
 class ReceiptDataParser {
-
   /**
    * @param {Object} data - full set of data.
    */
@@ -80,7 +79,6 @@ class ReceiptDataParser {
         data.address = `${chain.business.address.address_1} ${chain.business.address.address_2} ${chain.business.address.address_3}`.trim();
         data.postalcode = chain.business.address.postal_code;
         data.towncity = chain.business.address.towncity;
-        data.message = "Thank you!";
       break;
     }
 
@@ -98,4 +96,4 @@ class ReceiptDataParser {
   }
 }
 
-export default ReceiptDataParser
+export default ReceiptDataParser;

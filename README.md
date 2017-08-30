@@ -39,7 +39,7 @@ Will minimize and optimize the bundle for live environments
 Get receipt data from the Spaaza API and provide it inside a spaaza-receipt component:
 ```
 <spaaza-receipt>
-  <script id="data" type="application/json">
+  <script type="application/json">
     {
       ... INSERT RECEIPT API JSON RESPONSE HERE ...
     }
