@@ -1,4 +1,3 @@
-import { layout } from './common/receipt.layout.js';
 import Component from './common/component.js';
 import ReceiptDataParser from './data/receiptdataparser.js';
 
@@ -34,10 +33,8 @@ class Receipt extends Component {
   };
 
   redraw() {
-    // fetch layout information from <layout> or use defaults
-    this.layout = this.getLayout() || layout;
     // create a instance of data parser
-    this.parser = new ReceiptDataParser(this.data, this.layout);
+    this.parser = new ReceiptDataParser(this.data);
     // make sure it's empty
     this.shadowRoot.innerHTML = "";
     console.log("setting to empty", this.shadowRoot.innerHTML);
@@ -50,11 +47,29 @@ class Receipt extends Component {
    */
   compileTemplate() {
     if (typeof this.data === 'undefined') return;
+    const namespace = 'spaaza';
     let output = {};
-    let namespace = 'spaaza';
 
-    for (let section in this.layout) {
-      for (let component in this.layout[section]) {
+    const layout = {
+      "HEADER": {
+        "BRAND": true,
+        "DETAILS": true
+      },
+      "CONTENT": {
+        "LINEITEMS": true,
+        "LINETAXES": true,
+        "TOTALS": true,
+        "WALLET": true,
+        "DOWNLOAD": true
+      },
+      "FOOTER": {
+        "STORE": true
+      }
+    };
+
+
+    for (let section in layout) {
+      for (let component in layout[section]) {
         // compose a tag <spaaza-component>
         let tag = `${namespace}-${component.toLowerCase()}`;
         // make sure the output collections exists
@@ -78,40 +93,8 @@ class Receipt extends Component {
       </div>
     `);
   }
-
-  /**
-   * @return {object} layout - layout information extracted from <layout></layout> element
-   */
-  getLayout() {
-    // get layout definition
-    let layoutElement = this.shadowRoot.host.querySelector('layout');
-    // return default layout when no layout present
-    if (!layoutElement) { return; }
-
-    // extract children information from element
-    function extractChildren(element) {
-      // when no children, return content or element reference
-      if (!element.children.length) {
-        return element.innerHTML || element;
-      };
-      let children = {};
-      // for all children
-      for (let child, i = 0; i < element.children.length; i += 1) {
-        child = element.children[i];
-        // extract all children
-        children[child.tagName] = extractChildren(child);
-      }
-      // return collection
-      return children;
-    }
-
-    // extract children information from layoutElement
-    return extractChildren(layoutElement);
-  }
-
-// End Receipt
 }
 
-export default Receipt
+export default Receipt;
 
 customElements.define('spaaza-receipt', Receipt);

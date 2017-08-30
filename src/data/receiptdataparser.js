@@ -5,11 +5,9 @@ class ReceiptDataParser {
 
   /**
    * @param {Object} data - full set of data.
-   * @param {Object} layout - layout information.
    */
-  constructor(data, layout) {
+  constructor(data) {
     this.data = data;
-    this.layout = layout;
   }
 
   /**
@@ -30,22 +28,14 @@ class ReceiptDataParser {
     switch (component) {
       // <spaaza-brand>
       case "BRAND":
-        data.logoURL = typeof this.layout.HEADER.BRAND.LOGO === 'string'
-          ? this.layout.HEADER.BRAND.LOGO
-          : this.data.chain.logo_url;
-        data.title = typeof this.layout.HEADER.BRAND.TITLE === 'string'
-          ? this.layout.HEADER.BRAND.TITLE
-          : "Your Receipt";
-        data.message = typeof this.layout.HEADER.BRAND.MESSAGE === 'string'
-          ? this.layout.HEADER.BRAND.MESSAGE
-          : `Hi there ${this.data.shopper.first_name}, thanks for your purchase!`;
+        data.logoURL = this.data.chain.logo_url;
+        data.title = "Your Receipt";
+        data.message = `Hi there ${this.data.shopper.first_name}, thanks for your purchase!`;
       break;
 
       // <spaaza-details>
       case "DETAILS":
-        data.message = typeof this.layout.HEADER.DETAILS.MESSAGE === 'string'
-          ? this.layout.HEADER.DETAILS.MESSAGE
-          : `Your order details from ${this.data.chain.name}:`;
+        data.message = `Your order details from ${this.data.chain.name}:`;
         data.name = this.data.chain.id;
         data.id = this.data.id;
         data.total = this.data.total_value;
@@ -76,9 +66,7 @@ class ReceiptDataParser {
       // <spaaza-download>
       case "DOWNLOAD":
         data.downloadURL = this.data.download_url;
-        data.label = typeof this.layout.CONTENT.DOWNLOAD === 'string'
-          ? this.layout.CONTENT.DOWNLOAD
-          : "Download your PDF Receipt";
+        data.label = "Download your PDF Receipt";
       break;
 
       // <spaaza-wallet>
@@ -97,9 +85,7 @@ class ReceiptDataParser {
         data.address = `${this.data.chain.business.address.address_1} ${this.data.chain.business.address.address_2} ${this.data.chain.business.address.address_3}`.trim();
         data.postalcode = this.data.chain.business.address.postal_code;
         data.towncity = this.data.chain.business.address.towncity;
-        data.message = typeof this.layout.FOOTER.STORE.MESSAGE === 'string'
-          ? this.layout.FOOTER.STORE.MESSAGE
-          : "Thank you!";
+        data.message = "Thank you!";
       break;
 
     }

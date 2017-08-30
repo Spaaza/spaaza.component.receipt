@@ -1,28 +1,3 @@
-let layout = {
-  "HEADER": {
-    "BRAND": {
-      "LOGO": true,
-      "TITLE": true,
-      "MESSAGE": true
-    },
-    "DETAILS": true
-  },
-  "CONTENT": {
-    "LINEITEMS": true,
-    "LINETAXES": true,
-    "TOTALS": true,
-    "WALLET": true,
-    "DOWNLOAD": true
-  },
-  "FOOTER": {
-    "STORE": {
-      "CONTACT": true,
-      "ADDRESS": true,
-      "MESSAGE": true
-    }
-  }
-};
-
 let divider = `
   <table class="divider-wrapper">
       <tr>
@@ -37,4 +12,4 @@ let divider = `
     </table>
 `;
 
-export { layout, divider };
+export { divider };
