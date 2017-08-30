@@ -19,14 +19,6 @@ const PackageWebpackPlugin = new webpack.DefinePlugin({
   package: package
 });
 
-const esdoc_config = {
-  "source": "./src",
-  "destination": "./dist/" + package.version + "/doc"
-}
-// write esdocs config
-fs.writeFile('.esdoc.json', JSON.stringify(esdoc_config), 'utf8', ()=>{ console.log('wrote esdocs successfully')});
-
-
 module.exports = {
 
   devtool: 'eval',
