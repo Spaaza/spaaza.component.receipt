@@ -1,14 +1,3 @@
-:host {
-  display: block;
-}
-
-/* hide data */
-
-data {
-  display: none;
-}
-
-
 /* -------------------------------------
     GLOBAL RESETS
 ------------------------------------- */
@@ -23,6 +12,7 @@ img {
   max-width: 100%; }
 
 :host {
+  display: block;
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 14px;
@@ -176,88 +166,6 @@ pre,
   hyphens: auto; }
 
 /* -------------------------------------
-    BUTTONS
-------------------------------------- */
-.btn {
-  width: 100%; }
-  .btn > tr > td {
-    padding-bottom: 15px; }
-  .btn table {
-    width: auto; }
-  .btn table td {
-    background-color: #ffffff;
-    border-radius: 5px;
-    text-align: center; }
-  .btn a {
-    background-color: #ffffff;
-    border: solid 1px #348eda;
-    border-radius: 5px;
-    color: #348eda;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: bold;
-    margin: 0;
-    padding: 12px 25px;
-    text-decoration: none;
-    text-transform: capitalize; }
-
-.btn-primary table td {
-  background-color: #348eda; }
-
-.btn-primary a {
-  background-color: #348eda;
-  border-color: #348eda;
-  color: #ffffff; }
-
-.btn-secondary table td {
-  background-color: transparent; }
-
-.btn-secondary a {
-  background-color: transparent;
-  border-color: #348eda;
-  color: #348eda; }
-
-/* -------------------------------------
-  NOTICES
-------------------------------------- */
-.notice {
-  border-collapse: separate; }
-  .notice-spacer {
-    padding: 10px 0; }
-  .notice td {
-    line-height: 1.6;
-    font-size: 14px;
-    font-weight: 400; }
-  .notice-info td {
-    background: #f0f6fb;
-    border: 1px solid #b7d3ed;
-    border-radius: 6px;
-    color: #2c6eac;
-    padding: 8px 12px; }
-  .notice-success td {
-    background: #e1f2bd;
-    border: 1px solid #c6e682;
-    border-radius: 6px;
-    color: #61821a;
-    padding: 8px 12px; }
-  .notice-warning td {
-    background: #f7eed0;
-    border: 1px solid #edd993;
-    border-radius: 6px;
-    color: #9a7d1a;
-    padding: 8px 12px; }
-  .notice-danger td {
-    background: #f5d5d5;
-    border: 1px solid #e89b9b;
-    border-radius: 6px;
-    color: #952222;
-    padding: 8px 12px; }
-  .notice-lg td {
-    font-size: 16.8px;
-    line-height: 1.6; }
-
-/* -------------------------------------
   DIVIDERS
 ------------------------------------- */
 .divider {
@@ -339,7 +247,6 @@ pre,
 /* -------------------------------------
     RECEIPTS
 ------------------------------------- */
-
 .receipt-strong {
   font-weight: bold;
   text-transform: uppercase; }
@@ -353,10 +260,66 @@ pre,
 /**
 * Table layout fix
 */
-
 table.receipt-lineitems th,
 table.receipt-lineitems td,
 table.receipt-linetaxes th,
 table.receipt-linetaxes td {
   width: 33%;
+}
+
+/* Brand */
+img {
+  display: block;
+  margin: 3em auto;
+  height: 100px;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* LineItems */
+.receipt-original-price {
+  display: none;
+}
+
+.receipt-original-price.receipt-line-through {
+  display: inline;
+}
+
+/* Download */
+.btn-download {
+  width: 100%;
+  padding-bottom: 15px;
+  background-color: #348eda;
+  border-radius: 5px;
+  text-align: center;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  height: 100% !important;
+  line-height: 1.6em;
+  margin: 0;
+  padding: 0;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+.btn-download a {
+  background-color: #348eda;
+  border: solid 1px #348eda;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  padding: 12px 25px;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+/* Footer */
+.receipt-footer-message {
+  text-align: center;
 }

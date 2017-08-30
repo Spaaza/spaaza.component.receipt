@@ -1,25 +1,14 @@
-import { divider } from '../common/receipt.layout.js';
-import Component from '../common/component.js';
+import { divider } from '../common/format';
 
-class Download extends Component {
+const Download = (data) => {
+	const { strings } = data;
 
-  constructor() {
-    super();
-  }
-
-  // Called every time the element is inserted into the DOM.
-  connectedCallback() {
-    this.append(`<style>${require('./download.less')}</style>`);
-    this.draw();
-  }
-
-  compileTemplate() {
-    if (this.data.downloadURL) {
-      this.append(divider);
-      this.append(`<div class="btn btn-primary"><a href="${this.data.downloadURL}" target="_blank">${this.data.strings.label}</a><div>`);
-    }
-  }
+	let html = "";
+	if (data.downloadURL) {
+		html += divider;
+		html += `<div class="btn-download"><a href="${data.downloadURL}" target="_blank">${strings.label}</a><div>`;
+	}
+	return html;
 }
-export default Download
 
-customElements.define('spaaza-download', Download);
+export default Download;

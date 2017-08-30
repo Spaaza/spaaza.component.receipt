@@ -17,12 +17,6 @@ class ReceiptDataParser {
    * @return {Object} an object with specific data for the named component.
    */
   getDataFor(component) {
-    if (typeof this.data === 'undefined') {
-       return "{}";
-    }
-    if (!component) {
-      console.warn('ReceiptDataParser',' Calling getDataFor(component_name) but \'component_name\' is missing!');
-    }
     const { shopper, chain } = this.data;
     const data = {
       currencySymbol: chain.currency_symbol
@@ -30,48 +24,40 @@ class ReceiptDataParser {
 
     // define data object for a component
     switch (component) {
-      // <spaaza-brand>
-      case "BRAND":
+      case "brand":
         data.logoURL = chain.logo_url;
       break;
 
-      // <spaaza-details>
-      case "DETAILS":
+      case "details":
         data.name = chain.id;
         data.id = this.data.id;
         data.total = this.data.total_value;
         data.date = this.data.timestamp;
       break;
 
-      // <spaaza-lineitems>
-      case "LINEITEMS":
+      case "lineitems":
         data.lineitems = this.data.line_items;
       break;
 
-      // <spaaza-linetaxes>
-      case "LINETAXES":
+      case "linetaxes":
         data.linetaxes = this.data.tax_lines;
       break;
 
-      // <spaaza-totals>
-      case "TOTALS":
+      case "totals":
         data.total = this.data.total_value;
         data.subtotal = this.data.subtotal;
       break;
 
-      // <spaaza-download>
-      case "DOWNLOAD":
+      case "download":
         data.downloadURL = this.data.download_url;
       break;
 
-      // <spaaza-wallet>
-      case "WALLET":
+      case "wallet":
         data.wallet = this.data.monetary_wallet;
         data.vouchers = this.data.basket_vouchers;
       break;
 
-      // <spaaza-store>
-      case "STORE":
+      case "store":
         data.name = chain.business.name;
         data.contact = chain.business.phone_number;
         data.email = chain.business.email;
@@ -91,8 +77,7 @@ class ReceiptDataParser {
     // pass along the language code as well
     data.strings.langCode = strings.langCode;
 
-    // return data tag with data string
-    return JSON.stringify(data);
+    return data;
   }
 }
 

@@ -29,7 +29,6 @@ module.exports = {
     receipt: [
       "./helpers/babel.helpers.js",
       "./data/receiptdataparser.js",
-      "./common/component.js",
       "./component/brand.js",
       "./component/details.js",
       "./component/lineitems.js",
@@ -38,6 +37,7 @@ module.exports = {
       "./component/download.js",
       "./component/store.js",
       "./component/wallet.js",
+      "./component/receipt.js",
       "./receipt.js"
     ]
   },

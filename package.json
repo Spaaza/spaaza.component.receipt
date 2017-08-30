@@ -1,16 +1,14 @@
 {
-  "name": "spaaza.component.receipt",
+  "name": "spaaza-receipt-component",
   "version": "1.2.0",
-  "description": "Render a Spaaza Receipt",
-  "main": "index.js",
+  "description": "Spaaza Receipt Component",
+  "main": "receipt.js",
   "scripts": {
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --history-api-fallback",
     "build": "node ./node_modules/webpack/bin/webpack.js -p --define process.env.NODE_ENV='\"production\"' --progress --colors",
     "start": "npm run dev",
     "test": "karma start"
   },
-  "author": "Natan Santolo",
-  "license": "ISC",
   "babel": {
     "presets": [
       "es2017"

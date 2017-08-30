@@ -1,42 +1,28 @@
-import { amount } from '../common/format';
-import { divider } from '../common/receipt.layout.js';
-import Component from '../common/component.js';
+import { amount, divider } from '../common/format';
 
-class Totals extends Component {
-  constructor() {
-    super();
-  }
+const Totals = (data) => {
+	const { strings } = data;
+	
+	let html = "";
+	html += divider;
+	html += `<table class="receipt-totals">`;
 
-  // Called every time the element is inserted into the DOM.
-  connectedCallback() {
-    this.append(`<style>${require('./totals.less')}</style>`);
-    this.draw();
-  }
+	html += `
+		<tr class="receipt-subtotal">
+			<td>${strings.subtotal}</td>
+			<td class="align-right">${data.currencySymbol} ${amount(data.subtotal)}</td>
+		</tr>
+	`;
 
-  compileTemplate() {
-    const data = this.data;
-    const { strings } = data;
+	html += `
+		<tr class="receipt-strong">
+			<td>${strings.total}</td>
+			<td class="align-right">${data.currencySymbol} ${amount(data.total)}</td>
+		</tr>
+	`;
 
-    this.append(divider);
-    this.append(`<table class="receipt-totals">`);
-
-    this.append(`
-      <tr class="receipt-subtotal">
-        <td>${strings.subtotal}</td>
-        <td class="align-right">${data.currencySymbol} ${amount(data.subtotal)}</td>
-      </tr>
-    `);
-
-    this.append(`
-      <tr class="receipt-strong">
-        <td>${strings.total}</td>
-        <td class="align-right">${data.currencySymbol} ${amount(data.total)}</td>
-      </tr>
-    `);
-
-    this.append(`</table>`)
-  }
+	html += `</table>`;
+	return html;
 }
-export default Totals;
 
-customElements.define('spaaza-totals', Totals);
+export default Totals;
