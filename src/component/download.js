@@ -16,7 +16,7 @@ class Download extends Component {
   compileTemplate() {
     if (this.data.downloadURL) {
       this.append(divider);
-      this.append(`<div class="btn btn-primary"><a href="${this.data.downloadURL}" target="_blank">${this.data.label}</a><div>`);
+      this.append(`<div class="btn btn-primary"><a href="${this.data.downloadURL}" target="_blank">${this.data.strings.label}</a><div>`);
     }
   }
 }

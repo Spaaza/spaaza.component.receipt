@@ -3,7 +3,6 @@ import { divider } from '../common/receipt.layout.js';
 import Component from '../common/component.js';
 
 class LineItems extends Component {
-
   constructor() {
     super();
   }
@@ -15,11 +14,13 @@ class LineItems extends Component {
   }
 
   compileTemplate() {
+    // only when line items collections is available
+    if (! (this.data.lineitems && this.data.lineitems.length)) {
+      return;
+    }
 
-    // when line items collections is available
-    if (!this.data.lineitems || !this.data.lineitems.length) return;
-
-    let currencySymbol = this.data.currencySymbol;
+    const strings = this.data.strings;
+    const currencySymbol = this.data.currencySymbol;
 
     this.append(divider);
 
@@ -27,9 +28,9 @@ class LineItems extends Component {
     this.append(`
       <table class="receipt-lineitems">
         <tr>
-          <th class="align-left">Name</th>
-          <th class="align-center">Qty</th>
-          <th class="align-right">Price</th>
+          <th class="align-left">${strings.name}</th>
+          <th class="align-center">${strings.quantity}</th>
+          <th class="align-right">${strings.price}</th>
         </tr>
     `);
 
@@ -55,6 +56,6 @@ class LineItems extends Component {
     this.append(`</table>`);
   }
 }
-export default LineItems
+export default LineItems;
 
 customElements.define('spaaza-lineitems', LineItems);

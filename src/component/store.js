@@ -2,7 +2,6 @@ import { divider } from '../common/receipt.layout.js';
 import Component from '../common/component.js';
 
 class Store extends Component {
-
   constructor() {
     super();
   }
@@ -15,32 +14,34 @@ class Store extends Component {
 
   // Called before every draw().
   compileTemplate() {
+    const data = this.data;
+    const { strings } = data;
 
-    let hasData = this.data.name || this.data.message || this.data.address || this.data.contact || this.data.email || this.data.website || this.data.towncity || this.data.postalcode;
-
-    if (hasData) {
-      this.append(divider);
-      this.append(`<table class="receipt-store">`);
+    if (! (data.name || data.message || data.address || data.contact || data.email || data.website || data.towncity || data.postalcode)) {
+      return;
     }
+
+    this.append(divider);
+    this.append(`<table class="receipt-store">`);
 
     this.append(`
       <tr>
         <td class="align-left">
     `);
 
-    if (this.data.name) {
+    if (data.name) {
       this.append(`
-        <div>${this.data.name}</div>
+        <div>${data.name}</div>
       `);
     }
-    if (this.data.email) {
+    if (data.email) {
       this.append(`
-        <div><a href="mailto:${this.data.email}">${this.data.email}</a></div>
+        <div><a href="mailto:${data.email}">${data.email}</a></div>
       `);
     }
-    if (this.data.website) {
+    if (data.website) {
       this.append(`
-        <div><a href="${this.data.website}" target="_blank">${this.data.website}</a></div>
+        <div><a href="${data.website}" target="_blank">${data.website}</a></div>
       `);
     }
 
@@ -49,22 +50,22 @@ class Store extends Component {
       <td class="align-right">
     `);
 
-    if (this.data.contact) {
+    if (data.contact) {
       this.append(`
-        <a href="tel:${this.data.contact}">${this.data.contact}</a>
+        <a href="tel:${data.contact}">${data.contact}</a>
       `);
     }
-    if (this.data.address) {
+    if (data.address) {
       this.append(`
-        <div>${this.data.address}</div>
+        <div>${data.address}</div>
       `);
     }
-    if (this.data.towncity && this.data.postalcode) {
-      this.append(`<div>${this.data.towncity}, ${this.data.postalcode}</div>`);
-    } else if (this.data.towncity && !this.data.postalcode) {
-      this.append(`<div>${this.data.towncity}</div>`);
-    } else if (!this.data.towncity && this.data.postalcode) {
-      this.append(`<div>${this.data.postalcode}</div>`);
+    if (data.towncity && data.postalcode) {
+      this.append(`<div>${data.towncity}, ${data.postalcode}</div>`);
+    } else if (data.towncity && !data.postalcode) {
+      this.append(`<div>${data.towncity}</div>`);
+    } else if (!data.towncity && data.postalcode) {
+      this.append(`<div>${data.postalcode}</div>`);
     }
 
     this.append(`
@@ -72,17 +73,15 @@ class Store extends Component {
       </tr>
     `);
 
-    if (hasData) {
-      this.append(`</table>`);
-    }
+    this.append(`</table>`);
 
     this.append(divider);
 
-    if (this.data.message) {
-      this.append(`<p class="receipt-emphasys receipt-footer-message">${this.data.message}</p>`);
+    if (strings.message) {
+      this.append(`<p class="receipt-emphasys receipt-footer-message">${strings.message}</p>`);
     }
   }
 }
-export default Store
+export default Store;
 
 customElements.define('spaaza-store', Store);

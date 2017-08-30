@@ -4,10 +4,6 @@
  */
 
 class Component extends HTMLElement {
-
-  /**
-   * @return {HTMLElement} Returns element instance
-   */
   constructor() {
     super();
     // create the shadowDOM

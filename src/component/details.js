@@ -14,44 +14,41 @@ class Details extends Component {
   }
 
   compileTemplate() {
-    let hasData = this.data.message || this.data.total || this.data.id || this.data.date;
+    const data = this.data;
+    const { strings } = data;
 
-    if (hasData) {
-      this.append(`<table>`);
+    this.append(`<table>`);
+ 
+    if (strings.message) {
+      this.append(`<tr><td colspan="2">${strings.message}</td></tr>`);
     }
 
-    if (this.data.message) {
-      this.append(`<tr><td colspan="2">${this.data.message}</td></tr>`);
-    }
-
-    if (this.data.total) {
+    if (data.total) {
       this.append(`
         <tr class="receipt-strong">
-          <td class="">CHARGED</td>
-          <td class="align-right">${this.data.currencySymbol} ${amount(this.data.total)}</td>
+          <td class="">${strings.charged}</td>
+          <td class="align-right">${data.currencySymbol} ${amount(data.total)}</td>
         </tr>
       `);
     }
-    if (this.data.id) {
+    if (data.id) {
       this.append(`
         <tr>
-          <td class="">Order number</td>
-          <td class="align-right">#${this.data.id}</td>
+          <td class="">${strings["order-number"]}</td>
+          <td class="align-right">#${data.id}</td>
         </tr>
       `);
     }
-    if (this.data.date) {
+    if (data.date) {
       this.append(`
         <tr>
-          <td class="">Date</td>
-          <td class="align-right">${new Date(this.data.date).toLocaleString('en-GB')}</td>
+          <td class="">${strings.date}</td>
+          <td class="align-right">${new Date(data.date).toLocaleString(strings.langCode)}</td>
         </tr>
       `);
     }
 
-    if (hasData) {
-      this.append(`</table>`);
-    }
+    this.append(`</table>`);
   }
 }
 export default Details;

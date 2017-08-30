@@ -14,9 +14,7 @@ class Wallet extends Component {
 	}
 
 	compileTemplate() {
-		console.info("WALLET", this.data);
-		const { wallet, vouchers } = this.data;
-		const currencySymbol = this.data.currencySymbol;
+		const { wallet, vouchers, strings, currencySymbol } = this.data;
 		if (! (wallet && vouchers)) {
 			return;
 		}
@@ -25,6 +23,7 @@ class Wallet extends Component {
 			(arr || [])
 				.map(i => i[fieldName])
 				.reduce((s, v) => s + v, 0);
+
 		const sumFieldValuesConditional = (arr, fieldName, ifFieldName, isValue) =>
 			(arr || [])
 				.filter(i => i[ifFieldName] === isValue)
@@ -44,7 +43,7 @@ class Wallet extends Component {
 		this.append(`<tr><td class="receipt-strong">${wallet.title}</td></tr>`);
 		this.append(`
 			<tr>
-				<td>${wallet.title} earned</td>
+				<td>${wallet.title} ${strings.earned}</td>
 				<td align="right">${currencySymbol} ${ amount(totalEarned) }</td>
 			</tr>
 		`);
@@ -62,11 +61,11 @@ class Wallet extends Component {
 
 		this.append(`
 			<tr>
-				<td>${wallet.title} spent</td>
+				<td>${wallet.title} ${strings.spent}</td>
 				<td align="right">${currencySymbol} ${ amount(totalSpent) }</td>
 			</tr>
 			<tr class="receipt-total">
-				<td>Your new balance</td>
+				<td>${strings["new-balance"]}</td>
 				<td align="right" class="receipt-strong">${currencySymbol} ${amount(wallet.total)}</td>
 			</tr>
 		`);
@@ -74,7 +73,6 @@ class Wallet extends Component {
 		this.append(`</table>`);
 	}
 }
-
 export default Wallet;
 
 customElements.define('spaaza-wallet', Wallet);

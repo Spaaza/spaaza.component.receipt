@@ -3,7 +3,6 @@ import { divider } from '../common/receipt.layout.js';
 import Component from '../common/component.js';
 
 class Totals extends Component {
-
   constructor() {
     super();
   }
@@ -15,38 +14,29 @@ class Totals extends Component {
   }
 
   compileTemplate() {
+    const data = this.data;
+    const { strings } = data;
 
-    // when totals are available
-    let hasData = this.data.subtotal || this.data.total;
+    this.append(divider);
+    this.append(`<table class="receipt-totals">`);
 
-    if (hasData) {
-      this.append(divider);
-      this.append(`<table class="receipt-totals">`);
-    }
+    this.append(`
+      <tr class="receipt-subtotal">
+        <td>${strings.subtotal}</td>
+        <td class="align-right">${data.currencySymbol} ${amount(data.subtotal)}</td>
+      </tr>
+    `);
 
-    if (this.data.subtotal) {
-      this.append(`
-        <tr class="receipt-subtotal">
-          <td>Subtotal</td>
-          <td class="align-right">${this.data.currencySymbol} ${amount(this.data.subtotal)}</td>
-        </tr>
-      `);
-    }
+    this.append(`
+      <tr class="receipt-strong">
+        <td>${strings.total}</td>
+        <td class="align-right">${data.currencySymbol} ${amount(data.total)}</td>
+      </tr>
+    `);
 
-    if (this.data.total) {
-      this.append(`
-        <tr class="receipt-strong">
-          <td>Total</td>
-          <td class="align-right">${this.data.currencySymbol} ${amount(this.data.total)}</td>
-        </tr>
-      `);
-    }
-
-    if (hasData) {
-      this.append(`</table>`)
-    }
+    this.append(`</table>`)
   }
 }
-export default Totals
+export default Totals;
 
 customElements.define('spaaza-totals', Totals);

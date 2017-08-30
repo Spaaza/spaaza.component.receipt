@@ -1,7 +1,6 @@
 import Component from '../common/component.js';
 
 class Brand extends Component {
-
   constructor() {
     super();
   }
@@ -13,40 +12,35 @@ class Brand extends Component {
   }
 
   compileTemplate() {
+    this.append(`<table>`);
+    const data = this.data;
+    const { strings } = data;
 
-    let hasData = this.data.logoURL || this.data.title || this.data.message;
-
-    if (hasData) {
-      this.append(`<table>`);
-    }
-
-    if (this.data.logoURL) {
+    if (data.logoURL) {
       this.append(`
         <tr>
-          <td><img src="${this.data.logoURL}"></td>
+          <td><img src="${data.logoURL}"></td>
         </tr>
       `);
     }
-    if (this.data.title) {
+    if (strings.title) {
       this.append(`
         <tr>
-          <td><h1>${this.data.title}</h1></td>
+          <td><h1>${strings.title}</h1></td>
         </tr>
       `);
     }
-    if (this.data.message) {
+    if (strings.message) {
       this.append(`
         <tr>
-          <td><p>${this.data.message}</p></td>
+          <td><p>${strings.message}</p></td>
         </tr>
       `);
     }
 
-    if (hasData) {
-      this.append(`</table>`);
-    }
+    this.append(`</table>`);
   }
 }
-export default Brand
+export default Brand;
 
 customElements.define('spaaza-brand', Brand);

@@ -3,7 +3,6 @@ import { divider } from '../common/receipt.layout.js';
 import Component from '../common/component.js';
 
 class LineTaxes extends Component {
-
   constructor() {
     super();
   }
@@ -15,11 +14,13 @@ class LineTaxes extends Component {
   }
 
   compileTemplate() {
-
     // when line taxes collections is available
-    if (!this.data.linetaxes || !this.data.linetaxes.length) return;
+    if (! (this.data.linetaxes && this.data.linetaxes.length)) {
+      return;
+    }
 
-    let currencySymbol = this.data.currencySymbol;
+    const currencySymbol = this.data.currencySymbol;
+    const strings = this.data.strings;
 
     this.append(divider);
 
@@ -27,9 +28,9 @@ class LineTaxes extends Component {
     this.append(`
       <table class="receipt-linetaxes">
         <tr>
-          <th class="align-left">VAR Rate</th>
-          <th class="align-center">Order value</th>
-          <th class="align-right">VAT</th>
+          <th class="align-left">${strings["tax-rate"]}</th>
+          <th class="align-center">${strings["order-value"]}</th>
+          <th class="align-right">${strings["tax-value"]}</th>
         </tr>
     `);
 
@@ -48,6 +49,6 @@ class LineTaxes extends Component {
     this.append(`</table>`);
   }
 }
-export default LineTaxes
+export default LineTaxes;
 
 customElements.define('spaaza-linetaxes', LineTaxes);
