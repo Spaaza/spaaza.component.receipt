@@ -1,0 +1,41 @@
+{
+	"langCode": "en-GB",
+
+	"BRAND":  {
+        "title": "Your Receipt",
+        "message": "Hi there $GIVEN_NAME, thanks for your purchase!"
+	},
+    "DETAILS": {
+		"message": "Your order details from $CHAIN_NAME:",
+		"charged": "CHARGED",
+		"order-number": "Order number",
+		"date": "Date"
+	},
+
+	"LINEITEMS": {
+		"name": "Name",
+		"quantity": "Qty",
+		"price": "Price"
+	},
+	"LINETAXES": {
+		"tax-rate": "VAT Rate",
+		"order-value": "Order value",
+		"tax-value": "VAT"
+	},
+	"TOTALS": {
+		"subtotal": "Subtotal",
+		"total": "Total"
+	},
+	"WALLET": {
+		"earned": "earned",
+		"spent": "spent",
+		"new-balance": "Your new balance"
+	},
+	"DOWNLOAD": {
+		"label": "Download your PDF Receipt"
+	},
+
+	"STORE": {
+		"message": "Thank you!"
+	}
+}
