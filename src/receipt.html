@@ -4,18 +4,18 @@
   <title>Spaaza Receipt WebComponent</title>
   <meta charset="utf-8">
   <style>
-  body {
-      font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      font-size: 16px;
-      height: 100% !important;
-      line-height: 1.6em;
-      margin: 0;
-      padding: 0;
-      -ms-text-size-adjust: 100%;
-      -webkit-text-size-adjust: 100%;
-      width: 100% !important;
-  }
+    body {
+        font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 16px;
+        height: 100% !important;
+        line-height: 1.6em;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        width: 100% !important;
+    }
     section {
         margin: 4em;
     }
@@ -32,120 +32,122 @@
       <h1>Testing Receipt API</h1>
     </header>
     <spaaza-receipt>
-      <script id="data" type="application/json">{
-	"id": 329589,
-	"retailer_basket_code": "914092121223219931353",
-	"timestamp": "2017-07-18T13:24:23Z",
-	"type": "online",
-	"download_url": "https://s3-eu-west-1.amazonaws.com/test01-receipts-bucket/receipts/329589.pdf",
-	"quantity": 1,
-	"subtotal": 80.781125,
-	"total_value": 80.781125,
-	"payment_method": "unknown",
-	"line_items": [{
-		"product_id": 0,
-		"barcode": "2000046371025",
-		"sku": "",
-		"name": "",
-		"description": "",
-		"type": "",
-		"original_price": 100.78,
-		"quantity": 1,
-		"sale_price": 80.78,
-		"vouchers": 0,
-		"metadata": {
-			"color": "",
-			"size": "",
-			"image": ""
-		},
-		"sale_discount": ""
-	}],
-	"tax_lines": [],
-	"chain": {
-		"id": 1740,
-		"retailer_basket_code": "",
-		"name": "Boardriders ZA",
-		"email": "support@boardriders.co.za",
-		"logo_url": "https://s3-eu-west-1.amazonaws.com/receipts-chain-logo/1740.png",
-		"website_url": "",
-		"currency": "South African Rand",
-		"currency_symbol": "R",
-		"business": {
-			"id": 0,
-			"name": "",
-			"address": {
-				"address_1": "",
-				"address_2": "",
-				"address_3": "",
-				"towncity": "",
-				"postal_code": "",
-				"country_code": "",
-				"location": {
-					"lat": 0,
-					"lon": 0
-				}
-			},
-			"phone_number": "",
-			"email": "",
-			"website_url": ""
-		},
-		"receipts_service_active": true
-	},
-	"shopper": {
-		"id": 3107350,
-		"user_name": "",
-		"entity_code": "",
-		"first_name": "Dave",
-		"last_name": "Sevenoaks",
-		"country_code": "ZA",
-		"gender": "M",
-		"birthday": "1981-04-29",
-		"total_points_balance": 0,
-		"email": "dave.sevenoaks+april182@spaaza.com",
-		"shipping_address": {
-			"address_1": "",
-			"address_2": "",
-			"address_3": "",
-			"towncity": "",
-			"postal_code": "",
-			"country_code": "",
-			"location": {
-				"lat": 0,
-				"lon": 0
-			}
-		},
-		"billing_address": {
-			"address_1": "",
-			"address_2": "",
-			"address_3": "",
-			"towncity": "",
-			"postal_code": "",
-			"country_code": "",
-			"location": {
-				"lat": 0,
-				"lon": 0
-			}
-		}
-	},
-	"monetary_wallet": {
-		"contributions": [{
-			"amount": 8.08,
-			"campaign_title": "Earn big on every purchase"
-		}],
-		"total": 3280.4,
-		"title": "Boardriders Bucks"
-	},
-	"points_wallet": {
-		"contributions": [],
-		"total": 0,
-		"title": ""
-	},
-	"basket_vouchers": [],
-	"template_content": {
-		"subject": "",
-		"background_color": ""
-	}
-}</script>
+      <script id="data" type="application/json">
+      {
+      "id": 329589,
+      "retailer_basket_code": "914092121223219931353",
+      "timestamp": "2017-07-18T13:24:23Z",
+      "type": "online",
+      "download_url": "https://s3-eu-west-1.amazonaws.com/test01-receipts-bucket/receipts/329589.pdf",
+      "quantity": 1,
+      "subtotal": 80.781125,
+      "total_value": 80.781125,
+      "payment_method": "unknown",
+      "line_items": [{
+        "product_id": 0,
+        "barcode": "2000046371025",
+        "sku": "",
+        "name": "",
+        "description": "",
+        "type": "",
+        "original_price": 100.78,
+        "quantity": 1,
+        "sale_price": 80.78,
+        "vouchers": 0,
+        "metadata": {
+          "color": "",
+          "size": "",
+          "image": ""
+        },
+        "sale_discount": ""
+      }],
+      "tax_lines": [],
+      "chain": {
+        "id": 1740,
+        "retailer_basket_code": "",
+        "name": "Boardriders ZA",
+        "email": "support@boardriders.co.za",
+        "logo_url": "https://s3-eu-west-1.amazonaws.com/receipts-chain-logo/1740.png",
+        "website_url": "",
+        "currency": "South African Rand",
+        "currency_symbol": "R",
+        "business": {
+          "id": 0,
+          "name": "",
+          "address": {
+            "address_1": "",
+            "address_2": "",
+            "address_3": "",
+            "towncity": "",
+            "postal_code": "",
+            "country_code": "",
+            "location": {
+              "lat": 0,
+              "lon": 0
+            }
+          },
+          "phone_number": "",
+          "email": "",
+          "website_url": ""
+        },
+        "receipts_service_active": true
+      },
+      "shopper": {
+        "id": 3107350,
+        "user_name": "",
+        "entity_code": "",
+        "first_name": "Dave",
+        "last_name": "Sevenoaks",
+        "country_code": "ZA",
+        "gender": "M",
+        "birthday": "1981-04-29",
+        "total_points_balance": 0,
+        "email": "dave.sevenoaks+april182@spaaza.com",
+        "shipping_address": {
+          "address_1": "",
+          "address_2": "",
+          "address_3": "",
+          "towncity": "",
+          "postal_code": "",
+          "country_code": "",
+          "location": {
+            "lat": 0,
+            "lon": 0
+          }
+        },
+        "billing_address": {
+          "address_1": "",
+          "address_2": "",
+          "address_3": "",
+          "towncity": "",
+          "postal_code": "",
+          "country_code": "",
+          "location": {
+            "lat": 0,
+            "lon": 0
+          }
+        }
+      },
+      "monetary_wallet": {
+        "contributions": [{
+          "amount": 8.08,
+          "campaign_title": "Earn big on every purchase"
+        }],
+        "total": 3280.4,
+        "title": "Boardriders Bucks"
+      },
+      "points_wallet": {
+        "contributions": [],
+        "total": 0,
+        "title": ""
+      },
+      "basket_vouchers": [],
+      "template_content": {
+        "subject": "",
+        "background_color": ""
+      }
+    }
+    </script>
     </spaaza-receipt>
   </section>
 
@@ -172,7 +174,7 @@
             "sale_price": 144.99,
             "vouchers": 0,
             "distinguisher_type": "id",
-            "distinguisher_value": "123456789",
+            "barcode": "123456789",
             "metadata": {
               "color": "blue",
               "size": "44",
@@ -510,5 +512,6 @@
       </script>
     </spaaza-receipt>
   </section>
+
 </body>
 </html>
