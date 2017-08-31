@@ -20,7 +20,7 @@ const Receipt = (data) => {
 	let result = `<div class="main content">`;
 
 	for (const section in layout) {
-		result += `<section id="${section}">`;
+		result += `<section>`;
 
 		for (const component of layout[section]) {
 			result += components[component](parser.getDataFor(component));
