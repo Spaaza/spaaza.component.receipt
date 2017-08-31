@@ -74,3 +74,30 @@ export const applySubstitutions = (strings, subst) => {
 	}
 	return res;
 };
+
+/**
+ * Override string replacements in source with overrides returning a new object with the merged result.
+ * Will only override existing keys.
+ * @param {LangStrings} source 
+ * @param {LangStrings} overrides 
+ * @returns {LangStrings} New object with overrides merged into source
+ */
+export const overrideStrings = (source, overrides) => {
+	const result = {};
+
+	for (const section in source) {
+		if (source.hasOwnProperty(section)) {
+			const sectSource = source[section];
+			const sectOver = overrides[section];
+			const sectResult = result[section] = {};
+
+			for (const key in sectSource) {
+				if (sectSource.hasOwnProperty(key)) {
+					sectResult[key] = (sectOver && key in sectOver) ? sectOver[key] : sectSource[key];
+				}
+			}
+		}
+	}
+
+	return /** @type{LangStrings} */(result);
+};
