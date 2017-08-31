@@ -1,11 +1,7 @@
 # Spaaza Receipt Component
 
-A web component that renders a Spaaza Receipt.
-
-### About
-
-The main goal is to provide an easy way to render a Receipt in a web context.
-The component uses the [CustomElements API](https://w3c.github.io/webcomponents/spec/custom/) and the [ShadowDOM API](https://w3c.github.io/webcomponents/spec/shadow/).
+The receipt component is a standard way to render a receipt using data from the Spaaza receipts service.
+Currently the component is provided as a WebComponent.
 
 ## Development
 
@@ -13,19 +9,17 @@ To install project dependencies run:
 
 ``` yarn ```
 
-### Run development flow
-
-To run development with webpack and hot reload:
+To run a dev server with webpack and hot reload:
 
 ``` yarn start ```
 
-### Test
+This will start a server at http://localhost:8081/
 
-Run tests
+Run tests with:
 
 ``` yarn test ```
 
-### Build production bundle
+### Build production bundles
 
 Will minimize and optimize the bundle for live environments
 
@@ -33,16 +27,49 @@ Will minimize and optimize the bundle for live environments
 
 ### How to use
 
-```
-<script src="http://my-domain/js/receipt-v1.2.0.js"></script>
-```
-Get receipt data from the Spaaza API and provide it inside a spaaza-receipt component:
+Include the receipt JS in your site:
+
+``` <script src="https://my-domain/js/receipt-v1.2.0.js"></script> ```
+
+Then when you get receipt data from the Spaaza API, provide it to a spaaza-receipt component:
+
 ```
 <spaaza-receipt>
-  <script type="application/json">
-    {
-      ... INSERT RECEIPT API JSON RESPONSE HERE ...
-    }
+  <script type="application/json" data-receipt>
+    Insert the receipt JSON here as the only contents of this script element.
   </script>
 </spaaza-receipt>
 ```
+
+Note the `data-receipt` attribute on the script element, it is mandatory.
+
+### Setting the Language
+
+You can specify the language the component should use by adding a `language` attribute to the component:
+
+```
+<spaaza-receipt language="nl">...</spaaza-receipt>
+```
+
+You may specify a language by its country code or a full language code like `nl-NL`.
+
+The default language is `en-GB`. Currently `en-GB` and `nl-NL` are provided.
+
+### Overriding Specific Strings
+
+If you wish you can further customize the language used in the component by providing an optional second
+JSON script element with any overrides. For the format of the strings JSON see the src/lang directory.
+
+```
+<spaaza-receipt language="en>
+  <script type="application/json" data-receipt>...</script>
+  <script type="application/json" data-strings>
+  {
+    "brand": { "title": "My Receipt" }
+  }
+  </script>
+</spaaza-receipt>
+```
+
+Note again the special mandatory attribute on the script element, this time: `data-strings`.
+You can override as few or as many of the pre-provided strings as needed.
