@@ -5,7 +5,7 @@
         "title": "Your Receipt",
         "message": "Hi there $GIVEN_NAME, thanks for your purchase!"
 	},
-    "details": {
+	"details": {
 		"message": "Your order details from $CHAIN_NAME:",
 		"charged": "CHARGED",
 		"order-number": "Order number",
@@ -37,5 +37,9 @@
 
 	"store": {
 		"message": "Thank you!"
+	},
+
+	"error": {
+		"message": "There was a problem showing this receipt."
 	}
 }
