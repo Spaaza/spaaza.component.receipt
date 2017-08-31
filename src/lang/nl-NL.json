@@ -1,0 +1,45 @@
+{
+	"langCode": "nl-NL",
+
+	"brand":  {
+        "title": "Jouw Bon",
+        "message": "Bedankt voor je aankoop, $GIVEN_NAME!"
+	},
+	"details": {
+		"message": "Informatie over je aankoop bij $CHAIN_NAME:",
+		"charged": "In rekening gebracht",
+		"order-number": "Bestellingsnummer",
+		"date": "Datum"
+	},
+
+	"lineitems": {
+		"name": "Naam",
+		"quantity": "Aantal",
+		"price": "Prijs"
+	},
+	"linetaxes": {
+		"tax-rate": "BTW %",
+		"order-value": "Waarde",
+		"tax-value": "BTW"
+	},
+	"totals": {
+		"subtotal": "Subtotaal",
+		"total": "Totaal"
+	},
+	"wallet": {
+		"earned": "verdiend",
+		"spent": "uitgegeven",
+		"new-balance": "Jouw nieuwe totaal"
+	},
+	"download": {
+		"label": "Download je bon als PDF"
+	},
+
+	"store": {
+		"message": "Hartelijk bedankt!"
+	},
+
+	"error": {
+		"message": "Er was een probleem met het tonen van deze bon."
+	}
+}
