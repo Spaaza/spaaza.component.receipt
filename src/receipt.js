@@ -1,6 +1,7 @@
 import parseReceipt from "./data/receiptdata";
 import strings, { applySubstitutions, overrideStrings } from "./common/language";
 import renderReceipt from "./component/receipt";
+import renderError from "./component/error";
 
 class Receipt extends HTMLElement {
 	// Monitor the 'redraw' attribute for changes.
@@ -62,7 +63,7 @@ class Receipt extends HTMLElement {
 			this.shadowRoot.innerHTML = `<style>${require("./receipt.less")}</style>\n` + renderReceipt(data, finalStrings, config.langCode);
 		}
 		else {
-			this.shadowRoot.innerHTML = ""; // TODO: render error
+			this.shadowRoot.innerHTML = `<style>${require("./receipt.less")}</style>\n` + renderError({}, config.strings.error, config.langCode);
 		}
 	}
 }
