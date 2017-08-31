@@ -13,7 +13,7 @@ const stringData = {
 const mapLangCode = (lang) => {
 	let lc = "en-GB";
 	lang = lang.toLowerCase().trim();
-	if (lang === "nl" || lang.substr(0, 3) === "nl-") {
+	if (lang === "nl" || lang.substr(0, 3) === "nl-" || lang.substr(0, 3) === "nl_") {
 		lc = "nl-NL";
 	}
 	return lc;
