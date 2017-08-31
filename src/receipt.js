@@ -1,3 +1,5 @@
+import parseReceipt from "./data/receiptdata";
+import strings, { applySubstitutions, overrideStrings } from "./common/language";
 import renderReceipt from "./component/receipt";
 
 class Receipt extends HTMLElement {
@@ -21,26 +23,45 @@ class Receipt extends HTMLElement {
 		}
 	}
 
-	getData() {
-		// get data from embedded data element
-		const dataNode = this.shadowRoot.host.querySelector('script');
-		if (dataNode && dataNode.textContent) {
-			try {
-				return JSON.parse(dataNode.textContent);
-			} catch (err) {
-				console.error("Failed to parse receipt data: ", err);
+	getConfig() {
+		const getJSONBlock = (/** @type {string} */type) => {
+			const dataNode = this.shadowRoot.host.querySelector(`script[data-${type}]`);
+			if (dataNode && dataNode.textContent) {
+				try {
+					return JSON.parse(dataNode.textContent);
+				} catch (err) {
+					console.error(`Failed to parse ${type} data: `, err);
+				}
 			}
-		}
-		else {
-			console.error("No receipt data provided.");
-		}
-		return null;
+			return undefined;
+		};
+
+		// get the built-in and user provided strings
+		const lang = this.shadowRoot.host.getAttribute("language") || "";
+		const langStrings = strings(lang);
+		const userStrings = getJSONBlock("strings");
+		const combinedStrings = (userStrings) ? overrideStrings(langStrings, userStrings) : langStrings;
+
+		// load receipt and optional language and strings override data
+		return {
+			langCode: langStrings.langCode,
+			receipt: getJSONBlock("receipt"),
+			strings: combinedStrings
+		};
 	}
 
 	redraw() {
-		const data = this.getData();
-		if (data) {
-			this.shadowRoot.innerHTML = `<style>${require("./receipt.less")}</style>\n` + renderReceipt(data);
+		const config = this.getConfig();
+		if (config.receipt) {
+			const data = parseReceipt(config.receipt);
+
+			const finalStrings = applySubstitutions(config.strings, {
+				"$GIVEN_NAME": config.receipt.shopper.first_name,
+				"$FAMILY_NAME": config.receipt.shopper.last_name,
+				"$CHAIN_NAME": config.receipt.chain.name,
+			});
+
+			this.shadowRoot.innerHTML = `<style>${require("./receipt.less")}</style>\n` + renderReceipt(data, finalStrings, config.langCode);
 		}
 		else {
 			this.shadowRoot.innerHTML = ""; // TODO: render error
