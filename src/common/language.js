@@ -32,7 +32,7 @@ export default strings;
  * @param {string} string The source string
  * @param {{[search:string]: string}} subst A map whose values will replace the occurences of the keys inside the source string
  */
-export const substitute = (string, subst) => {
+const substitute = (string, subst) => {
 	let result = string;
 	const regexify = (text) => text.replace(/[\-\[\]\{\}\(\)\*\+\?\.\\\^\$\|\#]/g, s => `\\${s}`);
 
@@ -46,15 +46,30 @@ export const substitute = (string, subst) => {
 
 /**
  * Apply substitutions to all values of a source object with a common set of search/replace pairs.
- * @param {{[key:string]: string}} strings Map of source strings
- * @param {{[search:string]: string}} subst A map whose values will replace the occurences of the keys inside each source string
- * @returns {{[key:string]: string}} New object with substutions applied to all values
+ * @param {LangBlock} strings Map of source strings
+ * @param {LangSubstitutions} subst A map whose values will replace the occurences of the keys inside each source string
+ * @returns {LangBlock} New object with substutions applied to all values
  */
-export const blockSubstitute = (strings, subst) => {
+const blockSubstitute = (block, subst) => {
 	const res = {};
-	for (const k in strings) {
-		if (strings.hasOwnProperty(k)) {
-			res[k] = substitute(strings[k], subst);
+	for (const k in block) {
+		if (block.hasOwnProperty(k)) {
+			res[k] = substitute(block[k], subst);
+		}
+	}
+	return res;
+};
+
+/**
+ * 
+ * @param {LangStrings} strings 
+ * @param {LangSubstitutions} subst 
+ */
+export const applySubstitutions = (strings, subst) => {
+	const res = {};
+	for (const section in strings) {
+		if (strings.hasOwnProperty(section) && typeof strings[section] === "object") {
+			res[section] = blockSubstitute(strings[section], subst);
 		}
 	}
 	return res;
