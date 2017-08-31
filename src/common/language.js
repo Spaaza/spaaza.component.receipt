@@ -1,6 +1,30 @@
-const en = require("../lang/en-GB.json");
+/**
+ * @type {{[langCode: string]: LangJSON}}
+ */
+const stringData = {
+	"en-GB": /** @type{any} */(require("../lang/en-GB.json")),
+	"nl-NL": /** @type{any} */(require("../lang/nl-NL.json"))
+};
 
-export default en;
+/**
+ * Maps a user-provided language code to the internal name, defaults to en-GB.
+ * @param {string} lang A language identifier
+ */
+const mapLangCode = (lang) => {
+	let lc = "en-GB";
+	lang = lang.toLowerCase().trim();
+	if (lang === "nl" || lang.substr(0, 3) === "nl-") {
+		lc = "nl-NL";
+	}
+	return lc;
+};
+
+/**
+ * Returns the base strings for a specified language
+ * @param {string} lang 
+ */
+const strings = (lang) => stringData[mapLangCode(lang)];
+export default strings;
 
 /**
  * Replace occurences of multiple substrings in a source string, returning
