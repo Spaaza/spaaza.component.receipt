@@ -4,7 +4,7 @@ import renderReceipt from "./component/receipt";
 
 class Receipt extends HTMLElement {
 	// Monitor the 'redraw' attribute for changes.
-	static get observedAttributes() { return ['redraw']; }
+	static get observedAttributes() { return ["language", "redraw"]; }
 
 	constructor() {
 		super();
@@ -18,9 +18,7 @@ class Receipt extends HTMLElement {
 
 	// The behavior occurs when an attribute of the element is added, removed, updated, or replaced.
 	attributeChangedCallback(attr, oldVal, newVal) {
-		if (attr === 'redraw') {
-			this.redraw();
-		}
+		this.redraw();
 	}
 
 	getConfig() {
