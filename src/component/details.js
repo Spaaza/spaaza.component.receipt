@@ -1,7 +1,10 @@
 import { amount } from '../common/format';
 
-const Details = (data) => {
-  const { strings } = data;
+/**
+ * Show an overview of the receipt as a header.
+ * @type {Component}
+ */
+const Details = (data, strings, langCode) => {
   let html = `<table>`;
 
   if (strings.message) {
@@ -28,7 +31,7 @@ const Details = (data) => {
     html += `
       <tr>
         <td class="">${strings.date}</td>
-        <td class="align-right">${new Date(data.date).toLocaleString(strings.langCode)}</td>
+        <td class="align-right">${new Date(data.date).toLocaleString(langCode)}</td>
       </tr>
     `;
   }

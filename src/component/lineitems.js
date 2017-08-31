@@ -1,12 +1,15 @@
 import { amount, divider } from '../common/format';
 
-const LineItems = (data) => {
+/**
+ * Show the itemized product list.
+ * @type {Component}
+ */
+const LineItems = (data, strings, langCode) => {
 	// only when line items collections is available
 	if (! (data.lineitems && data.lineitems.length)) {
 		return "";
 	}
 	
-	const strings = data.strings;
 	const currencySymbol = data.currencySymbol;
 	
 	let html = "";

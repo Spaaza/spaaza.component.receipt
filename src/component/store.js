@@ -1,8 +1,10 @@
 import { divider } from '../common/format';
 
-const Store = (data) => {
-	const { strings } = data;
-	
+/**
+ * Show store contact and address information if available.
+ * @type {Component}
+ */
+const Store = (data, strings, langCode) => {
 	if (! (data.name || data.message || data.address || data.contact || data.email || data.website || data.towncity || data.postalcode)) {
 		return "";
 	}

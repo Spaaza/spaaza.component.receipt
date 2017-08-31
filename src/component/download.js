@@ -1,8 +1,10 @@
 import { divider } from '../common/format';
 
-const Download = (data) => {
-	const { strings } = data;
-
+/**
+ * Show a button that lets the user download the receipt as a PDF.
+ * @type {Component}
+ */
+const Download = (data, strings, langCode) => {
 	let html = "";
 	if (data.downloadURL) {
 		html += divider;

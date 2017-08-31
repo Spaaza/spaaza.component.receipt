@@ -1,5 +1,10 @@
 import { amount, divider } from '../common/format';
 
+/**
+ * Show the wallet mutations if any.
+ * @type {Component}
+ */
+const Wallet = (data, strings, langCode) => {
 	const { wallet, vouchers, totalEarned, totalSpent, currencySymbol } = data;
 	if (! (totalEarned || totalSpent)) {
 		// don't add the wallet section if nothing changed to the wallet

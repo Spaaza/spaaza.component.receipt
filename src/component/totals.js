@@ -1,8 +1,10 @@
 import { amount, divider } from '../common/format';
 
-const Totals = (data) => {
-	const { strings } = data;
-	
+/**
+ * Shows the totals of the receipt.
+ * @type {Component}
+ */
+const Totals = (data, strings, langCode) => {
 	let html = "";
 	html += divider;
 	html += `<table class="receipt-totals">`;

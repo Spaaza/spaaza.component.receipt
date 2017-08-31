@@ -1,12 +1,15 @@
 import { amount, divider } from '../common/format';
 
-const LineTaxes = (data) => {
+/**
+ * Show the itemized taxes if provided.
+ * @type {Component}
+ */
+const LineTaxes = (data, strings, langCode) => {
 	if (! (data.linetaxes && data.linetaxes.length)) {
 		return "";
 	}
 	
 	const currencySymbol = data.currencySymbol;
-	const strings = data.strings;
 	
 	let html = "";
 	html += divider;

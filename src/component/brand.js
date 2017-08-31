@@ -1,5 +1,8 @@
-const Brand = (data) => {
-  const { strings } = data;
+/**
+ * Show the chain's logo and receipt header.
+ * @type {Component}
+ */
+const Brand = (data, strings, langCode) => {
   let html = `<table>`;
 
   if (data.logoURL) {

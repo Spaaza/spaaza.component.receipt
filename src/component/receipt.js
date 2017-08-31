@@ -1,4 +1,3 @@
-import ReceiptDataParser from "../data/receiptdataparser.js";
 import brand from "./brand";
 import details from "./details";
 import lineitems from "./lineitems";
@@ -8,8 +7,7 @@ import wallet from "./wallet";
 import download from "./download";
 import store from "./store";
 
-const Receipt = (data) => {
-	const parser = new ReceiptDataParser(data);
+const Receipt = (data, strings, langCode) => {
 	const layout = {
 		"header": ["brand", "details"],
 		"content": ["lineitems", "linetaxes", "totals", "wallet", "download"],
@@ -23,7 +21,7 @@ const Receipt = (data) => {
 		result += `<section>`;
 
 		for (const component of layout[section]) {
-			result += components[component](parser.getDataFor(component));
+			result += components[component](data[component], strings[component], langCode);
 		}
 
 		result += `</section>`;
