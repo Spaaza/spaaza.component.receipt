@@ -28,7 +28,7 @@ module.exports = {
   entry: {
     receipt: [
       "./helpers/babel.helpers.js",
-      "./data/receiptdataparser.js",
+      "./data/receiptdata.js",
       "./component/brand.js",
       "./component/details.js",
       "./component/lineitems.js",
