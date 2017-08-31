@@ -1,31 +1,12 @@
 import { amount, divider } from '../common/format';
 
-const Wallet = (data) => {
-	const { wallet, vouchers, strings, currencySymbol } = data;
-	if (! (wallet && vouchers)) {
-		return "";
-	}
-	let html = "";
-	
-	const sumFieldValues = (arr, fieldName) =>
-		(arr || [])
-			.map(i => i[fieldName])
-			.reduce((s, v) => s + v, 0);
-
-	const sumFieldValuesConditional = (arr, fieldName, ifFieldName, isValue) =>
-		(arr || [])
-			.filter(i => i[ifFieldName] === isValue)
-			.map(i => i[fieldName])
-			.reduce((s, v) => s + v, 0);
-
-	const totalEarned = sumFieldValues(wallet.contributions, "amount");
-	const totalSpent = sumFieldValuesConditional(vouchers, "amount", "type", "wallet");
-
+	const { wallet, vouchers, totalEarned, totalSpent, currencySymbol } = data;
 	if (! (totalEarned || totalSpent)) {
 		// don't add the wallet section if nothing changed to the wallet
 		return "";
 	}
 
+	let html = "";
 	html += divider;
 	html += `<table class="receipt-wallet">`;
 	html += `<tr><td class="receipt-strong">${wallet.title}</td></tr>`;
