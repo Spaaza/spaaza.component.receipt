@@ -1,7 +1,7 @@
 import enGB from "../lang/en-GB.json";
 import nlNL from "../lang/nl-NL.json";
 
-interface LangBlock {
+export interface LangBlock {
 	[key: string]: string;
 }
 
@@ -50,7 +50,7 @@ const mapLangCode = (lang: string) => {
  * Returns the base strings for a specified language
  * @param lang a string representation a language
  */
-const getStrings = (lang: string) => stringData[mapLangCode(lang)];
+const getStrings = (lang: string) => stringData[mapLangCode(lang)] as LangJSON;
 export default getStrings;
 
 /**

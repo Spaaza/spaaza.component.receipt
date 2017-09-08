@@ -1,10 +1,11 @@
-import { amount, entities, divider } from '../common/format';
+import { amount, entities, divider } from "../common/format";
+import { LangBlock } from "../common/language";
 
 /**
  * Show the itemized taxes if provided.
  * @type {Component}
  */
-const LineTaxes = (data, strings, langCode) => {
+const LineTaxes = (data: any, strings: LangBlock, langCode: string) => {
 	if (! (data.linetaxes && data.linetaxes.length)) {
 		return "";
 	}
@@ -38,6 +39,6 @@ const LineTaxes = (data, strings, langCode) => {
 	// close table
 	html += `</table>`;
 	return html;
-}
+};
 
 export default LineTaxes;

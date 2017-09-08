@@ -11,7 +11,7 @@ const pkg = require("./package.json");
 
 export default [
 	{
-		input: "src/receipt.js",
+		input: "src/receipt.ts",
 		output: {
 			file: pkg.main,
 			format: "umd",

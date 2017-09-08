@@ -1,5 +1,5 @@
 import parseReceipt from "./data/receiptdata";
-import strings, { applySubstitutions, overrideStrings, transformStrings } from "./common/language";
+import getStrings, { applySubstitutions, overrideStrings, transformStrings } from "./common/language";
 import { entities } from "./common/format";
 import renderReceipt from "./component/receipt";
 import renderError from "./component/error";
@@ -20,13 +20,13 @@ class Receipt extends HTMLElement {
 	}
 
 	// The behavior occurs when an attribute of the element is added, removed, updated, or replaced.
-	attributeChangedCallback(attr, oldVal, newVal) {
+	attributeChangedCallback(attr: Attr, oldVal: string, newVal: string) {
 		this.redraw();
 	}
 
 	getConfig() {
-		const getJSONBlock = (/** @type {string} */type) => {
-			const dataNode = this.shadowRoot.host.querySelector(`script[data-${type}]`);
+		const getJSONBlock = (type: string) => {
+			const dataNode = this.shadowRoot!.host.querySelector(`script[data-${type}]`);
 			if (dataNode && dataNode.textContent) {
 				try {
 					return JSON.parse(dataNode.textContent);
@@ -38,8 +38,8 @@ class Receipt extends HTMLElement {
 		};
 
 		// get the built-in and user provided strings
-		const lang = this.shadowRoot.host.getAttribute("language") || "";
-		const langStrings = strings(lang);
+		const lang = this.shadowRoot!.host.getAttribute("language") || "";
+		const langStrings = getStrings(lang);
 		const userStrings = getJSONBlock("strings");
 		const combinedStrings = (userStrings) ? overrideStrings(langStrings, userStrings) : langStrings;
 
@@ -64,10 +64,10 @@ class Receipt extends HTMLElement {
 
 			const finalStrings = transformStrings(substituted, s => entities(s));
 
-			this.shadowRoot.innerHTML = `<style>${styles}</style>\n` + renderReceipt(data, finalStrings, config.langCode);
+			this.shadowRoot!.innerHTML = `<style>${styles}</style>\n` + renderReceipt(data, finalStrings, config.langCode);
 		}
 		else {
-			this.shadowRoot.innerHTML = `<style>${styles}</style>\n` + renderError({}, config.strings.error, config.langCode);
+			this.shadowRoot!.innerHTML = `<style>${styles}</style>\n` + renderError({}, config.strings.error, config.langCode);
 		}
 	}
 }

@@ -1,3 +1,4 @@
+import { LangStrings, LangBlock } from "../common/language";
 import brand from "./brand";
 import details from "./details";
 import lineitems from "./lineitems";
@@ -7,13 +8,15 @@ import wallet from "./wallet";
 import download from "./download";
 import store from "./store";
 
+type Component = (data: any, strings: LangBlock, langCode: string) => string;
+
 /**
  * Render the full receipt with text substitutions.
  * @param {object} data 
  * @param {LangStrings} strings 
  * @param {string} langCode 
  */
-const Receipt = (data, strings, langCode) => {
+const Receipt = (data: any, strings: LangStrings, langCode: string) => {
 	const layout = {
 		"header": ["brand", "details"],
 		"content": ["lineitems", "linetaxes", "totals", "wallet", "pointswallet", "download"],
@@ -26,10 +29,10 @@ const Receipt = (data, strings, langCode) => {
 	for (const section in layout) {
 		result += `<section>`;
 
-		for (const componentName of layout[section]) {
+		for (const componentName of (layout[section] as string[])) {
 			// alias pointswallet to wallet
-			const component = /** @type {Component}*/(componentName === "pointswallet" ? components["wallet"] : components[componentName]);
-			const compStrings = /** @type {LangBlock}*/(componentName === "pointswallet" ? strings["wallet"] : strings[componentName]);
+			const component = (componentName === "pointswallet" ? components["wallet"] : components[componentName]) as Component;
+			const compStrings = (componentName === "pointswallet" ? strings["wallet"] : strings[componentName]) as LangBlock;
 			
 			result += component(data[componentName], compStrings, langCode);
 		}
@@ -39,6 +42,6 @@ const Receipt = (data, strings, langCode) => {
 
 	result += `</div></div>`;
 	return result;
-}
+};
 
 export default Receipt;

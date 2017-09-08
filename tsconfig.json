@@ -4,15 +4,16 @@
     "module": "es6",
     "lib": ["dom", "es5"],
 
-    "allowJs": true,
-    "checkJs": true,
+    "allowJs": false,
+    "checkJs": false,
     "rootDir": "src",
     "outDir": "build",
 
     "removeComments": false,
     "importHelpers": true,
 
-    "strict": false,
+    "strict": true,
+    "suppressImplicitAnyIndexErrors": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
     

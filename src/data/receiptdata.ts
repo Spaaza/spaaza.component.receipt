@@ -1,9 +1,9 @@
-const sumFieldValues = (arr, fieldName) =>
+const sumFieldValues = (arr: any[], fieldName: string) =>
 	(arr || [])
 	.map(i => i[fieldName])
 	.reduce((s, v) => s + v, 0);
 
-const sumFieldValuesConditional = (arr, fieldName, ifFieldName, isValue) =>
+const sumFieldValuesConditional = (arr: any[], fieldName: string, ifFieldName: string, isValue: any) =>
 	(arr || [])
 	.filter(i => i[ifFieldName] === isValue)
 	.map(i => i[fieldName])
@@ -11,10 +11,10 @@ const sumFieldValuesConditional = (arr, fieldName, ifFieldName, isValue) =>
 
 /**
  * Parse and transform Spaaza receipts service data into data needed by the receipt subcomponents.
- * @param {any} receipt The receipt data as received from the Spaaza API
- * @returns {any} An object containing data needed for each sub-component
+ * @param receipt The receipt data as received from the Spaaza API
+ * @returns An object containing data needed for each sub-component
  */
-const parseReceipt = (receipt) => {
+const parseReceipt = (receipt: any) => {
 	const { shopper, chain } = receipt;
 	const { currency_symbol: currencySymbol, business } = chain;
 
