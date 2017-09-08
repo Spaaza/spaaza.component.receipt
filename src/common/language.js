@@ -1,9 +1,12 @@
+import enGB from "../lang/en-GB.json";
+import nlNL from "../lang/nl-NL.json";
+
 /**
  * @type {{[langCode: string]: LangJSON}}
  */
 const stringData = {
-	"en-GB": /** @type{any} */(require("../lang/en-GB.json")),
-	"nl-NL": /** @type{any} */(require("../lang/nl-NL.json"))
+	"en-GB": /** @type{any} */(enGB),
+	"nl-NL": /** @type{any} */(nlNL)
 };
 
 /**
@@ -100,6 +103,7 @@ export const applySubstitutions = (strings, subst) =>
  */
 export const overrideStrings = (strings, overrides) =>
 	transformStringBlocks(strings, (source, section) => {
+		console.info("OVERRIDES", overrides);
 		const sectOver = /** @type {LangBlock} */(overrides[section]);
 		return transformBlock(source, (srcStr, key) => {
 			return (sectOver && key in sectOver) ? sectOver[key] : srcStr;
