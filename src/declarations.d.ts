@@ -8,8 +8,6 @@ declare module "*.json" {
 	export default content;
 }
 
-declare function require(moduleName: string): any;
-
 type Component = (data: any, strings: LangBlock, langCode: string) => string;
 
 interface LangBlock {
