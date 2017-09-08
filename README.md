@@ -9,19 +9,17 @@ To install project dependencies run:
 
 ``` yarn ```
 
-To run a dev server with webpack and hot reload:
+To watch code and hot rebuild, use:
 
 ``` yarn start ```
 
-This will start a server at http://localhost:8081/
+Open receipt.html in a browser to test. No hot-reload right now.
 
 Run tests with:
 
 ``` yarn test ```
 
-### Build production bundles
-
-Will minimize and optimize the bundle for live environments
+### Build production bundle
 
 ``` yarn build ```
 
@@ -29,7 +27,7 @@ Will minimize and optimize the bundle for live environments
 
 Include the receipt JS in your site:
 
-``` <script src="https://my-domain/js/receipt-v1.2.1.js"></script> ```
+``` <script src="https://my-domain/js/spaaza-receipt.js"></script> ```
 
 Then when you get receipt data from the Spaaza API, provide it to a spaaza-receipt component:
 
