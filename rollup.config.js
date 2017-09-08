@@ -1,0 +1,34 @@
+import resolve from "rollup-plugin-node-resolve";
+import commonjs from "rollup-plugin-commonjs";
+import cleanCSS from "less-plugin-clean-css";
+import less from "rollup-plugin-less";
+import typescript from "typescript";
+import tsc from "rollup-plugin-typescript";
+import uglify from "rollup-plugin-uglify";
+
+const pkg = require("./package.json");
+
+export default [
+	{
+		input: "src/receipt.js",
+		output: {
+			file: pkg.main,
+			format: "cjs",
+		},
+		plugins: [
+			resolve(),
+			commonjs(),
+			less({
+				output: css => css,
+				plugins: [
+					new cleanCSS()
+				]
+			}),
+			tsc({
+				typescript: typescript,
+				include: ["src/**/*.js", "src/**/*.ts"]
+			}),
+			uglify(),
+		]
+	},
+];
