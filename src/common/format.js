@@ -16,6 +16,16 @@ export const amount = (value, currencySymbol) => {
 	return `${fmtValue} ${currencySymbol}`;
 };
 
+/**
+ * Make a string html-safe.
+ * @param {any} text 
+ */
+export const entities = (text) =>
+	(text || "").toString().replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
+		.replace(/"/g, "&quot;");
+
 export const divider = `
 <table class="divider-wrapper">
 	<tr>
