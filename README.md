@@ -15,10 +15,6 @@ To watch code and hot rebuild, use:
 
 Open receipt.html in a browser to test. No hot-reload right now.
 
-Run tests with:
-
-``` yarn test ```
-
 ### Build production bundle
 
 ``` yarn build ```
