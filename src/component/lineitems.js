@@ -36,8 +36,8 @@ const LineItems = (data, strings, langCode) => {
 				</td>
 				<td class="align-center">${item.quantity}</td>
 				<td class="align-right">
-					<span class="receipt-original-price ${isOnSale?'receipt-line-through':''}">${currencySymbol} ${amount(item.original_price)}</span>
-					<span class="receipt-sale-price receipt-strong">${currencySymbol} ${amount(item.sale_price)}</span>
+					<span class="receipt-original-price ${isOnSale?'receipt-line-through':''}">${amount(item.original_price, currencySymbol)}</span>
+					<span class="receipt-sale-price receipt-strong">${amount(item.sale_price, currencySymbol)}</span>
 				</td>
 			</tr>
 		`;

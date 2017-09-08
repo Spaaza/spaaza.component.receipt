@@ -12,14 +12,14 @@ const Totals = (data, strings, langCode) => {
 	html += `
 		<tr class="receipt-subtotal">
 			<td>${strings.subtotal}</td>
-			<td class="align-right">${data.currencySymbol} ${amount(data.subtotal)}</td>
+			<td class="align-right">${amount(data.subtotal, data.currencySymbol)}</td>
 		</tr>
 	`;
 
 	html += `
 		<tr class="receipt-strong">
 			<td>${strings.total}</td>
-			<td class="align-right">${data.currencySymbol} ${amount(data.total)}</td>
+			<td class="align-right">${amount(data.total, data.currencySymbol)}</td>
 		</tr>
 	`;
 

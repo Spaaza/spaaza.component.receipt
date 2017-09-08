@@ -29,8 +29,8 @@ const LineTaxes = (data, strings, langCode) => {
 		html += `
 			<tr class="tax-line">
 				<td class="var-rate align-left">${tax.rate}%</td>
-				<td class="order-value align-center">${currencySymbol} ${amount(tax.order_value)}</td>
-				<td class="vat align-right">${currencySymbol} ${amount(tax.tax_value)}</td>
+				<td class="order-value align-center">${amount(tax.order_value, currencySymbol)}</td>
+				<td class="vat align-right">${amount(tax.tax_value, currencySymbol)}</td>
 			</tr>
 		`;
 	}

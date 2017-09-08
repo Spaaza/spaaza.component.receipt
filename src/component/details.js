@@ -15,7 +15,7 @@ const Details = (data, strings, langCode) => {
     html += `
       <tr class="receipt-strong">
         <td class="">${strings.charged}</td>
-        <td class="align-right">${data.currencySymbol} ${amount(data.total)}</td>
+        <td class="align-right">${amount(data.total, data.currencySymbol)}</td>
       </tr>
     `;
   }
