@@ -11,7 +11,7 @@ class Receipt extends HTMLElement {
 
 	constructor() {
 		super();
-		this.attachShadow({ mode: 'open' });
+		this.attachShadow({ mode: "open" });
 	}
 
 	// Called every time the element is inserted into the DOM.
