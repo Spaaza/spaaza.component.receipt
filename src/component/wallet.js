@@ -1,50 +1,60 @@
-import { amount, divider } from '../common/format';
+import { amount, entities, divider } from '../common/format';
 
 /**
- * Show the wallet mutations if any.
+ * Show wallet mutations if any.
  * @type {Component}
  */
 const Wallet = (data, strings, langCode) => {
-	const { wallet, vouchers, totalEarned, totalSpent, currencySymbol } = data;
+	const { wallet, totalEarned, totalSpent, currencySymbol } = data;
 	if (! (totalEarned || totalSpent)) {
-		// don't add the wallet section if nothing changed to the wallet
+		// don't add a wallet section if nothing changed
 		return "";
 	}
 
 	let html = "";
+
 	html += divider;
 	html += `<table class="receipt-wallet">`;
-	html += `<tr><td class="receipt-strong">${wallet.title}</td></tr>`;
-	html += `
-		<tr>
-			<td>${wallet.title} ${strings.earned}</td>
-			<td align="right">${currencySymbol} ${ amount(totalEarned) }</td>
-		</tr>
-	`;
 
-	if (wallet.contributions.length > 1) {
-		for (const contrib of wallet.contributions) {
-			html += `
-				<tr>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;${contrib.campaign_title}</td>
-					<td align="right">${currencySymbol} ${ amount(contrib.amount) }</td>
-				</tr>
-			`;
+	html += `<tr><td class="receipt-strong">${entities(wallet.title)}</td></tr>`;
+
+	if (totalEarned) {
+		html += `
+			<tr>
+				<td>${entities(wallet.title)} ${strings.earned}</td>
+				<td align="right">${ amount(totalEarned, currencySymbol) }</td>
+			</tr>
+		`;
+
+		if (wallet.contributions.length > 1) {
+			for (const contrib of wallet.contributions) {
+				html += `
+					<tr>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;${entities(contrib.campaign_title)}</td>
+						<td align="right">${ amount(contrib.amount, currencySymbol) }</td>
+					</tr>
+				`;
+			}
 		}
 	}
 
+	if (totalSpent) {
+		html += `
+			<tr>
+				<td>${entities(wallet.title)} ${strings.spent}</td>
+				<td align="right">${ amount(totalSpent, currencySymbol) }</td>
+			</tr>
+		`;
+	}
+
 	html += `
-		<tr>
-			<td>${wallet.title} ${strings.spent}</td>
-			<td align="right">${currencySymbol} ${ amount(totalSpent) }</td>
-		</tr>
 		<tr class="receipt-total">
 			<td>${strings["new-balance"]}</td>
-			<td align="right" class="receipt-strong">${currencySymbol} ${amount(wallet.total)}</td>
+			<td align="right" class="receipt-strong">${amount(wallet.total, currencySymbol)}</td>
 		</tr>
 	`;
-
 	html += `</table>`;
+
 	return html;
 }
 
