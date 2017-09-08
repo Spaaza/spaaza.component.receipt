@@ -1,4 +1,4 @@
-import { amount, divider } from '../common/format';
+import { amount, entities, divider } from '../common/format';
 
 /**
  * Show the itemized taxes if provided.
@@ -28,7 +28,7 @@ const LineTaxes = (data, strings, langCode) => {
 	for (const tax of data.linetaxes) {
 		html += `
 			<tr class="tax-line">
-				<td class="var-rate align-left">${tax.rate}%</td>
+				<td class="var-rate align-left">${entities(tax.rate)}%</td>
 				<td class="order-value align-center">${amount(tax.order_value, currencySymbol)}</td>
 				<td class="vat align-right">${amount(tax.tax_value, currencySymbol)}</td>
 			</tr>

@@ -1,5 +1,6 @@
 import parseReceipt from "./data/receiptdata";
-import strings, { applySubstitutions, overrideStrings } from "./common/language";
+import strings, { applySubstitutions, overrideStrings, transformStrings } from "./common/language";
+import { entities } from "./common/format";
 import renderReceipt from "./component/receipt";
 import renderError from "./component/error";
 
@@ -54,11 +55,13 @@ class Receipt extends HTMLElement {
 		if (config.receipt) {
 			const data = parseReceipt(config.receipt);
 
-			const finalStrings = applySubstitutions(config.strings, {
+			const substituted = applySubstitutions(config.strings, {
 				"$GIVEN_NAME": config.receipt.shopper.first_name,
 				"$FAMILY_NAME": config.receipt.shopper.last_name,
 				"$CHAIN_NAME": config.receipt.chain.name,
 			});
+
+			const finalStrings = transformStrings(substituted, s => entities(s));
 
 			this.shadowRoot.innerHTML = `<style>${require("./receipt.less")}</style>\n` + renderReceipt(data, finalStrings, config.langCode);
 		}

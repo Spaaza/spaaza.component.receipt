@@ -1,4 +1,4 @@
-import { amount, divider } from '../common/format';
+import { amount, entities, divider } from '../common/format';
 
 /**
  * Show the itemized product list.
@@ -32,9 +32,9 @@ const LineItems = (data, strings, langCode) => {
 		html += `
 			<tr class="line-item">
 				<td class="align-left">
-					<div class="line-item-name">${item.name || item.barcode}</div>
+					<div class="line-item-name">${entities(item.name || item.barcode)}</div>
 				</td>
-				<td class="align-center">${item.quantity}</td>
+				<td class="align-center">${entities(item.quantity)}</td>
 				<td class="align-right">
 					<span class="receipt-original-price ${isOnSale?'receipt-line-through':''}">${amount(item.original_price, currencySymbol)}</span>
 					<span class="receipt-sale-price receipt-strong">${amount(item.sale_price, currencySymbol)}</span>

@@ -1,4 +1,4 @@
-import { amount, divider } from '../common/format';
+import { amount, entities, divider } from '../common/format';
 
 /**
  * Shows the totals of the receipt.

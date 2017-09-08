@@ -1,3 +1,5 @@
+import { entities } from "../common/format";
+
 /**
  * Show the chain's logo and receipt header.
  * @type {Component}
@@ -8,7 +10,7 @@ const Brand = (data, strings, langCode) => {
   if (data.logoURL) {
     html += `
       <tr>
-        <td><img src="${data.logoURL}"></td>
+        <td><img src="${entities(data.logoURL)}"></td>
       </tr>
     `;
   }

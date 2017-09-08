@@ -1,4 +1,4 @@
-import { divider } from '../common/format';
+import { entities, divider } from '../common/format';
 
 /**
  * Show store contact and address information if available.
@@ -19,13 +19,13 @@ const Store = (data, strings, langCode) => {
 	`;
 
 	if (data.name) {
-		html += `<div>${data.name}</div>`;
+		html += `<div>${entities(data.name)}</div>`;
 	}
 	if (data.email) {
-		html += `<div><a href="mailto:${data.email}">${data.email}</a></div>`;
+		html += `<div><a href="mailto:${entities(data.email)}">${entities(data.email)}</a></div>`;
 	}
 	if (data.website) {
-		html += `<div><a href="${data.website}" target="_blank">${data.website}</a></div>`;
+		html += `<div><a href="${entities(data.website)}" target="_blank">${entities(data.website)}</a></div>`;
 	}
 
 	html += `
@@ -34,17 +34,17 @@ const Store = (data, strings, langCode) => {
 	`;
 
 	if (data.contact) {
-		html += `<a href="tel:${data.contact}">${data.contact}</a>`;
+		html += `<a href="tel:${entities(data.contact)}">${entities(data.contact)}</a>`;
 	}
 	if (data.address) {
-		html += `<div>${data.address}</div>`;
+		html += `<div>${entities(data.address)}</div>`;
 	}
 	if (data.towncity && data.postalcode) {
-		html += `<div>${data.towncity}, ${data.postalcode}</div>`;
+		html += `<div>${entities(data.towncity)}, ${entities(data.postalcode)}</div>`;
 	} else if (data.towncity && !data.postalcode) {
-		html += `<div>${data.towncity}</div>`;
+		html += `<div>${entities(data.towncity)}</div>`;
 	} else if (!data.towncity && data.postalcode) {
-		html += `<div>${data.postalcode}</div>`;
+		html += `<div>${entities(data.postalcode)}</div>`;
 	}
 
 	html += `

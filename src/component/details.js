@@ -1,4 +1,4 @@
-import { amount } from '../common/format';
+import { amount, entities } from '../common/format';
 
 /**
  * Show an overview of the receipt as a header.
@@ -23,7 +23,7 @@ const Details = (data, strings, langCode) => {
     html += `
       <tr>
         <td class="">${strings["order-number"]}</td>
-        <td class="align-right">#${data.id}</td>
+        <td class="align-right">#${entities(data.id)}</td>
       </tr>
     `;
   }
@@ -31,7 +31,7 @@ const Details = (data, strings, langCode) => {
     html += `
       <tr>
         <td class="">${strings.date}</td>
-        <td class="align-right">${new Date(data.date).toLocaleString(langCode)}</td>
+        <td class="align-right">${entities(new Date(data.date).toLocaleString(langCode))}</td>
       </tr>
     `;
   }
