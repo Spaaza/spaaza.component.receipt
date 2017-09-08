@@ -1,11 +1,20 @@
 /**
- * Format a value as a monetary amount with 2 decimals.
- * @param {number|string} value 
+ * Format a value as a monetary or points amount.
+ * @param {number|string} value the amount to format
+ * @param {string} currencySymbol
  * @returns {string} the formatted amount
  */
-export function amount(value) {
-	return (+value).toFixed(2);
-}
+export const amount = (value, currencySymbol) => {
+	const isPoints = currencySymbol === "pts";
+	const decimals = isPoints ? 0 : 2;
+	const symbolInFront = !isPoints;
+
+	const fmtValue = (+value).toFixed(decimals);
+	if (symbolInFront) {
+		return `${currencySymbol} ${fmtValue}`;
+	}
+	return `${fmtValue} ${currencySymbol}`;
+};
 
 export const divider = `
 <table class="divider-wrapper">
