@@ -14,7 +14,8 @@ export default [
 		input: "src/receipt.js",
 		output: {
 			file: pkg.main,
-			format: "cjs",
+			format: "umd",
+			name: "SpaazaReceipt"
 		},
 		plugins: [
 			resolve(),
@@ -32,7 +33,7 @@ export default [
 				typescript: typescript,
 				include: ["src/**/*.js", "src/**/*.ts"]
 			}),
-			uglify(),
+			// uglify(),
 		]
 	},
 ];
