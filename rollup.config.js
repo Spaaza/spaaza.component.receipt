@@ -2,6 +2,7 @@ import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import cleanCSS from "less-plugin-clean-css";
 import less from "rollup-plugin-less";
+import json from "rollup-plugin-json";
 import typescript from "typescript";
 import tsc from "rollup-plugin-typescript";
 import uglify from "rollup-plugin-uglify";
@@ -23,6 +24,9 @@ export default [
 				plugins: [
 					new cleanCSS()
 				]
+			}),
+			json({
+				include: 'src/lang/**',				
 			}),
 			tsc({
 				typescript: typescript,
