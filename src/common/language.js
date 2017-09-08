@@ -27,6 +27,45 @@ const strings = (lang) => stringData[mapLangCode(lang)];
 export default strings;
 
 /**
+ * Transform a block of strings using a provided function.
+ * @param {LangBlock} block 
+ * @param {(s: string, k: string)=>string} fn 
+ * @returns {LangBlock}
+ */
+export const transformBlock = (block, fn) => {
+	const res = /** @type {LangBlock}*/({});
+	for (const k in block) {
+		if (block.hasOwnProperty(k)) {
+			res[k] = fn(block[k], k);
+		}
+	}
+	return res;
+};
+
+/**
+ * Transform all blocks using provided function.
+ * @param {LangStrings} strings 
+ * @param {(b: LangBlock, bk: string)=>LangBlock} blkFn
+ */
+export const transformStringBlocks = (strings, blkFn) => {
+	const res = /** @type {LangStrings} */({});
+	for (const section in strings) {
+		if (strings.hasOwnProperty(section) && typeof strings[section] === "object") {
+			res[section] = blkFn(strings[section], section);
+		}
+	}
+	return res;
+}
+
+/**
+ * Transform all strings in all blocks using provided function.
+ * @param {LangStrings} strings 
+ * @param {(s: string, k: string)=>string} fn 
+ */
+export const transformStrings = (strings, fn) =>
+	transformStringBlocks(strings, (blk, section) => transformBlock(blk, fn));
+
+/**
  * Replace occurences of multiple substrings in a source string, returning
  * a new string with the applied substitutions.
  * @param {string} string The source string
@@ -45,35 +84,12 @@ const substitute = (string, subst) => {
 };
 
 /**
- * Apply substitutions to all values of a source object with a common set of search/replace pairs.
- * @param {LangBlock} strings Map of source strings
- * @param {LangSubstitutions} subst A map whose values will replace the occurences of the keys inside each source string
- * @returns {LangBlock} New object with substutions applied to all values
- */
-const blockSubstitute = (block, subst) => {
-	const res = {};
-	for (const k in block) {
-		if (block.hasOwnProperty(k)) {
-			res[k] = substitute(block[k], subst);
-		}
-	}
-	return res;
-};
-
-/**
- * 
+ * Apply provided substitution map to all strings, returning modified result.
  * @param {LangStrings} strings 
  * @param {LangSubstitutions} subst 
  */
-export const applySubstitutions = (strings, subst) => {
-	const res = {};
-	for (const section in strings) {
-		if (strings.hasOwnProperty(section) && typeof strings[section] === "object") {
-			res[section] = blockSubstitute(strings[section], subst);
-		}
-	}
-	return res;
-};
+export const applySubstitutions = (strings, subst) =>
+	transformStrings(strings, s => substitute(s, subst));
 
 /**
  * Override string replacements in source with overrides returning a new object with the merged result.
@@ -82,22 +98,10 @@ export const applySubstitutions = (strings, subst) => {
  * @param {LangStrings} overrides 
  * @returns {LangStrings} New object with overrides merged into source
  */
-export const overrideStrings = (source, overrides) => {
-	const result = {};
-
-	for (const section in source) {
-		if (source.hasOwnProperty(section)) {
-			const sectSource = source[section];
-			const sectOver = overrides[section];
-			const sectResult = result[section] = {};
-
-			for (const key in sectSource) {
-				if (sectSource.hasOwnProperty(key)) {
-					sectResult[key] = (sectOver && key in sectOver) ? sectOver[key] : sectSource[key];
-				}
-			}
-		}
-	}
-
-	return /** @type{LangStrings} */(result);
-};
+export const overrideStrings = (strings, overrides) =>
+	transformStringBlocks(strings, (source, section) => {
+		const sectOver = /** @type {LangBlock} */(overrides[section]);
+		return transformBlock(source, (srcStr, key) => {
+			return (sectOver && key in sectOver) ? sectOver[key] : srcStr;
+		});
+	});
