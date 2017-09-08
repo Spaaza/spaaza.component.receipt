@@ -3,6 +3,7 @@ import strings, { applySubstitutions, overrideStrings, transformStrings } from "
 import { entities } from "./common/format";
 import renderReceipt from "./component/receipt";
 import renderError from "./component/error";
+import styles from "./receipt.less";
 
 class Receipt extends HTMLElement {
 	// Monitor the 'redraw' attribute for changes.
@@ -63,10 +64,10 @@ class Receipt extends HTMLElement {
 
 			const finalStrings = transformStrings(substituted, s => entities(s));
 
-			this.shadowRoot.innerHTML = `<style>${require("./receipt.less")}</style>\n` + renderReceipt(data, finalStrings, config.langCode);
+			this.shadowRoot.innerHTML = `<style>${styles}</style>\n` + renderReceipt(data, finalStrings, config.langCode);
 		}
 		else {
-			this.shadowRoot.innerHTML = `<style>${require("./receipt.less")}</style>\n` + renderError({}, config.strings.error, config.langCode);
+			this.shadowRoot.innerHTML = `<style>${styles}</style>\n` + renderError({}, config.strings.error, config.langCode);
 		}
 	}
 }
