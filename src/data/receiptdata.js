@@ -54,10 +54,16 @@ const parseReceipt = (receipt) => {
 
 		wallet: {
 			wallet: receipt.monetary_wallet,
-			vouchers: receipt.basket_vouchers,
-			totalEarned: sumFieldValues(receipt.monetary_wallet.contributions, "amount"),
+			totalEarned: receipt.monetary_wallet.total,
 			totalSpent: sumFieldValuesConditional(receipt.basket_vouchers, "amount", "type", "wallet"),
 			currencySymbol
+		},
+
+		pointswallet: {
+			wallet: (receipt.points_wallet) || {},
+			totalEarned: (receipt.points_wallet && receipt.points_wallet.total) || 0,
+			totalSpent: 0,
+			currencySymbol: "pts"
 		},
 
 		store: {
