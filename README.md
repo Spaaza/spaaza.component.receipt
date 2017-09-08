@@ -29,7 +29,7 @@ Will minimize and optimize the bundle for live environments
 
 Include the receipt JS in your site:
 
-``` <script src="https://my-domain/js/receipt-v1.2.0.js"></script> ```
+``` <script src="https://my-domain/js/receipt-v1.2.1.js"></script> ```
 
 Then when you get receipt data from the Spaaza API, provide it to a spaaza-receipt component:
 
