@@ -9,20 +9,31 @@ class Receipt extends HTMLElement {
 	// Monitor the 'redraw' attribute for changes.
 	static get observedAttributes() { return ["language", "redraw"]; }
 	private root: ShadowRoot;
+	private connected: boolean;
 
 	constructor() {
 		super();
 		this.root = this.attachShadow({ mode: "open" });
+		this.connected = false;
 	}
 
-	// Called every time the element is inserted into the DOM.
+	private connect() {
+		this.redraw();
+		this.connected = true;
+	}
+
 	connectedCallback() {
-		this.redraw();
+		document.addEventListener("readystatechange", () => {
+			if (document.readyState !== "loading") {
+				this.connect();
+			}
+		});
 	}
 
-	// The behavior occurs when an attribute of the element is added, removed, updated, or replaced.
 	attributeChangedCallback(attr: Attr, oldVal: string, newVal: string) {
-		this.redraw();
+		if (this.connected) {
+			this.redraw();
+		}
 	}
 
 	getConfig() {
