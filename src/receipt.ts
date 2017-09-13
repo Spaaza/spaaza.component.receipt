@@ -8,10 +8,11 @@ import styles from "./receipt.less";
 class Receipt extends HTMLElement {
 	// Monitor the 'redraw' attribute for changes.
 	static get observedAttributes() { return ["language", "redraw"]; }
+	private root: ShadowRoot;
 
 	constructor() {
 		super();
-		this.attachShadow({ mode: "open" });
+		this.root = this.attachShadow({ mode: "open" });
 	}
 
 	// Called every time the element is inserted into the DOM.
@@ -26,19 +27,19 @@ class Receipt extends HTMLElement {
 
 	getConfig() {
 		const getJSONBlock = (type: string) => {
-			const dataNode = this.shadowRoot!.host.querySelector(`script[data-${type}]`);
+			const dataNode = this.root.host.querySelector(`script[data-${type}]`);
 			if (dataNode && dataNode.textContent) {
 				try {
 					return JSON.parse(dataNode.textContent);
 				} catch (err) {
-					console.error(`Failed to parse ${type} data: `, err);
+					console.warn(`Failed to parse ${type} data: `, err);
 				}
 			}
 			return undefined;
 		};
 
 		// get the built-in and user provided strings
-		const lang = this.shadowRoot!.host.getAttribute("language") || "";
+		const lang = this.root.host.getAttribute("language") || "";
 		const langStrings = getStrings(lang);
 		const userStrings = getJSONBlock("strings");
 		const combinedStrings = (userStrings) ? overrideStrings(langStrings, userStrings) : langStrings;
@@ -53,6 +54,7 @@ class Receipt extends HTMLElement {
 
 	redraw() {
 		const config = this.getConfig();
+		let contents: string;
 		if (config.receipt) {
 			const data = parseReceipt(config.receipt);
 
@@ -66,6 +68,7 @@ class Receipt extends HTMLElement {
 			contents = renderReceipt(data, finalStrings, config.langCode);
 		}
 		else {
+			console.warn("Could not draw receipt", config);			
 			contents = renderError({}, config.strings.error, config.langCode);
 		}
 
