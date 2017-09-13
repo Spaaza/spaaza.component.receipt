@@ -24,7 +24,7 @@ const Receipt = (data: any, strings: LangStrings, langCode: string) => {
 	};
 	const components = { brand, details, lineitems, linetaxes, totals, wallet, download, store };
 
-	let result = `<div class="spaaza-receipt"><div class="main content">`;
+	let result = `<div class="main content">`;
 
 	for (const section in layout) {
 		result += `<section>`;
@@ -40,7 +40,7 @@ const Receipt = (data: any, strings: LangStrings, langCode: string) => {
 		result += `</section>`;
 	}
 
-	result += `</div></div>`;
+	result += `</div>`;
 	return result;
 };
 

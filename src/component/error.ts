@@ -5,9 +5,9 @@ import { LangBlock } from "../common/language";
  */
 const Error = (data: any, strings: LangBlock, langCode: string) => {
 	return `
-		<div class="spaaza-receipt"><div class="main content">
+		<div class="main content">
 			<p>${strings.message}</p>
-		</div></div>
+		</div>
 	`;
 };
 

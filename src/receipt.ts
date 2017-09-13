@@ -61,14 +61,15 @@ class Receipt extends HTMLElement {
 				"$FAMILY_NAME": config.receipt.shopper.last_name,
 				"$CHAIN_NAME": config.receipt.chain.name,
 			});
-
 			const finalStrings = transformStrings(substituted, s => entities(s));
 
-			this.shadowRoot!.innerHTML = `<style>${styles}</style>\n` + renderReceipt(data, finalStrings, config.langCode);
+			contents = renderReceipt(data, finalStrings, config.langCode);
 		}
 		else {
-			this.shadowRoot!.innerHTML = `<style>${styles}</style>\n` + renderError({}, config.strings.error, config.langCode);
+			contents = renderError({}, config.strings.error, config.langCode);
 		}
+
+		this.root.innerHTML = `<style>${styles}</style>\n<div class="spaaza-receipt">${contents}</div>`;
 	}
 }
 
