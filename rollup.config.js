@@ -34,7 +34,7 @@ export default [
 				typescript: typescript,
 				include: ["src/**/*.js", "src/**/*.ts"]
 			}),
-			// uglify({}, minify),
+			uglify({}, minify),
 		]
 	},
 ];
