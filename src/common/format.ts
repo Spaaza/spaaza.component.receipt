@@ -23,8 +23,8 @@ export const entities = (val: string | number) =>
 	(val || "").toString().replace(/&/g, "&amp;")
 		.replace(/</g, "&lt;")
 		.replace(/>/g, "&gt;")
-		.replace(/"/g, "&quot;");
-
+		.replace(/"/g, "&quot;")
+		.replace(/%u/g, "&#x");
 
 export const divider = `
 <table class="divider-wrapper">

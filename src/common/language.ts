@@ -116,7 +116,6 @@ export const applySubstitutions = (strings: LangStrings, subst: LangSubstitution
  */
 export const overrideStrings = (strings: LangStrings, overrides: LangStrings) =>
 	transformStringBlocks(strings, (source, section) => {
-		console.info("OVERRIDES", overrides);
 		const sectOver = (overrides as any)[section] as LangBlock;
 		return transformBlock(source, (srcStr, key) => {
 			return (sectOver && key in sectOver) ? sectOver[key] : srcStr;
