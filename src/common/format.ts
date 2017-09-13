@@ -1,10 +1,10 @@
 /**
  * Format a value as a monetary or points amount.
- * @param {number|string} value the amount to format
- * @param {string} currencySymbol
- * @returns {string} the formatted amount
+ * @param value the amount to format
+ * @param currencySymbol
+ * @returns the formatted amount
  */
-export const amount = (value, currencySymbol) => {
+export const amount = (value: number | string, currencySymbol: string) => {
 	const isPoints = currencySymbol === "pts";
 	const decimals = isPoints ? 0 : 2;
 	const symbolInFront = !isPoints;
@@ -17,14 +17,14 @@ export const amount = (value, currencySymbol) => {
 };
 
 /**
- * Make a string html-safe.
- * @param {any} text 
+ * Make an html-safe representation of a value.
  */
-export const entities = (text) =>
-	(text || "").toString().replace(/&/g, "&amp;")
+export const entities = (val: string | number) =>
+	(val || "").toString().replace(/&/g, "&amp;")
 		.replace(/</g, "&lt;")
 		.replace(/>/g, "&gt;")
-		.replace(/"/g, "&quot;");
+		.replace(/"/g, "&quot;")
+		.replace(/%u/g, "&#x");
 
 export const divider = `
 <table class="divider-wrapper">

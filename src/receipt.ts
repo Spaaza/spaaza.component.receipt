@@ -1,44 +1,57 @@
 import parseReceipt from "./data/receiptdata";
-import strings, { applySubstitutions, overrideStrings, transformStrings } from "./common/language";
+import getStrings, { applySubstitutions, overrideStrings, transformStrings } from "./common/language";
 import { entities } from "./common/format";
 import renderReceipt from "./component/receipt";
 import renderError from "./component/error";
+import styles from "./receipt.less";
 
 class Receipt extends HTMLElement {
 	// Monitor the 'redraw' attribute for changes.
 	static get observedAttributes() { return ["language", "redraw"]; }
+	private root: ShadowRoot;
+	private connected: boolean;
 
 	constructor() {
 		super();
-		this.attachShadow({ mode: 'open' });
+		this.root = this.attachShadow({ mode: "open" });
+		this.connected = false;
 	}
 
-	// Called every time the element is inserted into the DOM.
+	private connect() {
+		this.redraw();
+		this.connected = true;
+	}
+
 	connectedCallback() {
-		this.redraw();
+		document.addEventListener("readystatechange", () => {
+			if (document.readyState !== "loading") {
+				this.connect();
+			}
+		});
 	}
 
-	// The behavior occurs when an attribute of the element is added, removed, updated, or replaced.
-	attributeChangedCallback(attr, oldVal, newVal) {
-		this.redraw();
+	attributeChangedCallback(attr: Attr, oldVal: string, newVal: string) {
+		if (this.connected) {
+			this.redraw();
+		}
 	}
 
 	getConfig() {
-		const getJSONBlock = (/** @type {string} */type) => {
-			const dataNode = this.shadowRoot.host.querySelector(`script[data-${type}]`);
+		const getJSONBlock = (type: string) => {
+			const dataNode = this.root.host.querySelector(`script[data-${type}]`);
 			if (dataNode && dataNode.textContent) {
 				try {
 					return JSON.parse(dataNode.textContent);
 				} catch (err) {
-					console.error(`Failed to parse ${type} data: `, err);
+					console.warn(`Failed to parse ${type} data: `, err);
 				}
 			}
 			return undefined;
 		};
 
 		// get the built-in and user provided strings
-		const lang = this.shadowRoot.host.getAttribute("language") || "";
-		const langStrings = strings(lang);
+		const lang = this.root.host.getAttribute("language") || "";
+		const langStrings = getStrings(lang);
 		const userStrings = getJSONBlock("strings");
 		const combinedStrings = (userStrings) ? overrideStrings(langStrings, userStrings) : langStrings;
 
@@ -52,6 +65,7 @@ class Receipt extends HTMLElement {
 
 	redraw() {
 		const config = this.getConfig();
+		let contents: string;
 		if (config.receipt) {
 			const data = parseReceipt(config.receipt);
 
@@ -60,14 +74,16 @@ class Receipt extends HTMLElement {
 				"$FAMILY_NAME": config.receipt.shopper.last_name,
 				"$CHAIN_NAME": config.receipt.chain.name,
 			});
-
 			const finalStrings = transformStrings(substituted, s => entities(s));
 
-			this.shadowRoot.innerHTML = `<style>${require("./receipt.less")}</style>\n` + renderReceipt(data, finalStrings, config.langCode);
+			contents = renderReceipt(data, finalStrings, config.langCode);
 		}
 		else {
-			this.shadowRoot.innerHTML = `<style>${require("./receipt.less")}</style>\n` + renderError({}, config.strings.error, config.langCode);
+			console.warn("Could not draw receipt", config);			
+			contents = renderError({}, config.strings.error, config.langCode);
 		}
+
+		this.root.innerHTML = `<style>${styles}</style>\n<div class="spaaza-receipt">${contents}</div>`;
 	}
 }
 

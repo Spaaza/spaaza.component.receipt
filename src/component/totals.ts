@@ -1,10 +1,11 @@
-import { amount, entities, divider } from '../common/format';
+import { amount, entities, divider } from "../common/format";
+import { LangBlock } from "../common/language";
 
 /**
  * Shows the totals of the receipt.
  * @type {Component}
  */
-const Totals = (data, strings, langCode) => {
+const Totals = (data: any, strings: LangBlock, langCode: string) => {
 	let html = "";
 	html += divider;
 	html += `<table class="receipt-totals">`;
@@ -25,6 +26,6 @@ const Totals = (data, strings, langCode) => {
 
 	html += `</table>`;
 	return html;
-}
+};
 
 export default Totals;

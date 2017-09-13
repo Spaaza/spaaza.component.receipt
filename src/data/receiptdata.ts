@@ -1,9 +1,9 @@
-const sumFieldValues = (arr, fieldName) =>
+const sumFieldValues = (arr: any[], fieldName: string) =>
 	(arr || [])
 	.map(i => i[fieldName])
 	.reduce((s, v) => s + v, 0);
 
-const sumFieldValuesConditional = (arr, fieldName, ifFieldName, isValue) =>
+const sumFieldValuesConditional = (arr: any[], fieldName: string, ifFieldName: string, isValue: any) =>
 	(arr || [])
 	.filter(i => i[ifFieldName] === isValue)
 	.map(i => i[fieldName])
@@ -11,10 +11,10 @@ const sumFieldValuesConditional = (arr, fieldName, ifFieldName, isValue) =>
 
 /**
  * Parse and transform Spaaza receipts service data into data needed by the receipt subcomponents.
- * @param {any} receipt The receipt data as received from the Spaaza API
- * @returns {any} An object containing data needed for each sub-component
+ * @param receipt The receipt data as received from the Spaaza API
+ * @returns An object containing data needed for each sub-component
  */
-const parseReceipt = (receipt) => {
+const parseReceipt = (receipt: any) => {
 	const { shopper, chain } = receipt;
 	const { currency_symbol: currencySymbol, business } = chain;
 
@@ -54,14 +54,14 @@ const parseReceipt = (receipt) => {
 
 		wallet: {
 			wallet: receipt.monetary_wallet,
-			totalEarned: receipt.monetary_wallet.total,
+			totalEarned: sumFieldValues(receipt.monetary_wallet.contributions, "amount"),
 			totalSpent: sumFieldValuesConditional(receipt.basket_vouchers, "amount", "type", "wallet"),
 			currencySymbol
 		},
 
 		pointswallet: {
 			wallet: (receipt.points_wallet) || {},
-			totalEarned: (receipt.points_wallet && receipt.points_wallet.total) || 0,
+			totalEarned: (receipt.points_wallet && sumFieldValues(receipt.points_wallet.contributions, "amount")) || 0,
 			totalSpent: 0,
 			currencySymbol: "pts"
 		},
@@ -76,6 +76,6 @@ const parseReceipt = (receipt) => {
 			towncity: business.address.towncity,
 		},
 	};
-}
+};
 
 export default parseReceipt;

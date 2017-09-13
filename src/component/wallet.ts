@@ -1,10 +1,10 @@
-import { amount, entities, divider } from '../common/format';
+import { amount, entities, divider } from "../common/format";
+import { LangBlock } from "../common/language";
 
 /**
  * Show wallet mutations if any.
- * @type {Component}
  */
-const Wallet = (data, strings, langCode) => {
+const Wallet = (data: any, strings: LangBlock, langCode: string) => {
 	const { wallet, totalEarned, totalSpent, currencySymbol } = data;
 	if (! (totalEarned || totalSpent)) {
 		// don't add a wallet section if nothing changed
@@ -56,6 +56,6 @@ const Wallet = (data, strings, langCode) => {
 	html += `</table>`;
 
 	return html;
-}
+};
 
 export default Wallet;

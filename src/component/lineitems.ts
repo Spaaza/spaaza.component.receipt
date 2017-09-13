@@ -1,10 +1,10 @@
-import { amount, entities, divider } from '../common/format';
+import { amount, entities, divider } from "../common/format";
+import { LangBlock } from "../common/language";
 
 /**
  * Show the itemized product list.
- * @type {Component}
  */
-const LineItems = (data, strings, langCode) => {
+const LineItems = (data: any, strings: LangBlock, langCode: string) => {
 	// only when line items collections is available
 	if (! (data.lineitems && data.lineitems.length)) {
 		return "";
@@ -46,6 +46,6 @@ const LineItems = (data, strings, langCode) => {
 	// close table
 	html += `</table>`;
 	return html;
-}
+};
 
 export default LineItems;

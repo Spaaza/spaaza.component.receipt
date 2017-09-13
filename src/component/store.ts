@@ -1,10 +1,10 @@
-import { entities, divider } from '../common/format';
+import { entities, divider } from "../common/format";
+import { LangBlock } from "../common/language";
 
 /**
  * Show store contact and address information if available.
- * @type {Component}
  */
-const Store = (data, strings, langCode) => {
+const Store = (data: any, strings: LangBlock, langCode: string) => {
 	if (! (data.name || data.message || data.address || data.contact || data.email || data.website || data.towncity || data.postalcode)) {
 		return "";
 	}
@@ -59,6 +59,6 @@ const Store = (data, strings, langCode) => {
 		html += `<p class="receipt-emphasys receipt-footer-message">${strings.message}</p>`;
 	}
 	return html;
-}
+};
 
 export default Store;
