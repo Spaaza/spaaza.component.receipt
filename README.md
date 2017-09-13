@@ -55,7 +55,7 @@ If you wish you can further customize the language used in the component by prov
 JSON script element with any overrides. For the format of the strings JSON see the src/lang directory.
 
 ```
-<spaaza-receipt language="en>
+<spaaza-receipt language="en">
   <script type="application/json" data-receipt>...</script>
   <script type="application/json" data-strings>
   {
