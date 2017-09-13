@@ -6,6 +6,7 @@ import json from "rollup-plugin-json";
 import typescript from "typescript";
 import tsc from "rollup-plugin-typescript";
 import uglify from "rollup-plugin-uglify";
+import { minify } from "uglify-es";
 
 const pkg = require("./package.json");
 
@@ -33,7 +34,7 @@ export default [
 				typescript: typescript,
 				include: ["src/**/*.js", "src/**/*.ts"]
 			}),
-			// uglify(),
+			// uglify({}, minify),
 		]
 	},
 ];
