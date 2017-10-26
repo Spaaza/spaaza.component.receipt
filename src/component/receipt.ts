@@ -7,6 +7,7 @@ import totals from "./totals";
 import wallet from "./wallet";
 import download from "./download";
 import store from "./store";
+import barcode from "./barcode";
 
 type Component = (data: any, strings: LangBlock, langCode: string) => string;
 
@@ -20,9 +21,9 @@ const Receipt = (data: any, strings: LangStrings, langCode: string) => {
 	const layout = {
 		"header": ["brand", "details"],
 		"content": ["lineitems", "linetaxes", "totals", "wallet", "pointswallet", "download"],
-		"footer": ["store"]
+		"footer": ["store", "barcode"]
 	};
-	const components = { brand, details, lineitems, linetaxes, totals, wallet, download, store };
+	const components = { brand, details, lineitems, linetaxes, totals, wallet, download, store, barcode };
 
 	let result = `<div class="main content">`;
 

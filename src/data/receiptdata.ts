@@ -75,6 +75,10 @@ const parseReceipt = (receipt: any) => {
 			postalcode: business.address.postal_code,
 			towncity: business.address.towncity,
 		},
+
+		barcode: {
+			retailerCode: receipt.retailer_basket_code || ""
+		}
 	};
 };
 
