@@ -11,7 +11,7 @@ const Brand = (data: any, strings: LangBlock, langCode: string) => {
 	if (data.logoURL) {
 		html += `
 			<tr>
-				<td><img src="${entities(data.logoURL)}"></td>
+				<td><img class="brand_logo" src="${entities(data.logoURL)}"></td>
 			</tr>
 		`;
 	}
