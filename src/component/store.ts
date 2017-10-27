@@ -28,11 +28,6 @@ const Store = (data: any, strings: LangBlock, langCode: string) => {
 		html += `<div><a href="${entities(data.website)}" target="_blank">${entities(data.website)}</a></div>`;
 	}
 
-	html += `
-		</td>
-		<td class="align-right">
-	`;
-
 	if (data.contact) {
 		html += `<a href="tel:${entities(data.contact)}">${entities(data.contact)}</a>`;
 	}
