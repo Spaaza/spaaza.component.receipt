@@ -27,6 +27,7 @@ const parseReceipt = (receipt: any) => {
 		details: {
 			name: chain.id,
 			id: receipt.id,
+			retailerCode: receipt.retailer_basket_code,
 			total: receipt.total_value,
 			date: receipt.timestamp,
 			currencySymbol

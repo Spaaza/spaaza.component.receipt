@@ -19,14 +19,14 @@ const Details = (data: any, strings: LangBlock, langCode: string) => {
 			</tr>
 		`;
 	}
-	if (data.id) {
+	if (data.retailerCode) {
 		html += `
 			<tr>
 				<td class="">${strings["order-number"]}</td>
-				<td class="align-right">#${entities(data.id)}</td>
+				<td class="align-right">#${entities(data.retailerCode)}</td>
 			</tr>
 		`;
-	}
+	} 
 	if (data.date) {
 		html += `
 			<tr>

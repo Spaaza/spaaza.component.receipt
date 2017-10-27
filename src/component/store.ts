@@ -21,21 +21,6 @@ const Store = (data: any, strings: LangBlock, langCode: string) => {
 	if (data.name) {
 		html += `<div>${entities(data.name)}</div>`;
 	}
-	if (data.email) {
-		html += `<div><a href="mailto:${entities(data.email)}">${entities(data.email)}</a></div>`;
-	}
-	if (data.website) {
-		html += `<div><a href="${entities(data.website)}" target="_blank">${entities(data.website)}</a></div>`;
-	}
-
-	html += `
-		</td>
-		<td class="align-right">
-	`;
-
-	if (data.contact) {
-		html += `<a href="tel:${entities(data.contact)}">${entities(data.contact)}</a>`;
-	}
 	if (data.address) {
 		html += `<div>${entities(data.address)}</div>`;
 	}
@@ -45,6 +30,15 @@ const Store = (data: any, strings: LangBlock, langCode: string) => {
 		html += `<div>${entities(data.towncity)}</div>`;
 	} else if (!data.towncity && data.postalcode) {
 		html += `<div>${entities(data.postalcode)}</div>`;
+	}
+	if (data.email) {
+		html += `<div><a href="mailto:${entities(data.email)}">${entities(data.email)}</a></div>`;
+	}
+	if (data.website) {
+		html += `<div><a href="${entities(data.website)}" target="_blank">${entities(data.website)}</a></div>`;
+	}
+	if (data.contact) {
+		html += `<a href="tel:${entities(data.contact)}">${entities(data.contact)}</a>`;
 	}
 
 	html += `
