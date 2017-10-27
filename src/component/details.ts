@@ -19,7 +19,7 @@ const Details = (data: any, strings: LangBlock, langCode: string) => {
 			</tr>
 		`;
 	}
-	if (.data.retailerCode) {
+	if (data.retailerCode) {
 		html += `
 			<tr>
 				<td class="">${strings["order-number"]}</td>
