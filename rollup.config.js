@@ -6,7 +6,6 @@ import json from "rollup-plugin-json";
 import typescript from "typescript";
 import tsc from "rollup-plugin-typescript";
 import uglify from "rollup-plugin-uglify";
-import { minify } from "uglify-es";
 
 const pkg = require("./package.json");
 
@@ -15,7 +14,7 @@ export default [
 		input: "src/receipt.ts",
 		output: {
 			file: pkg.main,
-			format: "umd",
+			format: "iife",
 			name: "SpaazaReceipt"
 		},
 		plugins: [
@@ -35,8 +34,8 @@ export default [
 				include: ["src/**/*.js", "src/**/*.ts"]
 			}),
 			uglify({
-				mangle: false
-			}, minify),
+				mangle: true
+			}),
 		]
 	},
 ];

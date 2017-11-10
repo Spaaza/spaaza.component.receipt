@@ -1,17 +1,12 @@
 # Spaaza Receipt Component
 
 The receipt component is a standard way to render a receipt using data from the Spaaza receipts service.
-Currently the component is provided as a WebComponent.
 
 ## Development
 
 To install project dependencies run:
 
 ``` yarn ```
-
-To watch code and hot rebuild, use:
-
-``` yarn start ```
 
 Open receipt.html in a browser to test. No hot-reload right now.
 
