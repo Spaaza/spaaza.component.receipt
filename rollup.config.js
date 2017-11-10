@@ -4,7 +4,7 @@ import cleanCSS from "less-plugin-clean-css";
 import less from "rollup-plugin-less";
 import json from "rollup-plugin-json";
 import typescript from "typescript";
-import tsc from "rollup-plugin-typescript";
+import tsc from "rollup-plugin-typescript2";
 import uglify from "rollup-plugin-uglify";
 
 const pkg = require("./package.json");
@@ -31,11 +31,9 @@ export default [
 			}),
 			tsc({
 				typescript: typescript,
-				include: ["src/**/*.js", "src/**/*.ts"]
+				include: ["src/**/*.ts"]
 			}),
-			uglify({
-				mangle: true
-			}),
+			// uglify({ mangle: true }),
 		]
 	},
 ];
