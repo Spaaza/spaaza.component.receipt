@@ -33,7 +33,7 @@ export default [
 				typescript: typescript,
 				include: ["src/**/*.ts"]
 			}),
-			// uglify({ mangle: true }),
+			uglify({ mangle: true }),
 		]
 	},
 ];
