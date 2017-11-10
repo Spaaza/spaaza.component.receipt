@@ -1,4 +1,4 @@
-import { amount, entities, divider } from "../common/format";
+import { amount, divider } from "../common/format";
 import { LangBlock } from "../common/language";
 
 /**

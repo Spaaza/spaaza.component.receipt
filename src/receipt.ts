@@ -6,31 +6,9 @@ import renderError from "./component/error";
 import styles from "./receipt.less";
 
 let root: HTMLElement;
-let connected = false;
-
-function createReceipt() {
-	super();
-	root = this.attachShadow({ mode: "open" });
-	connected = false;
-}
 
 function connect() {
 	redraw();
-	connected = true;
-}
-
-function connectedCallback() {
-	document.addEventListener("readystatechange", () => {
-		if (document.readyState !== "loading") {
-			connect();
-		}
-	});
-}
-
-function attributeChangedCallback(attr: Attr, oldVal: string, newVal: string) {
-	if (connected) {
-		redraw();
-	}
 }
 
 function getConfig() {
@@ -81,4 +59,12 @@ function redraw() {
 	}
 
 	root.innerHTML = `<style>${styles}</style>\n<div class="spaaza-receipt">${contents}</div>`;
+}
+
+if (document.readyState === "loading") {
+	document.addEventListener("readystatechange", () => {
+		if (document.readyState !== "loading") {
+			connect();
+		}
+	});
 }

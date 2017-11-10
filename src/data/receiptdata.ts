@@ -15,7 +15,7 @@ const sumFieldValuesConditional = (arr: any[], fieldName: string, ifFieldName: s
  * @returns An object containing data needed for each sub-component
  */
 const parseReceipt = (receipt: any) => {
-	const { shopper, chain } = receipt;
+	const { chain } = receipt;
 	const { currency_symbol: currencySymbol, business } = chain;
 
 	// define data object for a component
