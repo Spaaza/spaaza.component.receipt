@@ -24,7 +24,8 @@
 	},
 	"totals": {
 		"subtotal": "Subtotal",
-		"total": "Total"
+		"total": "Total",
+		"voucher": "Voucher"
 	},
 	"wallet": {
 		"earned": "earned",

@@ -1,4 +1,4 @@
-import { amount, divider } from "../common/format";
+import { amount, entities, divider } from "../common/format";
 import { LangBlock } from "../common/language";
 
 /**
@@ -6,9 +6,22 @@ import { LangBlock } from "../common/language";
  * @type {Component}
  */
 const Totals = (data: any, strings: LangBlock, langCode: string) => {
+	const { basketVouchers } = data;
+
 	let html = "";
 	html += divider;
 	html += `<table class="receipt-totals">`;
+
+	if (basketVouchers && basketVouchers.length > 0) {
+		for (const vouch of basketVouchers) {
+			html += `
+				<tr>
+					<td>${strings.voucher}: ${entities(vouch.campaign_title)}</td>
+					<td align="right" class="voucher">(${ amount(vouch.amount, data.currencySymbol) })</td>
+				</tr>
+			`;
+		}
+	}
 
 	html += `
 		<tr class="receipt-subtotal">
