@@ -24,7 +24,8 @@
 	},
 	"totals": {
 		"subtotal": "Subtotaal",
-		"total": "Totaal"
+		"total": "Totaal",
+		"voucher": "Kortingsbon"
 	},
 	"wallet": {
 		"earned": "verdiend",

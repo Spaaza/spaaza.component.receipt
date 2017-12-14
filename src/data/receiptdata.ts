@@ -46,7 +46,10 @@ const parseReceipt = (receipt: any) => {
 		totals: {
 			total: receipt.total_value,
 			subtotal: receipt.subtotal,
-			currencySymbol
+			loyaltyVouchersSpent: sumFieldValuesConditional(receipt.basket_vouchers, "amount", "type", "loyalty"),
+			walletVouchersSpent: sumFieldValuesConditional(receipt.basket_vouchers, "amount", "type", "wallet"),
+			currencySymbol,
+			basketVouchers: receipt.basket_vouchers
 		},
 
 		download: {
