@@ -55,9 +55,9 @@ function redraw(host: HTMLElement, root: HTMLElement) {
 		const data = parseReceipt(config.receipt);
 
 		const substituted = applySubstitutions(config.strings, {
-			"$GIVEN_NAME": config.receipt.shopper.first_name,
-			"$FAMILY_NAME": config.receipt.shopper.last_name,
-			"$CHAIN_NAME": config.receipt.chain.name,
+			$GIVEN_NAME: config.receipt.shopper.first_name,
+			$FAMILY_NAME: config.receipt.shopper.last_name,
+			$CHAIN_NAME: config.receipt.chain.name,
 		});
 		const finalStrings = transformStrings(substituted, s => entities(s));
 
