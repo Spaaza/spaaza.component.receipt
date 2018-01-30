@@ -93,9 +93,9 @@ function startObserving() {
 	});
 }
 
-if (document.readyState !== "complete") {
+if (document.readyState === "loading") {
 	document.addEventListener("readystatechange", () => {
-		if (document.readyState === "complete") {
+		if (document.readyState !== "loading") {
 			connectAll();
 			startObserving();
 		}
