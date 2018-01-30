@@ -5,15 +5,19 @@ import renderReceipt from "./component/receipt";
 import renderError from "./component/error";
 import styles from "./receipt.less";
 
+function connect(receipt: HTMLElement) {
+	if (! receipt.querySelector(".receipt-body")) {
+		const rbody = document.createElement("div");
+		rbody.className = "receipt-body";
+		receipt.appendChild(rbody);
+		redraw(receipt, rbody);
+	}
+}
+
 function connectAll() {
 	const receipts: HTMLElement[] = [].slice.call(document.querySelectorAll("spaaza-receipt"), 0);
 	for (const receipt of receipts) {
-		if (! receipt.querySelector(".receipt-body")) {
-			const rbody = document.createElement("div");
-			rbody.className = "receipt-body";
-			receipt.appendChild(rbody);
-			redraw(receipt, rbody);
-		}
+		connect(receipt);
 	}
 }
 
@@ -67,14 +71,37 @@ function redraw(host: HTMLElement, root: HTMLElement) {
 	root.innerHTML = `<style>${styles}</style>\n<div class="spaaza-receipt">${contents}</div>`;
 }
 
+function startObserving() {
+	if (! ("MutationObserver" in window)) {
+		return;
+	}
+
+	const callback = (mutations: MutationRecord[]) => {
+		for (const mut of mutations) {
+			const newNodes: Node[] = Array.prototype.slice.call(mut.addedNodes, 0);
+			for (const n of newNodes) {
+				if (n.nodeType === Node.ELEMENT_NODE && n.nodeName.toLowerCase() === "spaaza-receipt") {
+					connect(n as HTMLElement);
+				}
+			}
+		}
+	};
+	const observer = new MutationObserver(callback);
+	observer.observe(document, {
+		childList: true,
+		subtree: true
+	});
+}
 
 if (document.readyState !== "complete") {
 	document.addEventListener("readystatechange", () => {
 		if (document.readyState === "complete") {
 			connectAll();
+			startObserving();
 		}
 	});
 }
 else {
 	connectAll();
+	startObserving();
 }
