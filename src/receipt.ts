@@ -68,9 +68,9 @@ function redraw(host: HTMLElement, root: HTMLElement) {
 }
 
 
-if (document.readyState === "loading") {
+if (document.readyState !== "complete") {
 	document.addEventListener("readystatechange", () => {
-		if (document.readyState !== "loading") {
+		if (document.readyState === "complete") {
 			connectAll();
 		}
 	});
