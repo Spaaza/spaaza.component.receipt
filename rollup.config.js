@@ -11,7 +11,7 @@ const pkg = require("./package.json");
 
 export default [
 	{
-		input: "src/receipt.ts",
+		input: "src/index.ts",
 		output: {
 			file: pkg.main,
 			format: "iife",
