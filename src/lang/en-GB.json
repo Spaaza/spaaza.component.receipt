@@ -17,7 +17,7 @@
 		"quantity": "Qty",
 		"price": "Price"
 	},
-	"linetaxes": {
+	"taxes": {
 		"tax-rate": "VAT Rate",
 		"order-value": "Order value",
 		"tax-value": "VAT"

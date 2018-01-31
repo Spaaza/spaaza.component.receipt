@@ -17,7 +17,7 @@
 		"quantity": "Aantal",
 		"price": "Prijs"
 	},
-	"linetaxes": {
+	"taxes": {
 		"tax-rate": "BTW %",
 		"order-value": "Waarde",
 		"tax-value": "BTW"

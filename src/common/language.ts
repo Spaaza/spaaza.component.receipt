@@ -13,7 +13,7 @@ export interface LangStrings {
 	brand: LangBlock;
 	details: LangBlock;
 	lineitems: LangBlock;
-	linetaxes: LangBlock;
+	taxes: LangBlock;
 	totals: LangBlock;
 	wallet: LangBlock;
 	download: LangBlock;
