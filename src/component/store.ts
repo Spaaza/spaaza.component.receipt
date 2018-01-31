@@ -50,7 +50,7 @@ const Store = (data: any, strings: LangBlock, langCode: string) => {
 
 	if (strings.message) {
 		html += divider;
-		html += `<p class="receipt-emphasys receipt-footer-message">${strings.message}</p>`;
+		html += `<p class="receipt-emphasis receipt-footer-message">${strings.message}</p>`;
 	}
 	return html;
 };
