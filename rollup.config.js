@@ -31,7 +31,7 @@ export default [
 			}),
 			tsc({
 				typescript: typescript,
-				include: ["src/**/*.ts"]
+				include: ["src/**/*.ts", "src/**/*.tsx"]
 			}),
 			uglify({ mangle: true }),
 		]

@@ -3,6 +3,8 @@
     "target": "es5",
     "module": "es6",
     "lib": ["dom", "es5"],
+    "jsx": "react",
+    "jsxFactory": "h",
 
     "allowJs": false,
     "checkJs": false,
