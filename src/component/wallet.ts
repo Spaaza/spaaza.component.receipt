@@ -61,15 +61,29 @@ const renderWallet = (data: WalletData, strings: LangBlock) => {
 	return html;
 };
 
+const applyWalletPointsRatio = (value: number, walletPointsRatio: number) => {
+	if (walletPointsRatio <= 0) {
+		return value;
+	}
+	return Math.round(value * walletPointsRatio);
+};
+
 /**
- * Shows any monetary wallet mutations.
+ * Shows any monetary wallet mutations with optional points for money scaling.
  */
 export const MonetaryWallet: Component = (data: RawReceiptData, strings: LangStrings) =>
 	renderWallet({
-		wallet: data.monetary_wallet,
-		totalEarned: sumFieldValues(data.monetary_wallet ? data.monetary_wallet.contributions : [], "amount"),
-		totalSpent: sumFieldValuesConditional(data.basket_vouchers, "amount", "type", "wallet"),
-		currencySymbol: data.chain.currency_symbol,
+		wallet: data.monetary_wallet && {
+			title: data.monetary_wallet.title,
+			total: data.monetary_wallet.total,
+			contributions: data.monetary_wallet.contributions.map(c => ({
+				campaign_title: c.campaign_title,
+				amount: applyWalletPointsRatio(c.amount, data.wallet_points_ratio)
+			}))
+		},
+		totalEarned: applyWalletPointsRatio(sumFieldValues(data.monetary_wallet ? data.monetary_wallet.contributions : [], "amount"), data.wallet_points_ratio),
+		totalSpent: applyWalletPointsRatio(sumFieldValuesConditional(data.basket_vouchers, "amount", "type", "wallet"), data.wallet_points_ratio),
+		currencySymbol: data.wallet_points_ratio > 0 ? "pts" : data.chain.currency_symbol, // substitute "pts" when using points for wallets
 	}, strings.wallet);
 
 /**
