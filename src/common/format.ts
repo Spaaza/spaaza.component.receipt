@@ -66,7 +66,7 @@ export function renderJSX(vnode: JSX.Element | string | number | null | undefine
 	if (vnode.attributes) {
 		Object.keys(vnode.attributes).forEach(k => {
 			const attrVal = vnode.attributes![k];
-			if (typeof attrVal !== "string") {
+			if (typeof attrVal === "object") {
 				let allBool = true;
 				const srlz = Object.keys(attrVal)
 				.map(sk => {
