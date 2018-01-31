@@ -1,19 +1,22 @@
-import { amount, entities, divider } from "../common/format";
-import { LangBlock } from "../common/language";
+import { amount, entities, Component, sumFieldValues, sumFieldValuesConditional } from "../common/format";
+import { LangBlock, LangStrings } from "../common/language";
+import { RawReceiptData, RawWalletData } from "../common/receiptdata";
 
-/**
- * Show wallet mutations if any.
- */
-const Wallet = (data: any, strings: LangBlock, langCode: string) => {
+interface WalletData {
+	wallet?: RawWalletData;
+	totalEarned: number;
+	totalSpent: number;
+	currencySymbol: string;
+}
+
+const renderWallet = (data: WalletData, strings: LangBlock) => {
 	const { wallet, totalEarned, totalSpent, currencySymbol } = data;
-	if (! (totalEarned || totalSpent)) {
-		// don't add a wallet section if nothing changed
+	if (! (wallet && (totalEarned || totalSpent))) {
+		// don't add a wallet section if it does not exist or if nothing changed
 		return "";
 	}
 
 	let html = "";
-
-	html += divider;
 	html += `<table class="receipt-wallet">`;
 
 	html += `<tr><td class="receipt-strong">${entities(wallet.title)}</td></tr>`;
@@ -58,4 +61,24 @@ const Wallet = (data: any, strings: LangBlock, langCode: string) => {
 	return html;
 };
 
-export default Wallet;
+/**
+ * Shows any monetary wallet mutations.
+ */
+export const MonetaryWallet: Component = (data: RawReceiptData, strings: LangStrings) =>
+	renderWallet({
+		wallet: data.monetary_wallet,
+		totalEarned: sumFieldValues(data.monetary_wallet ? data.monetary_wallet.contributions : [], "amount"),
+		totalSpent: sumFieldValuesConditional(data.basket_vouchers, "amount", "type", "wallet"),
+		currencySymbol: data.chain.currency_symbol,
+	}, strings.wallet);
+
+/**
+ * Shows any points wallet mutations.
+ */
+export const PointsWallet: Component = (data: RawReceiptData, strings: LangStrings) =>
+	renderWallet({
+		wallet: data.points_wallet,
+		totalEarned: (data.points_wallet && sumFieldValues(data.points_wallet.contributions, "amount")) || 0,
+		totalSpent: 0,
+		currencySymbol: "pts"
+	}, strings.wallet);

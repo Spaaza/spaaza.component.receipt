@@ -1,14 +1,14 @@
-import { LangBlock } from "../common/language";
+import { Component } from "../common/format";
+import { LangStrings } from "../common/language";
+import { RawReceiptData } from "../common/receiptdata";
 
 /**
  * Show an error message in case the component cannot render for some reason.
  */
-const Error = (data: any, strings: LangBlock, langCode: string) => {
+export const ReceiptError: Component = (data: RawReceiptData, strings: LangStrings, langCode: string) => {
 	return `
 		<div class="main content">
-			<p>${strings.message}</p>
+			<p>${strings.error.message}</p>
 		</div>
 	`;
 };
-
-export default Error;

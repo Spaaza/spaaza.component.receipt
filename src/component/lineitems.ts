@@ -1,10 +1,13 @@
-import { amount, entities, divider } from "../common/format";
-import { LangBlock } from "../common/language";
+import { amount, entities, Component } from "../common/format";
+import { LangBlock, LangStrings } from "../common/language";
+import { RawLineItemData, RawReceiptData } from "../common/receiptdata";
 
-/**
- * Show the itemized product list.
- */
-const LineItems = (data: any, strings: LangBlock, langCode: string) => {
+interface LineItemsData {
+	lineitems?: RawLineItemData[];
+	currencySymbol: string;
+}
+
+const renderLineItems = (data: LineItemsData, strings: LangBlock) => {
 	// only when line items collections is available
 	if (! (data.lineitems && data.lineitems.length)) {
 		return "";
@@ -13,7 +16,6 @@ const LineItems = (data: any, strings: LangBlock, langCode: string) => {
 	const currencySymbol = data.currencySymbol;
 	
 	let html = "";
-	html += divider;
 
 	// create table header
 	html += `
@@ -36,7 +38,7 @@ const LineItems = (data: any, strings: LangBlock, langCode: string) => {
 				</td>
 				<td class="align-center">${entities(item.quantity)}</td>
 				<td class="align-right">
-					<span class="receipt-original-price ${isOnSale?'receipt-line-through':''}">${amount(item.original_price, currencySymbol)}</span>
+					<span class="receipt-original-price ${isOnSale ? "receipt-line-through" : ""}">${amount(item.original_price, currencySymbol)}</span>
 					<span class="receipt-sale-price receipt-strong">${amount(item.sale_price, currencySymbol)}</span>
 				</td>
 			</tr>
@@ -48,4 +50,11 @@ const LineItems = (data: any, strings: LangBlock, langCode: string) => {
 	return html;
 };
 
-export default LineItems;
+/**
+ * Show the itemized product list.
+ */
+export const LineItems: Component = (data: RawReceiptData, strings: LangStrings) =>
+	renderLineItems({
+		lineitems: data.line_items,
+		currencySymbol: data.chain.currency_symbol
+	}, strings.lineitems);

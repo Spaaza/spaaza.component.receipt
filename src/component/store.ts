@@ -1,16 +1,23 @@
-import { entities, divider } from "../common/format";
-import { LangBlock } from "../common/language";
+import { entities, Component } from "../common/format";
+import { LangBlock, LangStrings } from "../common/language";
+import { RawReceiptData } from "../common/receiptdata";
 
-/**
- * Show store contact and address information if available.
- */
-const Store = (data: any, strings: LangBlock, langCode: string) => {
-	if (! (data.name || data.message || data.address || data.contact || data.email || data.website || data.towncity || data.postalcode)) {
+interface StoreData {
+	name: string;
+	contact: string;
+	email: string;
+	website: string;
+	address: string;
+	postalcode: string;
+	towncity: string;
+}
+
+const renderStore = (data: StoreData, strings: LangBlock, langCode: string) => {
+	if (! (data.name || data.address || data.contact || data.email || data.website || data.towncity || data.postalcode)) {
 		return "";
 	}
 	
 	let html = "";
-	html += divider;
 	html += `<table class="receipt-store">`;
 
 	html += `
@@ -47,12 +54,22 @@ const Store = (data: any, strings: LangBlock, langCode: string) => {
 	`;
 
 	html += `</table>`;
-
-	if (strings.message) {
-		html += divider;
-		html += `<p class="receipt-emphasis receipt-footer-message">${strings.message}</p>`;
-	}
 	return html;
 };
 
-export default Store;
+/**
+ * Show store contact and address information if available.
+ */
+export const Store: Component = (data: RawReceiptData, strings: LangStrings, langCode: string) => {
+	const business = data.chain.business;
+
+	return renderStore({
+		name: business.name,
+		contact: business.phone_number,
+		email: business.email,
+		website: business.website_url,
+		address: `${business.address.address_1} ${business.address.address_2} ${business.address.address_3}`.trim(),
+		postalcode: business.address.postal_code,
+		towncity: business.address.towncity,
+	}, strings.store, langCode);
+};

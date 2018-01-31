@@ -1,10 +1,15 @@
-import { amount, entities } from "../common/format";
-import { LangBlock } from "../common/language";
+import { amount, entities, Component } from "../common/format";
+import { LangBlock, LangStrings } from "../common/language";
+import { RawReceiptData } from "../common/receiptdata";
 
-/**
- * Show an overview of the receipt as a header.
- */
-const Details = (data: any, strings: LangBlock, langCode: string) => {
+interface DetailsData {
+	total: number;
+	date: string;
+	retailerCode?: string;
+	currencySymbol: string;
+}
+
+const renderDetails = (data: DetailsData, strings: LangBlock, langCode: string) => {
 	let html = `<table>`;
 
 	if (strings.message) {
@@ -40,4 +45,13 @@ const Details = (data: any, strings: LangBlock, langCode: string) => {
 	return html;
 };
 
-export default Details;
+/**
+ * Show an overview of the receipt as a header.
+ */
+export const Details: Component = (data: RawReceiptData, strings: LangStrings, langCode: string) =>
+	renderDetails({
+		total: data.total_value,
+		date: data.timestamp,
+		retailerCode: data.retailer_basket_code,
+		currencySymbol: data.chain.currency_symbol
+	}, strings.details, langCode);

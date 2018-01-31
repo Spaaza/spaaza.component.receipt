@@ -1,9 +1,12 @@
-import { LangBlock } from "../common/language";
+import { Component } from "../common/format";
+import { LangStrings } from "../common/language";
+import { RawReceiptData } from "../common/receiptdata";
 
-/**
- * Show an error message in case the component cannot render for some reason.
- */
-const BarCode = (data: any, strings: LangBlock, langCode: string) => {
+interface BarCodeData {
+	retailerCode?: string;
+}
+
+const renderBarCode = (data: BarCodeData) => {
 	if (! data.retailerCode) {
 		return ``;
 	}
@@ -14,4 +17,10 @@ const BarCode = (data: any, strings: LangBlock, langCode: string) => {
 	`;
 };
 
-export default BarCode;
+/**
+ * Show a barcode for any provided retailer code.
+ */
+export const BarCode: Component = (data: RawReceiptData, strings: LangStrings) =>
+	renderBarCode({
+		retailerCode: data.retailer_basket_code
+	});

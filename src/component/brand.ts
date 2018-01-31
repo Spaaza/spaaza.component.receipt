@@ -1,11 +1,12 @@
-import { entities } from "../common/format";
-import { LangBlock } from "../common/language";
+import { Component, entities } from "../common/format";
+import { LangBlock, LangStrings } from "../common/language";
+import { RawReceiptData } from "../common/receiptdata";
 
-/**
- * Show the chain's logo and receipt header.
- * @type {Component}
- */
-const Brand = (data: any, strings: LangBlock, langCode: string) => {
+interface BrandData {
+	logoURL: string;
+}
+
+const renderBrand = (data: BrandData, strings: LangBlock) => {
 	let html = `<table>`;
 
 	if (data.logoURL) {
@@ -34,4 +35,10 @@ const Brand = (data: any, strings: LangBlock, langCode: string) => {
 	return html;
 };
 
-export default Brand;
+/**
+ * Show the chain's logo and receipt header.
+ */
+export const Brand: Component = (data: RawReceiptData, strings: LangStrings) =>
+	renderBrand({
+		logoURL: data.chain.logo_url
+	}, strings.brand);

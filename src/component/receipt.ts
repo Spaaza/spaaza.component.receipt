@@ -1,48 +1,46 @@
-import { LangStrings, LangBlock } from "../common/language";
-import brand from "./brand";
-import details from "./details";
-import lineitems from "./lineitems";
-import linetaxes from "./linetaxes";
-import totals from "./totals";
-import wallet from "./wallet";
-import download from "./download";
-import store from "./store";
-import barcode from "./barcode";
+import { RawReceiptData } from "../common/receiptdata";
+import { Component, divider } from "../common/format";
+import { LangStrings } from "../common/language";
 
-type Component = (data: any, strings: LangBlock, langCode: string) => string;
+import { Brand } from "./brand";
+import { Details } from "./details";
+import { LineItems } from "./lineitems";
+import { Taxes } from "./taxes";
+import { Totals } from "./totals";
+import { MonetaryWallet, PointsWallet } from "./wallet";
+import { Download } from "./download";
+import { Store } from "./store";
+import { BarCode } from "./barcode";
 
 /**
- * Render the full receipt with text substitutions.
- * @param {object} data 
- * @param {LangStrings} strings 
- * @param {string} langCode 
+ * Render the full receipt.
  */
-const Receipt = (data: any, strings: LangStrings, langCode: string) => {
-	const layout = {
-		"header": ["brand", "details"],
-		"content": ["lineitems", "linetaxes", "totals", "wallet", "pointswallet", "download"],
-		"footer": ["store", "barcode"]
-	};
-	const components = { brand, details, lineitems, linetaxes, totals, wallet, download, store, barcode };
-
-	let result = `<div class="main content">`;
-
-	for (const section in layout) {
-		result += `<section>`;
-
-		for (const componentName of (layout[section] as string[])) {
-			// alias pointswallet to wallet
-			const component = (componentName === "pointswallet" ? components["wallet"] : components[componentName]) as Component;
-			const compStrings = (componentName === "pointswallet" ? strings["wallet"] : strings[componentName]) as LangBlock;
-			
-			result += component(data[componentName], compStrings, langCode);
+export const Receipt: Component = (data: RawReceiptData, strings: LangStrings, langCode: string) => {
+	const rc = (c: Component) => c(data, strings, langCode);
+	const rcDiv = (c: Component) => {
+		let html = rc(c);
+		if (html.length) {
+			html = divider + html; 
 		}
-
-		result += `</section>`;
-	}
-
-	result += `</div>`;
-	return result;
+		return html;
+	};
+	
+	return `<div class="main content">
+		<section>
+			${rc(Brand)}
+			${rc(Details)}
+		</section>
+		<section>
+			${rcDiv(LineItems)}
+			${rcDiv(Taxes)}
+			${rcDiv(Totals)}
+			${rcDiv(MonetaryWallet)}
+			${rcDiv(PointsWallet)}
+			${rcDiv(Download)}
+		</section>
+		<section>
+			${rcDiv(Store)}
+			${rc(BarCode)}
+		</section>
+	</div>`;
 };
-
-export default Receipt;
