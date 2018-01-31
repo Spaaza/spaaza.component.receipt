@@ -1,6 +1,6 @@
 import { RawReceiptData } from "./common/receiptdata";
-import getStrings, { applySubstitutions, overrideStrings, transformStrings, LangStrings } from "./common/language";
-import { entities } from "./common/format";
+import getStrings, { applySubstitutions, overrideStrings, LangStrings } from "./common/language";
+import { h, renderJSX } from "./common/format";
 import { Receipt } from "./component/receipt";
 import { ReceiptError } from "./component/error";
 import styles from "./receipt.less";
@@ -41,14 +41,13 @@ function getConfig(host: HTMLElement) {
 
 function redraw(host: HTMLElement, root: HTMLElement) {
 	const config = getConfig(host);
-	let contents: string;
+	let contents: JSX.Element | null;
 	if (config.receipt) {
-		const substituted = applySubstitutions(config.strings, {
+		const finalStrings = applySubstitutions(config.strings, {
 			$GIVEN_NAME: config.receipt.shopper.first_name,
 			$FAMILY_NAME: config.receipt.shopper.last_name,
 			$CHAIN_NAME: config.receipt.chain.name,
 		});
-		const finalStrings = transformStrings(substituted, s => entities(s));
 
 		contents = Receipt(config.receipt, finalStrings, config.langCode);
 	}
@@ -57,7 +56,12 @@ function redraw(host: HTMLElement, root: HTMLElement) {
 		contents = ReceiptError({} as RawReceiptData, config.strings, config.langCode);
 	}
 
-	root.innerHTML = `<style>${styles}</style>\n<div class="spaaza-receipt">${contents}</div>`;
+	root.appendChild(renderJSX(
+		<div class="spaaza-receipt">
+			<style>{styles}</style>
+			{contents}
+		</div>
+	)!);
 }
 
 // ----

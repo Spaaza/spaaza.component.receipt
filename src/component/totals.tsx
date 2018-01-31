@@ -1,4 +1,4 @@
-import { amount, entities, Component, sumFieldValuesConditional } from "../common/format";
+import { amount, Component, h, sumFieldValuesConditional } from "../common/format";
 import { LangBlock, LangStrings } from "../common/language";
 import { RawReceiptData, RawVoucherData } from "../common/receiptdata";
 
@@ -12,38 +12,27 @@ interface TotalsData {
 }
 
 const renderTotals = (data: TotalsData, strings: LangBlock) => {
-	const { basketVouchers } = data;
-
-	let html = "";
-	html += `<table class="receipt-totals">`;
-
-	if (basketVouchers && basketVouchers.length > 0) {
-		for (const vouch of basketVouchers) {
-			html += `
-				<tr>
-					<td>${strings.voucher}: ${entities(vouch.campaign_title)}</td>
-					<td align="right" class="voucher">(${ amount(vouch.amount, data.currencySymbol) })</td>
-				</tr>
-			`;
-		}
-	}
-
-	html += `
-		<tr class="receipt-subtotal">
-			<td>${strings.subtotal}</td>
-			<td class="align-right">${amount(data.subtotal, data.currencySymbol)}</td>
+	const renderVoucher = (vouch: RawVoucherData) => (
+		<tr>
+			<td>{strings.voucher}: {vouch.campaign_title}</td>
+			<td align="right" class="voucher">({ amount(vouch.amount, data.currencySymbol) })</td>
 		</tr>
-	`;
+	);
 
-	html += `
-		<tr class="receipt-strong">
-			<td>${strings.total}</td>
-			<td class="align-right">${amount(data.total, data.currencySymbol)}</td>
-		</tr>
-	`;
+	return (
+		<table class="receipt-totals">
+			{ data.basketVouchers.map(renderVoucher) }
 
-	html += `</table>`;
-	return html;
+			<tr class="receipt-subtotal">
+				<td>{strings.subtotal}</td>
+				<td class="align-right">{amount(data.subtotal, data.currencySymbol)}</td>
+			</tr>
+			<tr class="receipt-strong">
+				<td>{strings.total}</td>
+				<td class="align-right">{amount(data.total, data.currencySymbol)}</td>
+			</tr>
+		</table>
+	);
 };
 
 /**

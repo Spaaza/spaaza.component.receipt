@@ -22,31 +22,6 @@ export const amount = (value: number | string, currencySymbol: string) => {
 };
 
 /**
- * Make an html-safe representation of a value.
- */
-export const entities = (val: string | number) =>
-	(val || "").toString().replace(/&/g, "&amp;")
-		.replace(/</g, "&lt;")
-		.replace(/>/g, "&gt;")
-		.replace(/"/g, "&quot;")
-		.replace(/%u/g, "&#x");
-
-/**
- * A divider block
- */
-export const divider = `
-<table class="divider-wrapper">
-	<tr>
-		<td class="divider-spacer">
-		<table class="divider" cellpadding="0" cellspacing="0">
-			<tr><td></td></tr>
-		</table>
-		</td>
-	</tr>
-</table>
-`;
-
-/**
  * Sum the values of the field in every record in an array
  */
 export const sumFieldValues = <T extends object, K extends keyof T>(arr: T[], fieldName: K) =>

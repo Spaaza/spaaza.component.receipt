@@ -1,6 +1,6 @@
-import { amount, entities, Component, sumFieldValues, sumFieldValuesConditional } from "../common/format";
+import { amount, Component, h, sumFieldValues, sumFieldValuesConditional } from "../common/format";
 import { LangBlock, LangStrings } from "../common/language";
-import { RawReceiptData, RawWalletData } from "../common/receiptdata";
+import { RawReceiptData, RawWalletData, RawContributionData } from "../common/receiptdata";
 
 interface WalletData {
 	wallet?: RawWalletData;
@@ -13,52 +13,54 @@ const renderWallet = (data: WalletData, strings: LangBlock) => {
 	const { wallet, totalEarned, totalSpent, currencySymbol } = data;
 	if (! (wallet && (totalEarned || totalSpent))) {
 		// don't add a wallet section if it does not exist or if nothing changed
-		return "";
+		return null;
 	}
 
-	let html = "";
-	html += `<table class="receipt-wallet">`;
-
-	html += `<tr><td class="receipt-strong">${entities(wallet.title)}</td></tr>`;
-
-	if (totalEarned) {
-		html += `
-			<tr>
-				<td>${entities(wallet.title)} ${strings.earned}</td>
-				<td align="right">${ amount(totalEarned, currencySymbol) }</td>
-			</tr>
-		`;
-
-		if (wallet.contributions.length > 1) {
-			for (const contrib of wallet.contributions) {
-				html += `
-					<tr>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;${entities(contrib.campaign_title)}</td>
-						<td align="right">${ amount(contrib.amount, currencySymbol) }</td>
-					</tr>
-				`;
-			}
-		}
-	}
-
-	if (totalSpent) {
-		html += `
-			<tr>
-				<td>${entities(wallet.title)} ${strings.spent}</td>
-				<td align="right">${ amount(totalSpent, currencySymbol) }</td>
-			</tr>
-		`;
-	}
-
-	html += `
-		<tr class="receipt-total">
-			<td>${strings["new-balance"]}</td>
-			<td align="right" class="receipt-strong">${amount(wallet.total, currencySymbol)}</td>
+	const renderContrib = (contrib: RawContributionData) => (
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;{contrib.campaign_title}</td>
+			<td align="right">{amount(contrib.amount, currencySymbol)}</td>
 		</tr>
-	`;
-	html += `</table>`;
+	);
 
-	return html;
+	const renderEarned = () => {
+		if (! totalEarned) {
+			return null;
+		}
+
+		return (
+			<tr>
+				<td>{wallet.title} {strings.earned}</td>
+				<td align="right">{ amount(totalEarned, currencySymbol) }</td>
+			</tr>
+		);
+	};
+
+	const renderSpent = () => {
+		if (! totalSpent) {
+			return null;
+		}
+		return (
+			<tr>
+				<td>{wallet.title} {strings.spent}</td>
+				<td align="right">{ amount(totalSpent, currencySymbol) }</td>
+			</tr>
+		);
+	};
+
+	return (<table class="receipt-wallet">
+		<tr><td class="receipt-strong">{wallet.title}</td></tr>
+
+		{ renderEarned() }
+		{ (wallet.contributions.length > 1) && wallet.contributions.map(renderContrib) }
+		{ renderSpent() }
+
+		<tr class="receipt-total">
+			<td>{strings["new-balance"]}</td>
+			<td align="right" class="receipt-strong">{amount(wallet.total, currencySymbol)}</td>
+		</tr>
+		</table>
+	);
 };
 
 const applyWalletPointsRatio = (value: number, walletPointsRatio: number) => {

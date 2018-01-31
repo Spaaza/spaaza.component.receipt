@@ -1,4 +1,4 @@
-import { Component } from "../common/format";
+import { Component, h } from "../common/format";
 import { LangStrings } from "../common/language";
 import { RawReceiptData } from "../common/receiptdata";
 
@@ -8,13 +8,13 @@ interface BarCodeData {
 
 const renderBarCode = (data: BarCodeData) => {
 	if (! data.retailerCode) {
-		return ``;
+		return null;
 	}
-	return `
+	return (
 		<div class="content barcode">
-			<div class="image" title="Barcode: ${data.retailerCode}" style="background-image: url(https://missetam.spaaza.com/barcode/${data.retailerCode})"></div>
+			<div class="image" title={"Barcode: " + data.retailerCode} style={"background-image: url(https://missetam.spaaza.com/barcode/" + data.retailerCode + ")"}></div>
 		</div>
-	`;
+	);
 };
 
 /**

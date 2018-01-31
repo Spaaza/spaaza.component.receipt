@@ -1,4 +1,4 @@
-import { entities, Component } from "../common/format";
+import { Component, h } from "../common/format";
 import { RawReceiptData } from "../common/receiptdata";
 import { LangBlock, LangStrings } from "../common/language";
 
@@ -7,11 +7,12 @@ interface DownloadData {
 }
 
 const renderDownload = (data: DownloadData, strings: LangBlock, langCode: string) => {
-	let html = "";
-	if (data.downloadURL) {
-		html += `<div class="btn-download"><a href="${entities(data.downloadURL)}" target="_blank">${strings.label}</a><div>`;
+	if (! data.downloadURL) {
+		return null;
 	}
-	return html;
+	return (<div class="btn-download">
+		<a href={data.downloadURL} target="_blank">{strings.label}</a>
+	</div>);
 };
 
 /**
