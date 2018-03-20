@@ -9,7 +9,8 @@
 		"message": "Informatie over je aankoop bij $CHAIN_NAME:",
 		"charged": "In rekening gebracht",
 		"order-number": "Bestellingsnummer",
-		"date": "Datum"
+		"date": "Datum",
+		"payment":"Betaalmethode"
 	},
 
 	"lineitems": {

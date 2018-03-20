@@ -6,6 +6,7 @@ interface DetailsData {
 	total: number;
 	date: string;
 	retailerCode?: string;
+	paymentMethod?: string;
 	currencySymbol: string;
 }
 
@@ -32,11 +33,19 @@ const renderDetails = (data: DetailsData, strings: LangBlock, langCode: string) 
 		</tr>
 	) : null;
 
+	const payment = data.paymentMethod ? (
+		<tr>
+			<td class="">{strings.payment}</td>
+			<td class="align-right">{data.paymentMethod}</td>
+		</tr>
+	) : null;
+
 	return (<table>
 		{message}
 		{total}
 		{order}
 		{date}
+		{payment}
 	</table>);
 };
 
@@ -48,5 +57,6 @@ export const Details: Component = (data: RawReceiptData, strings: LangStrings, l
 		total: data.total_value,
 		date: data.timestamp,
 		retailerCode: data.retailer_basket_code,
+		paymentMethod: data.payment_method,
 		currencySymbol: data.chain.currency_symbol
 	}, strings.details, langCode);

@@ -9,7 +9,8 @@
 		"message": "Your order details from $CHAIN_NAME:",
 		"charged": "CHARGED",
 		"order-number": "Order number",
-		"date": "Date"
+		"date": "Date",
+		"payment":"Payment method"
 	},
 
 	"lineitems": {

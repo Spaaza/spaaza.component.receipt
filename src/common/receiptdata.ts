@@ -94,6 +94,7 @@ export interface RawReceiptData {
 	quantity: number;
 	subtotal: number;
 	total_value: number;
+	note: string;
 	payment_method: string;
 	download_url?: string;
 	retailer_basket_code?: string;
