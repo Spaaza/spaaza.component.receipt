@@ -12,6 +12,7 @@ import { Download } from "./download";
 import { Store } from "./store";
 import { BarCode } from "./barcode";
 import { Divider } from "./divider";
+import { Note } from "./note";
 
 /**
  * Render the full receipt.
@@ -41,6 +42,7 @@ export const Receipt: Component = (data: RawReceiptData, strings: LangStrings, l
 		</section>
 		<section>
 			{rcDiv(Store)}
+			{rcDiv(Note)}
 			{rc(BarCode)}
 		</section>
 	</div>;
