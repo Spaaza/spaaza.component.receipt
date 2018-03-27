@@ -77,7 +77,7 @@ export const MonetaryWallet: Component = (data: RawReceiptData, strings: LangStr
 	renderWallet({
 		wallet: data.monetary_wallet && {
 			title: data.monetary_wallet.title,
-			total: data.monetary_wallet.total,
+			total: applyWalletPointsRatio(data.monetary_wallet.total, data.wallet_points_ratio),
 			contributions: data.monetary_wallet.contributions.map(c => ({
 				campaign_title: c.campaign_title,
 				amount: applyWalletPointsRatio(c.amount, data.wallet_points_ratio)

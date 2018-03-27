@@ -33,19 +33,18 @@ const renderDetails = (data: DetailsData, strings: LangBlock, langCode: string) 
 		</tr>
 	) : null;
 
-	const payment = data.paymentMethod ? (
+	/*const payment = data.paymentMethod ? (
 		<tr>
 			<td class="">{strings.payment}</td>
 			<td class="align-right">{data.paymentMethod}</td>
 		</tr>
-	) : null;
+	) : null;*/
 
 	return (<table>
 		{message}
 		{total}
 		{order}
 		{date}
-		{payment}
 	</table>);
 };
 
