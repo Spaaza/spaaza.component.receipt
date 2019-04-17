@@ -2,6 +2,7 @@ import { RawReceiptData } from "../common/receiptdata";
 import { LangStrings } from "./language";
 
 export type Component = (data: RawReceiptData, strings: LangStrings, langCode: string) => JSX.Element | null;
+export type ValueComponent = (props: {}) => JSX.Element;
 
 /**
  * Format a value as a monetary or points amount.
@@ -39,9 +40,19 @@ export const sumFieldValuesConditional = <T extends object, K extends keyof T, K
 		.reduce((s, v) => (s as any) + v, 0);
 
 		
-export function h(nodeName: string, attributes: { [k: string]: string; } | null, ...args: any[]): JSX.Element {
+export function h(node: string | ValueComponent, attributes: { [k: string]: string; } | null, ...args: any[]): JSX.Element {
+
 	const children = args.length ? ([] as JSX.Element[]).concat(...args) : null;
-	return { nodeName, attributes, children };
+
+	if (typeof node === "string") {
+		return { nodeName: node, attributes, children };
+	}
+
+	// else ValueComponent
+	const props: any = attributes;
+	if(children)
+		props.children = children;
+	return node(props)
 }
 
 export function renderJSX(vnode: JSX.Element | string | number | null | undefined) {
@@ -66,6 +77,15 @@ export function renderJSX(vnode: JSX.Element | string | number | null | undefine
 	if (vnode.attributes) {
 		Object.keys(vnode.attributes).forEach(k => {
 			const attrVal = vnode.attributes![k];
+
+			// event handler, onClick, etc...
+			if (typeof attrVal === "function") {
+				const eventName = k.substr(2).toLowerCase();
+				elem.addEventListener(eventName, attrVal);
+				return;
+			}
+
+			// do something weird with objects (why?)
 			if (typeof attrVal === "object") {
 				let allBool = true;
 				const srlz = Object.keys(attrVal)
@@ -83,9 +103,13 @@ export function renderJSX(vnode: JSX.Element | string | number | null | undefine
 				.filter(t => !!t)
 				.join(allBool ? " " : ", ");
 				elem.setAttribute(k, srlz);
+				return;
 			}
-			else {
+
+			// normal string attributes
+			if (typeof attrVal === "string") {
 				elem.setAttribute(k, attrVal);
+				return;
 			}
 		});
 	}
