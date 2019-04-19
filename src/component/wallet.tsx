@@ -7,12 +7,13 @@ interface WalletData {
 	totalEarned: number;
 	totalSpent: number;
 	currencySymbol: string;
+	showPoints:boolean;
 }
 
 const renderWallet = (data: WalletData, strings: LangBlock) => {
-	const { wallet, totalEarned, totalSpent, currencySymbol } = data;
-	if (! (wallet && (totalEarned || totalSpent))) {
-		// don't add a wallet section if it does not exist or if nothing changed
+	const { wallet, totalEarned, totalSpent, currencySymbol, showPoints } = data;
+	if (! (wallet && showPoints && (totalEarned || totalSpent))) {
+		// don't add a wallet section if it does not exist or if nothing changed and don't show points if set
 		return null;
 	}
 
@@ -54,8 +55,8 @@ const renderWallet = (data: WalletData, strings: LangBlock) => {
 		{ renderEarned() }
 		{ (wallet.contributions.length > 1) && wallet.contributions.map(renderContrib) }
 		{ renderSpent() }
-
-		<tr class="receipt-total">
+	
+		<tr>
 			<td>{strings["new-balance"]}</td>
 			<td align="right" class="receipt-strong">{amount(wallet.total, currencySymbol)}</td>
 		</tr>
@@ -83,6 +84,7 @@ export const MonetaryWallet: Component = (data: RawReceiptData, strings: LangStr
 				amount: applyWalletPointsRatio(c.amount, data.wallet_points_ratio)
 			}))
 		},
+		showPoints:true,
 		totalEarned: applyWalletPointsRatio(sumFieldValues(data.monetary_wallet ? data.monetary_wallet.contributions : [], "amount"), data.wallet_points_ratio),
 		totalSpent: applyWalletPointsRatio(sumFieldValuesConditional(data.basket_vouchers, "amount", "type", "wallet"), data.wallet_points_ratio),
 		currencySymbol: data.wallet_points_ratio > 0 ? "pts" : data.chain.currency_symbol, // substitute "pts" when using points for wallets
@@ -94,6 +96,7 @@ export const MonetaryWallet: Component = (data: RawReceiptData, strings: LangStr
 export const PointsWallet: Component = (data: RawReceiptData, strings: LangStrings) =>
 	renderWallet({
 		wallet: data.points_wallet,
+		showPoints: data.show_points,
 		totalEarned: (data.points_wallet && sumFieldValues(data.points_wallet.contributions, "amount")) || 0,
 		totalSpent: 0,
 		currencySymbol: "pts"

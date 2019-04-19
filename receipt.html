@@ -16,9 +16,6 @@
         -webkit-text-size-adjust: 100%;
         width: 100% !important;
     }
-    section {
-        margin: 4em;
-    }
     header {
       color: #999999;
       text-align: center;
@@ -27,25 +24,30 @@
   <script src="dist/spaaza-receipt.js"></script>
 </head>
 <body>
-  <section>
+  <!-- <section>
     <header>
-      <h1>Didi</h1>
+      <h1>Steps</h1>
     </header>
-    <spaaza-receipt language="nl" walletpointsratio="40">
+    <spaaza-receipt language="nl" walletpointsratio="40" showpoints="false" customnotes="Bedankt voor jouw aankoop. Ruilen of retourneren is mogelijk binnen 30 dagen (afgeprijsde artikelen binnen 7 dagen), met kassabon, mits ongedragen en met aangehecht prijskaartje, alleen in het land van aankoop.">
       <script type="application/json" data-strings="data-strings">
         { "brand": { "title": "Bon" } }
       </script>
       <script type="application/json" data-receipt="data-receipt">
- 	{
-		"id": 335470,
+	{
+		"id": 335639,
 		"retailer_basket_code": "97124319000100004103",
-		"timestamp": "2018-03-27T13:53:22Z",
+		"timestamp": "2018-04-11T14:50:58Z",
 		"type": "in_store",
-		"download_url": "https://s3-eu-west-1.amazonaws.com/test01-receipts-bucket/receipts/335470.pdf",
+		"download_url": "https://s3-eu-west-1.amazonaws.com/test01-receipts-bucket/receipts/335639.pdf",
 		"quantity": 1,
 		"subtotal": 500,
 		"total_value": 500,
-		"payment_method": "unknown",
+		"payment_methods": [
+			{
+				"payment_method": "mastercard",
+				"payment_amount": 500
+			}
+		],
 		"line_items": [
 			{
 				"product_id": 0,
@@ -134,6 +136,11 @@
 			},
 			"send_email_receipt": true
 		},
+		"employee": {
+			"code": "AMS_007",
+			"name": "James Bond"
+		},
+		"notes": "Notes text here",
 		"monetary_wallet": {
 			"contributions": [
 				{
@@ -141,7 +148,7 @@
 					"campaign_title": "100 punt verdiend = €2.50 saldo"
 				}
 			],
-			"total": 30,
+			"total": 67.5,
 			"title": "Steps Happy Points"
 		},
 		"points_wallet": {
@@ -157,19 +164,19 @@
 	}
       </script>
     </spaaza-receipt>
-  </section>
+  </section> -->
   <section>
     <header>
       <h1>Miss Etam</h1>
     </header>
-    <spaaza-receipt language="nl">
+    <spaaza-receipt language="nl" showpoints="false">
       <script type="application/json" data-strings="data-strings">
         { "brand": { "title": "Miss Etam Bon" } }
       </script>
       <script type="application/json" data-receipt="data-receipt">
         {
           "id": 330853,
-          "retailer_basket_code": "100201709128057",
+          "retailer_basket_code": "2018051620050100279924",
           "timestamp": "2017-09-12T08:53:20Z",
           "type": "in_store",
           "download_url": "https://s3-eu-west-1.amazonaws.com/test01-receipts-bucket/receipts/330853.pdf",
@@ -184,7 +191,7 @@
               "barcode": "8718643203512",
               "sku": "",
               "name": "",
-              "description": "",
+              "description": "Hello kitty",
               "type": "",
               "original_price": 0.47,
               "quantity": 1,
@@ -337,6 +344,10 @@
               }
             }
           },
+          "employee": {
+            "code": "AMS_007",
+            "name": "James Bond"
+          },          
           "monetary_wallet": {
             "contributions": [],
             "total": 0,
@@ -362,7 +373,7 @@
     </spaaza-receipt>
   </section>
 
-  <section>
+  <!-- <section>
     <header>
       <h1>Testing Receipt API</h1>
     </header>
@@ -463,6 +474,10 @@
           }
         }
       },
+      "employee": {
+        "code": "AMS_007",
+        "name": "James Bond"
+      },      
       "monetary_wallet": {
         "contributions": [{
           "amount": 8.08,
@@ -629,6 +644,10 @@
             }
           }
         },
+        "employee": {
+          "code": "AMS_007",
+          "name": "James Bond"
+        },        
         "monetary_wallet": {
           "contributions": [
             {
@@ -683,7 +702,7 @@
         { "brand": { "title": "Mijn Bonnetje" } }
       </script>
     </spaaza-receipt>
-  </section>
+  </section> -->
 
 </body>
 </html>

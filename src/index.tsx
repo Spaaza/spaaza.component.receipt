@@ -30,6 +30,20 @@ function getConfig(host: HTMLElement) {
 		// override: show monetary wallet value as points?
 		const walletPointsRatio = Math.max(0, parseFloat(host.getAttribute("walletpointsratio") || "") || 0);
 		receipt.wallet_points_ratio = walletPointsRatio;
+		// show custom notes text
+		const customNotes = host.getAttribute("customnotes") || "";
+		receipt.custom_notes = customNotes;
+		//allow developer to change environment, e.g. URL used for barcode
+		const environment = host.getAttribute("environment") || "";
+		receipt.environment = environment;
+		// show or don't show the points block
+		//set to true by default
+		var showPoints = true;
+		if (host.getAttribute("showpoints")) {
+			//if the showpoints attribute is included then set the value of showPoints to that
+			showPoints = (host.getAttribute("showpoints") === 'true');
+		}
+		receipt.show_points = showPoints;
 	}
 
 	return {

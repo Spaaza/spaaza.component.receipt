@@ -21,7 +21,7 @@ const renderLineItems = (data: LineItemsData, strings: LangBlock) => {
 		return (
 			<tr class="line-item">
 				<td class="align-left">
-					<div class="line-item-name">{item.name || item.barcode}</div>
+					<div class="line-item-name">{item.description || item.barcode}</div>
 				</td>
 				<td class="align-center">{item.quantity}</td>
 				<td class="align-right">
