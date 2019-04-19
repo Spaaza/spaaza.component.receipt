@@ -3,51 +3,38 @@
 
 .spaaza-receipt {
 
-// print layout, also for PDF generation
+// large screen font-size
+font-size: 16px;
+
+// for browser print function
 @media print {
-    div.download {
-      display: none; }
-}
-
-// screen-specific
-@media screen {
-
-  /* Download */
-  .btn-download {
-    width: 100%;
-    padding-bottom: 15px;
-    background-color: #348eda;
-    border-radius: 5px;
-    text-align: center;
-    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 14px;
-    height: 100% !important;
-    line-height: 1.6em;
-    margin: 0;
-    padding: 0;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-  }
-  .btn-download a {
-    background-color: #348eda;
-    border: solid 1px #348eda;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: bold;
-    margin: 0;
-    padding: 12px 25px;
-    text-decoration: none;
-    text-transform: capitalize;
+  font-size: 7pt;  
+  div.download {
+    display: none;
   }
 }
+
+// wkhtmltopdf on alpine linux does not support print media
+// so duplicate this as a class
+html#pdf {
+  font-size: 9pt;  
+  div.download {
+    display: none;
+  }
+}
+
 
 /* -------------------------------------
     GLOBAL RESETS
 ------------------------------------- */
+font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+-webkit-font-smoothing: antialiased;
+line-height: 1.6em;
+-ms-text-size-adjust: 100%;
+-webkit-text-size-adjust: 100%;
+color: black;
+text-align: left;
+
 section {
   margin: 0;
 }
@@ -68,13 +55,12 @@ table {
   border-collapse: separate !important;
   width: 100%;
 }
-table th, table td {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-size: 14px;
-  vertical-align: top;
+table td {
+  font-size: 87%;
 }
 table th {
-  font-size: 12px;
+  vertical-align: top;
+  font-size: 75%;
   text-transform: uppercase;
   font-weight: normal;
   color: #aaaaaa;
@@ -95,9 +81,6 @@ table th {
 /* -------------------------------------
     BODY & CONTAINER
 ------------------------------------- */
-body {
-  background-color: #f6f6f6; }
-
 .body {
   background-color: #f6f6f6;
   width: 100%; }
@@ -107,20 +90,20 @@ body {
    down on a phone or something */
 .container {
   display: block;
-  Margin: 0 auto !important;
-  /* makes it centered */
-  max-width: 580px;
-  padding: 10px;
-  width: auto !important;
-  width: 580px; }
+  margin: 0 auto; // center in enclosing container
+  max-width: 36em;
+  padding: 0.6em;
+  width: auto;
+}
 
 /* This should also be a block element,
   so that it will fill 100% of the .container */
 .content {
   display: block;
+  max-width: 36em;
   margin: 0 auto;
-  max-width: 580px;
-  padding: 10px; }
+  padding: 0.6em;
+}
 
 /* -------------------------------------
     HEADER, FOOTER, MAIN
@@ -134,24 +117,26 @@ body {
 }
 
 .wrapper {
-  padding: 30px; }
+  padding: 2em; }
 
 .content-block {
-  padding: 0 0 30px; }
+  padding: 0 0 2em; }
 
 .header {
-  margin-bottom: 30px;
-  margin-top: 20px;
+  margin-bottom: 2em;
+  margin-top: 1.5em;
   width: 100%; }
 
 .footer {
   clear: both;
-  width: 100%; }
-  .footer * {
-    color: #999999;
-    font-size: 12px; }
-  .footer td {
-    padding: 20px 0; }
+  width: 100%;
+  font-size: 75%; 
+  color: #999999;
+}
+
+.footer td {
+  padding: 2em 0;
+}
 
 /* -------------------------------------
     TYPOGRAPHY
@@ -161,40 +146,32 @@ h2,
 h3,
 h4 {
   color: #111111 !important;
-  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: inherit;
   font-weight: 400;
   line-height: 1.4em;
   margin: 0;
-  margin-bottom: 30px; }
+  margin-bottom: 2em; }
 
 h1 {
-  font-size: 38px;
+  font-size: 230%;
   text-transform: capitalize;
   font-weight: 300; }
 
 h2 {
-  font-size: 24px; }
+  font-size: 150%; }
 
 h3 {
-  font-size: 18px; }
+  font-size: 120%; }
 
 h4 {
-  font-size: 14px;
+  font-size: 87%;
   font-weight: 500; }
 
-p,
-ul,
-ol {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-size: 14px;
+p {
+  font-family: inherit;
   font-weight: normal;
-  margin: 0;
-  margin-bottom: 15px; }
-  p li,
-  ul li,
-  ol li {
-    list-style-position: inside;
-    margin-left: 5px; }
+  margin: 0 0 1.2em 0;
+}
 
 a {
   color: black;
@@ -214,15 +191,16 @@ pre,
 ------------------------------------- */
 .divider {
   border-collapse: separate; }
-  .divider-spacer {
-    padding: 20px 0; }
-  .divider td {
-    border-top: 1px solid #ccc;
-    line-height: 0;
-    font-size: 0;
-    height: 1px;
-    margin: 0;
-    padding: 0; }
+.divider-spacer {
+  padding: 1.5em 0; }
+
+.divider td {
+  border-top: 1px solid #ccc;
+  line-height: 0;
+  font-size: 0;
+  height: 1px;
+  margin: 0;
+  padding: 0; }
 
 /* -------------------------------------
     OTHER STYLES THAT MIGHT BE USEFUL
@@ -286,7 +264,8 @@ pre,
     width: 100% !important; }
   table[class=body] .btn table,
   table[class=body] .btn a {
-    width: 100% !important; } }
+    width: 100% !important; }
+}
 
 /* -------------------------------------
     RECEIPTS
@@ -297,7 +276,7 @@ pre,
 
 .receipt-total { 
   td {
-    font-size:16px;
+    font-size: inherit;
   }
 }
 
@@ -321,7 +300,7 @@ table.receipt-linetaxes td {
 img.brand_logo {
   display: block;
   margin: 3em auto;
-  height: 100px;
+  height: 6em;
 }
 
 h1 {
@@ -341,13 +320,13 @@ h1 {
 /* Download */
 .btn-download {
   width: 100%;
-  padding-bottom: 15px;
+  padding-bottom: 1em;
   background-color:black;
-  border-radius: 5px;
+  border-radius: 0.2em;
   text-align: center;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: inherit;
   -webkit-font-smoothing: antialiased;
-  font-size: 14px;
+  font-size: 87%;
   height: 100% !important;
   line-height: 1.6em;
   margin: 0;
@@ -358,14 +337,13 @@ h1 {
 .btn-download a {
   background-color:black;
   border: solid 1px black;
-  border-radius: 5px;
+  border-radius: 0.2em;
   color: white;
   cursor: pointer;
   display: inline-block;
-  font-size: 14px;
   font-weight: bold;
   margin: 0;
-  padding: 12px 25px;
+  padding: 0.75em 1.5em;
   text-decoration: none;
   text-transform: capitalize;
 }
@@ -388,7 +366,7 @@ h1 {
   .image {
     background-position: center top;
     background-repeat: no-repeat;
-    height: 45px;
+    height: 2.8em;
   }
 }
 
