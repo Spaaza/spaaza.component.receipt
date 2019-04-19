@@ -15,7 +15,7 @@ const renderTotals = (data: TotalsData, strings: LangBlock) => {
 	const renderVoucher = (vouch: RawVoucherData) => (
 		<tr>
 			<td>{strings.voucher}: {vouch.campaign_title}</td>
-			<td align="right" class="voucher">({ amount(vouch.amount, data.currencySymbol) })</td>
+			<td align="right" class="voucher">- { amount(vouch.amount, data.currencySymbol) }</td>
 		</tr>
 	);
 
@@ -27,7 +27,7 @@ const renderTotals = (data: TotalsData, strings: LangBlock) => {
 				<td>{strings.subtotal}</td>
 				<td class="align-right">{amount(data.subtotal, data.currencySymbol)}</td>
 			</tr>
-			<tr class="receipt-strong">
+			<tr class="receipt-strong receipt-total">
 				<td>{strings.total}</td>
 				<td class="align-right">{amount(data.total, data.currencySymbol)}</td>
 			</tr>

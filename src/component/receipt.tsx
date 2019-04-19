@@ -6,13 +6,14 @@ import { Brand } from "./brand";
 import { Details } from "./details";
 import { LineItems } from "./lineitems";
 import { Taxes } from "./taxes";
+import { PaymentMethods } from "./paymentmethods";
 import { Totals } from "./totals";
 import { MonetaryWallet, PointsWallet } from "./wallet";
 import { Download } from "./download";
 import { Store } from "./store";
 import { BarCode } from "./barcode";
 import { Divider } from "./divider";
-import { Note } from "./note";
+import { Notes } from "./notes";
 
 /**
  * Render the full receipt.
@@ -36,6 +37,7 @@ export const Receipt: Component = (data: RawReceiptData, strings: LangStrings, l
 			{rcDiv(LineItems)}
 			{rcDiv(Taxes)}
 			{rcDiv(Totals)}
+			{rc(PaymentMethods)}
 			{rcDiv(MonetaryWallet)}
 			{rcDiv(PointsWallet)}
 			<div class="download">
@@ -45,7 +47,7 @@ export const Receipt: Component = (data: RawReceiptData, strings: LangStrings, l
 		</section>
 		<section>
 			{rcDiv(Store)}
-			{rcDiv(Note)}
+			{rcDiv(Notes)}
 			{rc(BarCode)}
 		</section>
 	</div>;

@@ -14,6 +14,7 @@ export interface LangStrings {
 	details: LangBlock;
 	lineitems: LangBlock;
 	taxes: LangBlock;
+	paymentmethods: LangBlock;
 	totals: LangBlock;
 	wallet: LangBlock;
 	download: LangBlock;

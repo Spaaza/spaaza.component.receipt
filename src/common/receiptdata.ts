@@ -88,20 +88,35 @@ export interface RawVoucherData {
 	type: string;
 }
 
+export interface RawPaymentMethodData {
+	payment_method: string;
+	payment_amount: number;
+}
+
+export interface RawEmployeeData {
+	name: string;
+	code: string;
+}
+
 export interface RawReceiptData {
 	id: string;
 	timestamp: string; // ISO date
 	quantity: number;
 	subtotal: number;
 	total_value: number;
-	note: string;
-	payment_method: string;
+	notes: string;
+	custom_notes: string;
+	environment: string;
+	show_points: boolean;
 	download_url?: string;
 	retailer_basket_code?: string;
 	wallet_points_ratio: number;
 
+	employee: RawEmployeeData;
+
 	line_items?: RawLineItemData[];
 	tax_lines?: RawTaxLineData[];
+	payment_methods?: RawPaymentMethodData[];
 
 	chain: RawChainData;
 	shopper: RawShopperData;
