@@ -15,7 +15,8 @@ export default [
 		output: {
 			file: pkg.main,
 			format: "iife",
-			name: "SpaazaReceipt"
+			name: "SpaazaReceipt",
+			sourcemap: true,
 		},
 		plugins: [
 			resolve(),

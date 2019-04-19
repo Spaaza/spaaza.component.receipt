@@ -25,7 +25,7 @@
     "noFallthroughCasesInSwitch": true,
 
     "moduleResolution": "node",
-    "sourceMap": false,
+    "sourceMap": true,
     
     "noEmitOnError": true
   },
