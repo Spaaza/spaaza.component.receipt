@@ -10,11 +10,16 @@ To install project dependencies run:
 
 Open receipt.html in a browser to test. No hot-reload right now.
 
+This component seems to be written in a custom lightweight framework that seems to be
+a mix between preact and "Stateless Functional Component" as described at:
+
+https://apimirror.com/typescript/handbook/jsx#value-based-elements
+
+## Usage
+
 ### Build production bundle
 
 ``` yarn build ```
-
-### How to use
 
 Include the receipt JS in your site:
 
@@ -43,6 +48,14 @@ You can specify the language the component should use by adding a `language` att
 You may specify a language by its country code or a full language code like `nl-NL`.
 
 The default language is `en-GB`. Currently `en-GB` and `nl-NL` are provided.
+
+### Setting the PDF Conversion endpoint
+
+```
+<spaaza-receipt download-url="http://localhost:8000/">...</spaaza-receipt>
+```
+
+Defaults to `https://services-prod.spaaza.com`.
 
 ### Overriding Specific Strings
 

@@ -23,7 +23,7 @@ export const Receipt: Component = (data: RawReceiptData, strings: LangStrings, l
 	const rcDiv = (c: Component) => {
 		const ic = rc(c);
 		if (ic) {
-			return (<div>{rc(Divider)}{ic}</div>);
+			return (<div><Divider />{ic}</div>);
 		}
 		return ic;
 	};
@@ -40,7 +40,10 @@ export const Receipt: Component = (data: RawReceiptData, strings: LangStrings, l
 			{rc(PaymentMethods)}
 			{rcDiv(MonetaryWallet)}
 			{rcDiv(PointsWallet)}
-			{rcDiv(Download)}
+			<div class="download">
+				<Divider />
+				{rc(Download)}
+			</div>
 		</section>
 		<section>
 			{rcDiv(Store)}

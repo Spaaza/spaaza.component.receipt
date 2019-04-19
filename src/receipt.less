@@ -1,10 +1,57 @@
 // since we can't always count on shadow dom embedding etc.,
 // wrap all styles in a .spaaza-receipt namespace
+
 .spaaza-receipt {
+
+// print layout, also for PDF generation
+@media print {
+    div.download {
+      display: none; }
+}
+
+// screen-specific
+@media screen {
+
+  /* Download */
+  .btn-download {
+    width: 100%;
+    padding-bottom: 15px;
+    background-color: #348eda;
+    border-radius: 5px;
+    text-align: center;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    height: 100% !important;
+    line-height: 1.6em;
+    margin: 0;
+    padding: 0;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+  .btn-download a {
+    background-color: #348eda;
+    border: solid 1px #348eda;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    padding: 12px 25px;
+    text-decoration: none;
+    text-transform: capitalize;
+  }
+}
 
 /* -------------------------------------
     GLOBAL RESETS
 ------------------------------------- */
+section {
+  margin: 0;
+}
+
 table,
 td,
 div,
@@ -55,7 +102,9 @@ body {
   background-color: #f6f6f6;
   width: 100%; }
 
-/* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+/* Set a max-width, and make it display as block so it will
+   automatically stretch to that width, but will also shrink
+   down on a phone or something */
 .container {
   display: block;
   Margin: 0 auto !important;
@@ -65,7 +114,8 @@ body {
   width: auto !important;
   width: 580px; }
 
-/* This should also be a block element, so that it will fill 100% of the .container */
+/* This should also be a block element,
+  so that it will fill 100% of the .container */
 .content {
   display: block;
   margin: 0 auto;
@@ -342,4 +392,4 @@ h1 {
   }
 }
 
-} // .spaaza-receipt namespace
+}  // .spaaza-receipt namespace

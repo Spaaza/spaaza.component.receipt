@@ -4,6 +4,7 @@ import { h, renderJSX } from "./common/format";
 import { Receipt } from "./component/receipt";
 import { ReceiptError } from "./component/error";
 import styles from "./receipt.less";
+import {installPolyfills} from './common/polyfill';
 
 function getConfig(host: HTMLElement) {
 	const getJSONBlock = (type: string) => {
@@ -45,6 +46,8 @@ function getConfig(host: HTMLElement) {
 		}
 		receipt.show_points = showPoints;
 	}
+
+	receipt.download_url = host.getAttribute("download-url") || "https://services-prod.spaaza.com";
 
 	return {
 		receipt,
@@ -89,11 +92,15 @@ function connect(receipt: HTMLElement) {
 	}
 }
 
-function connectAll() {
+function init() {
+	installPolyfills();
+
 	const receipts: HTMLElement[] = [].slice.call(document.querySelectorAll("spaaza-receipt"), 0);
 	for (const receipt of receipts) {
 		connect(receipt);
 	}
+
+	startObserving();
 }
 
 function startObserving() {
@@ -120,13 +127,9 @@ function startObserving() {
 
 if (document.readyState === "loading") {
 	document.addEventListener("readystatechange", () => {
-		if (document.readyState !== "loading") {
-			connectAll();
-			startObserving();
-		}
-	});
-}
-else {
-	connectAll();
-	startObserving();
+		if (document.readyState !== "loading")
+			init();
+	})
+} else {
+	init();
 }
