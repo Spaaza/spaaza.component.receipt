@@ -197,7 +197,7 @@ ol {
     margin-left: 5px; }
 
 a {
-  color: #348eda;
+  color: black;
   text-decoration: underline; }
 
 code,
@@ -295,6 +295,12 @@ pre,
   font-weight: bold;
   text-transform: uppercase; }
 
+.receipt-total { 
+  td {
+    font-size:16px;
+  }
+}
+
 .receipt-emphasis {
   font-style: italic; }
 
@@ -332,9 +338,47 @@ h1 {
   padding-right: .4em;
 }
 
+/* Download */
+.btn-download {
+  width: 100%;
+  padding-bottom: 15px;
+  background-color:black;
+  border-radius: 5px;
+  text-align: center;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  height: 100% !important;
+  line-height: 1.6em;
+  margin: 0;
+  padding: 0;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+.btn-download a {
+  background-color:black;
+  border: solid 1px black;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  padding: 12px 25px;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
 /* Footer */
 .receipt-footer-message {
   text-align: center;
+}
+
+.receipt-notes {
+  p {
+    text-align: center;
+  }
 }
 
 /* Barcode */

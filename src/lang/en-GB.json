@@ -10,7 +10,8 @@
 		"charged": "CHARGED",
 		"order-number": "Order number",
 		"date": "Date",
-		"payment":"Payment method"
+		"payment":"Payment method",
+		"employee-name":"Employee"
 	},
 
 	"lineitems": {
@@ -22,6 +23,8 @@
 		"tax-rate": "VAT Rate",
 		"order-value": "Order value",
 		"tax-value": "VAT"
+	},
+	"paymentmethods": {
 	},
 	"totals": {
 		"subtotal": "Subtotal",

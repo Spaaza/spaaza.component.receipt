@@ -21,7 +21,7 @@ const renderStore = (data: StoreData, strings: LangBlock, langCode: string) => {
 		<tr><td class="align-left">
 			{ data.name && <div>{data.name}</div> }
 			{ data.address && <div>{data.address}</div> }
-			{ (data.postalcode || data.city) && <div>{data.postalcode}, {data.city}</div> }
+			{ (data.postalcode || data.city) && <div>{data.postalcode} {data.city}</div> }
 			{ data.email && <div><a href={"mailto:" + data.email}>{data.email}</a></div> }
 			{ data.website && <div><a href={data.website} target="_blank">{data.website}</a></div> }
 			{ data.contact && <a href={"tel:" + data.contact}>{data.contact}</a> }

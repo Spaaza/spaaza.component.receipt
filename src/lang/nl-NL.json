@@ -10,9 +10,9 @@
 		"charged": "In rekening gebracht",
 		"order-number": "Bestellingsnummer",
 		"date": "Datum",
-		"payment":"Betaalmethode"
+		"payment":"Betaalmethode",
+		"employee-name":"Werknemer"
 	},
-
 	"lineitems": {
 		"name": "Naam",
 		"quantity": "Aantal",
@@ -22,6 +22,8 @@
 		"tax-rate": "BTW %",
 		"order-value": "Waarde",
 		"tax-value": "BTW"
+	},
+	"paymentmethods": {
 	},
 	"totals": {
 		"subtotal": "Subtotaal",
