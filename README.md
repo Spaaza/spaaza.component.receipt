@@ -52,10 +52,12 @@ The default language is `en-GB`. Currently `en-GB` and `nl-NL` are provided.
 ### Setting the PDF Conversion endpoint
 
 ```
-<spaaza-receipt download-url="http://localhost:8000/">...</spaaza-receipt>
+<spaaza-receipt download-url="http://localhost:8000">...</spaaza-receipt>
 ```
 
 Defaults to `https://services-prod.spaaza.com`.
+
+Note: omit the trailing slash.
 
 ### Overriding Specific Strings
 

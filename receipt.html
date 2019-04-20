@@ -5,20 +5,18 @@
   <meta charset="utf-8">
   <style>
     body {
-        font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        font-size: 16px;
         height: 100% !important;
-        line-height: 1.6em;
+        width: 100% !important;
         margin: 0;
         padding: 0;
-        -ms-text-size-adjust: 100%;
-        -webkit-text-size-adjust: 100%;
-        width: 100% !important;
-    }
-    header {
-      color: #999999;
-      text-align: center;
+
+        /* these styles should all be reset inside the receipt component */
+        font-family: "Times New Roman", serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 10px;
+        color: #999999;
+        text-align: center;
+        line-height: 1em;
     }
   </style>
   <script src="dist/spaaza-receipt.js"></script>
@@ -168,8 +166,10 @@
   <section>
     <header>
       <h1>Miss Etam</h1>
+      <p>download-url="http://localhost:8000"</p>
     </header>
     <spaaza-receipt language="nl" showpoints="false" download-url="https://services-test01.spaaza.com">
+
       <script type="application/json" data-strings="data-strings">
         { "brand": { "title": "Miss Etam Bon" } }
       </script>
@@ -373,11 +373,12 @@
     </spaaza-receipt>
   </section>
 
-  <!-- <section>
+  <section>
     <header>
       <h1>Testing Receipt API</h1>
+      <p>download-url="https://services-test01.spaaza.com"</p>
     </header>
-    <spaaza-receipt>
+    <spaaza-receipt download-url="https://services-test01.spaaza.com">
       <script type="application/json" data-receipt>
       {
       "id": 329589,
@@ -500,7 +501,7 @@
     </script>
     </spaaza-receipt>
   </section>
-
+  <!--
   <section>
     <header>
       <h1>Default</h1>
