@@ -15,7 +15,7 @@ const renderTotals = (data: TotalsData, strings: LangBlock) => {
 	const renderVoucher = (vouch: RawVoucherData) => (
 		<tr>
 			<td>{strings.voucher}: {vouch.campaign_title}</td>
-			<td align="right" class="voucher">- { amount(vouch.amount, data.currencySymbol) }</td>
+			<td align="right" class="voucher">{ amount(vouch.amount * -1, data.currencySymbol) }</td>
 		</tr>
 	);
 
