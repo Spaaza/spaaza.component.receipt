@@ -17,7 +17,7 @@ const renderLineItems = (data: LineItemsData, strings: LangBlock) => {
 	
 	const renderLineItem = (item: RawLineItemData) => {
 		// check if items needs to show original price
-		const isOnSale = item.original_price > item.sale_price;
+		const isOnSale = Math.abs(item.original_price) > Math.abs(item.sale_price);
 		return (
 			<tr class="line-item">
 				<td class="align-left">
