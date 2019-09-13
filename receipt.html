@@ -705,5 +705,162 @@
     </spaaza-receipt>
   </section>
 
+
+  <section>
+    <header>
+      <h1>Test Return  Receipt</h1>
+      <p>download-url="http://localhost:8000"</p>
+    </header>
+    <spaaza-receipt language="nl" showpoints="true" download-url="https://services-test01.spaaza.com">
+
+      <script type="application/json" data-strings="data-strings">
+        { "brand": { "title": "Test" } }
+      </script>
+      <script type="application/json" data-receipt="data-receipt">
+        {
+          "id": 437981,
+          "retailer_basket_code": "20190912-testing-R1",
+          "timestamp": "2019-09-12T15:22:00Z",
+          "type": "in_store",
+          "download_url": "",
+          "quantity": 0,
+          "subtotal": -20,
+          "total_value": -20,
+          "payment_methods": [],
+          "line_items": [
+              {
+                  "product_id": 0,
+                  "barcode": "8718299435640",
+                  "sku": "",
+                  "name": "",
+                  "description": "",
+                  "type": "",
+                  "original_price": 10,
+                  "cost_price": 0,
+                  "sale_price": -10,
+                  "quantity": 2,
+                  "vouchers": 0,
+                  "metadata": {
+                      "color": "",
+                      "size": "",
+                      "image_url": "",
+                      "category": ""
+                  },
+                  "sale_discount": ""
+              }
+          ],
+          "tax_lines": [],
+          "chain": {
+              "id": 1743,
+              "name": "ACME Inc",
+              "email": "",
+              "logo_url": "https://s3-eu-west-1.amazonaws.com/receipts-chain-logo/1743.png",
+              "website_url": "",
+              "currency": "Euro",
+              "currency_symbol": "€",
+              "business": {
+                  "id": 0,
+                  "name": "",
+                  "address": {
+                      "address_1": "",
+                      "address_2": "",
+                      "address_3": "",
+                      "towncity": "",
+                      "postal_code": "",
+                      "country_code": "",
+                      "location": {
+                          "lat": 0,
+                          "lon": 0
+                      },
+                      "google_place_id": ""
+                  },
+                  "phone_number": "",
+                  "email": "",
+                  "website_url": ""
+              },
+              "receipts_service_active": true
+          },
+          "shopper": {
+              "id": 3540234,
+              "user_name": "",
+              "entity_code": "",
+              "first_name": "Deleted",
+              "last_name": "Deleted",
+              "country_code": "",
+              "gender": "",
+              "birthday": null,
+              "total_points_balance": 0,
+              "email": "3540234@deleted.spaaza.com",
+              "shipping_address": {
+                  "address_1": "",
+                  "address_2": "",
+                  "address_3": "",
+                  "towncity": "",
+                  "postal_code": "",
+                  "country_code": "",
+                  "location": {
+                      "lat": 0,
+                      "lon": 0
+                  },
+                  "google_place_id": ""
+              },
+              "billing_address": {
+                  "address_1": "",
+                  "address_2": "",
+                  "address_3": "",
+                  "towncity": "",
+                  "postal_code": "",
+                  "country_code": "",
+                  "location": {
+                      "lat": 0,
+                      "lon": 0
+                  },
+                  "google_place_id": ""
+              },
+              "send_email_receipt": true,
+              "opted_in": true
+          },
+          "employee": {
+              "code": "0012089",
+              "name": "JOCHEMS"
+          },
+          "notes": "Any notes go here",
+          "monetary_wallet": {
+              "contributions": [
+                  {
+                      "amount": -2,
+                      "campaign_title": ""
+                  }
+              ],
+              "total": 4299.66,
+              "title": ""
+          },
+          "points_wallet": {
+              "contributions": [
+                  {
+                      "amount": -3,
+                      "campaign_title": ""
+                  }
+              ],
+              "total": 1259.75,
+              "title": ""
+          },
+          "basket_vouchers": [
+              {
+                  "campaign_title": "ACME Loyalty Campaign [RET]",
+                  "voucher_text": "testing again",
+                  "amount": -5,
+                  "type": "loyalty"
+              }
+          ],
+          "template_content": {
+              "subject": "",
+              "background_color": ""
+          }
+      }
+      </script>
+    </spaaza-receipt>
+  </section>
+
 </body>
 </html>
