@@ -39,7 +39,7 @@ export const sumFieldValuesConditional = <T extends object, K extends keyof T, K
 		.map(i => i[fieldName])
 		.reduce((s, v) => (s as any) + v, 0);
 
-		
+
 export function h(node: string | ValueComponent, attributes: { [k: string]: string; } | null, ...args: any[]): JSX.Element {
 
 	const children = args.length ? ([] as JSX.Element[]).concat(...args) : null;
@@ -81,7 +81,7 @@ export function renderJSX(vnode: JSX.Element | string | number | null | undefine
 			// event handler, onClick, etc...
 			if (typeof attrVal === "function") {
 				const eventName = k.substr(2).toLowerCase();
-				elem.addEventListener(eventName, attrVal);
+				elem.addEventListener(eventName, attrVal as EventListener);
 				return;
 			}
 

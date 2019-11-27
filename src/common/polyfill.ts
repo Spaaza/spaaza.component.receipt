@@ -4,7 +4,7 @@ export function installPolyfills() {
     // Element.matches (IE 9.0+)
 
     if (!Element.prototype.matches) {
-        Element.prototype.matches = Element.prototype.msMatchesSelector ||
+        Element.prototype.matches = Element.prototype["msMatchesSelector"] ||
             Element.prototype.webkitMatchesSelector;
     }
 
