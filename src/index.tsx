@@ -69,7 +69,7 @@ function redraw(host: HTMLElement, root: HTMLElement) {
 		contents = Receipt(config.receipt, finalStrings, config.langCode);
 	}
 	else {
-		console.warn("Could not render receipt", config);			
+		console.warn("Could not render receipt", config);
 		contents = ReceiptError({} as RawReceiptData, config.strings, config.langCode);
 	}
 
@@ -110,12 +110,21 @@ function startObserving() {
 
 	const callback = (mutations: MutationRecord[]) => {
 		for (const mut of mutations) {
-			const newNodes: Node[] = Array.prototype.slice.call(mut.addedNodes, 0);
-			for (const n of newNodes) {
-				if (n.nodeType === Node.ELEMENT_NODE && n.nodeName.toLowerCase() === "spaaza-receipt") {
-					connect(n as HTMLElement);
+
+			const tryWireNodeList = (nl: NodeList) => {
+				const nodes: Node[] = Array.prototype.slice.call(nl, 0);
+
+				for (const n of nodes) {
+					if (n.nodeType === Node.ELEMENT_NODE && n.nodeName.toLowerCase() === "spaaza-receipt") {
+						connect(n as HTMLElement);
+					}
+					else if (n.hasChildNodes()) {
+						tryWireNodeList(n.childNodes);
+					}
 				}
-			}
+			};
+
+			tryWireNodeList(mut.addedNodes);
 		}
 	};
 	const observer = new MutationObserver(callback);
