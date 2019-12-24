@@ -320,32 +320,34 @@ h1 {
 /* Download */
 .btn-download {
   width: 100%;
-  padding-bottom: 1em;
-  background-color:black;
+  background-color: black;
+  color: white;
   border-radius: 0.2em;
+  border: solid 1px black;
   text-align: center;
+  font-weight: bold;
   font-family: inherit;
   -webkit-font-smoothing: antialiased;
   font-size: 87%;
   height: 45px !important;
-  line-height: 1.6em;
   margin: 0;
   padding: 0;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-}
-.btn-download a {
-  background-color:black;
-  border: solid 1px black;
-  border-radius: 0.2em;
-  color: white;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: bold;
-  margin: 0;
-  padding: 0.75em 1.5em;
-  text-decoration: none;
-  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1em;
+
+  a {
+    text-decoration: none;
+    text-transform: capitalize;
+    color: inherit;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    padding: 0 1.5em;
+  }
 }
 
 /* Footer */
