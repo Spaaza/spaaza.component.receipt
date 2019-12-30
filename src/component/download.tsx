@@ -11,23 +11,33 @@ export const Download: Component = (data: RawReceiptData, strings: LangStrings, 
 	}
 
 	function submit(event: MouseEvent) {
-		const receiptElement = (event.target! as Element).closest("div.spaaza-receipt")!;
-		const form = (event.target! as Element).parentElement!.querySelector('form')!;
-		const content = form.querySelector<HTMLInputElement>('input[name="content"]')!;
+		let target = (event.target! as Element).parentElement!;
 
-		content.value = "";
-		content.value = receiptElement.outerHTML;
-
-		form.submit();
-		event.preventDefault();
+		target.innerHTML = `Generating Receipt...`;
+		fetch(`${data.download_url}/export/pdf`, {
+			method: 'POST',
+			mode: 'cors',
+			cache: 'no-cache',
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				"name": "receipt",
+				"content": target.closest("div.spaaza-receipt")!.outerHTML,
+			})
+		}).then(r => {
+			if(! r.headers.get("Location")) {
+				throw new Error("Missing Location header");
+			}
+			target.innerHTML = `Opening Receipt...`;
+			window.location.href = new URL(r.headers.get("Location")!, data.download_url).href;
+		}).catch(err => {
+			target.innerHTML = `<i style="color: red">Failed to create PDF: ${err}</i>`
+		})
 	}
 
-	const actionURL = `${data.download_url}/receipts/print/${data.id}.pdf`;
 	return (
 		<div class="btn-download">
-			<form target="_blank" method="POST" action={actionURL}>
-				<input type="hidden" name="content" value="<b>empty</b>" />
-			</form>
 			<a onClick={submit}>{strings.download.label}</a>
 		</div>
 	);
