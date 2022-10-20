@@ -14,17 +14,17 @@ const renderLineItems = (data: LineItemsData, strings: LangBlock) => {
 	}
 	
 	const currencySymbol = data.currencySymbol;
-	
 	const renderLineItem = (item: RawLineItemData) => {
 		// check if items needs to show original price
 		const isOnSale = Math.abs(item.original_price) > Math.abs(item.sale_price);
 		return (
 			<tr class="line-item">
-				<td class="align-left">
-					<div class="line-item-name">{item.description || item.barcode}</div>
+				<td class="align-left receipt-name" >
+					{item.name && <strong>{item.name}</strong>}
+					<div>{item.barcode}</div>
 				</td>
-				<td class="align-center">{item.quantity}</td>
-				<td class="align-right">
+				<td class="align-center receipt-quantity" >{item.quantity}</td>
+				<td class="align-right receipt-price">
 					<span class={{ "receipt-original-price": true, "receipt-line-through": isOnSale }}>{amount(item.original_price, currencySymbol)}</span>
 					<span class="receipt-sale-price receipt-strong">{amount(item.sale_price, currencySymbol)}</span>
 				</td>
@@ -36,9 +36,9 @@ const renderLineItems = (data: LineItemsData, strings: LangBlock) => {
 	return (
 		<table class="receipt-lineitems">
 			<tr>
-				<th class="align-left">{strings.name}</th>
-				<th class="align-center">{strings.quantity}</th>
-				<th class="align-right">{strings.price}</th>
+				<th class="align-left receipt-name">{strings.name}</th>
+				<th class="align-center receipt-quantity">{strings.quantity}</th>
+				<th class="align-right receipt-price">{strings.price}</th>
 			</tr>
 			{ data.lineitems.map(renderLineItem) }
 		</table>
