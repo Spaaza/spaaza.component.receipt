@@ -58,7 +58,7 @@ export const Details: Component = (data: RawReceiptData, strings: LangStrings, l
 		total: data.total_value,
 		date: data.timestamp,
 		retailerCode: data.retailer_basket_code,
-		currencySymbol: data.chain.currency_symbol,
+		currencySymbol: data.currency?.currency_symbol ? data.currency.currency_symbol : data.chain.currency_symbol,
 		employeeName: data.employee.name,
 		employeeCode: data.employee.code
 	}, strings.details, langCode);

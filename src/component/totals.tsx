@@ -44,6 +44,6 @@ export const Totals: Component = (data: RawReceiptData, strings: LangStrings) =>
 		subtotal: data.subtotal,
 		loyaltyVouchersSpent: sumFieldValuesConditional(data.basket_vouchers, "amount", "type", "loyalty"),
 		walletVouchersSpent: sumFieldValuesConditional(data.basket_vouchers, "amount", "type", "wallet"),
-		currencySymbol: data.chain.currency_symbol,
+		currencySymbol: data.currency?.currency_symbol ? data.currency.currency_symbol : data.chain.currency_symbol,
 		basketVouchers: data.basket_vouchers
 	}, strings.totals);

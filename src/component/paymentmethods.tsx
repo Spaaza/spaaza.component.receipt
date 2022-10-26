@@ -33,5 +33,5 @@ const renderPaymentMethods = (data: PaymentMethodsData, strings: LangBlock, lang
 export const PaymentMethods: Component = (data: RawReceiptData, strings: LangStrings, langCode: string) =>
 	renderPaymentMethods({
 		paymentMethods: data.payment_methods,
-		currencySymbol: data.chain.currency_symbol
+		currencySymbol: data.currency?.currency_symbol ? data.currency.currency_symbol : data.chain.currency_symbol,
 	}, strings.paymentmethods, langCode);

@@ -40,5 +40,5 @@ const renderTaxes = (data: TaxesData, strings: LangBlock, langCode: string) => {
 export const Taxes: Component = (data: RawReceiptData, strings: LangStrings, langCode: string) =>
 	renderTaxes({
 		taxes: data.tax_lines,
-		currencySymbol: data.chain.currency_symbol
+		currencySymbol: data.currency?.currency_symbol ? data.currency.currency_symbol : data.chain.currency_symbol,
 	}, strings.taxes, langCode);

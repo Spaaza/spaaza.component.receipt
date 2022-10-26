@@ -22,6 +22,13 @@ export interface RawTaxLineData {
 	rate: number;
 }
 
+export interface RawCurrencyData {
+	currency_id: number;
+	currency_code: string;
+	currency_name_en: string;
+	currency_symbol: string
+}
+
 export interface RawAddressData {
 	address_1: string;
 	address_2: string;
@@ -120,7 +127,7 @@ export interface RawReceiptData {
 
 	chain: RawChainData;
 	shopper: RawShopperData;
-
+	currency?: RawCurrencyData;
 	monetary_wallet?: RawWalletData;
 	points_wallet?: RawWalletData;
 	basket_vouchers: RawVoucherData[];

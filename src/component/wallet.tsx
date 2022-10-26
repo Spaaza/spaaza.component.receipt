@@ -87,7 +87,7 @@ export const MonetaryWallet: Component = (data: RawReceiptData, strings: LangStr
 		showPoints:true,
 		totalEarned: applyWalletPointsRatio(sumFieldValues(data.monetary_wallet ? data.monetary_wallet.contributions : [], "amount"), data.wallet_points_ratio),
 		totalSpent: applyWalletPointsRatio(sumFieldValuesConditional(data.basket_vouchers, "amount", "type", "wallet"), data.wallet_points_ratio),
-		currencySymbol: data.wallet_points_ratio > 0 ? "pts" : data.chain.currency_symbol, // substitute "pts" when using points for wallets
+		currencySymbol: data.wallet_points_ratio > 0 ? "" : data.chain.currency_symbol, //FIXME the currency from the wallet needs to be included in the receipt data
 	}, strings.wallet);
 
 /**
@@ -99,5 +99,5 @@ export const PointsWallet: Component = (data: RawReceiptData, strings: LangStrin
 		showPoints: data.show_points,
 		totalEarned: (data.points_wallet && sumFieldValues(data.points_wallet.contributions, "amount")) || 0,
 		totalSpent: 0,
-		currencySymbol: "pts"
+		currencySymbol: "" //FIXME the currency from the wallet needs to be included in the receipt data
 	}, strings.wallet);

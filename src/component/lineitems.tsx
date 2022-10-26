@@ -51,5 +51,5 @@ const renderLineItems = (data: LineItemsData, strings: LangBlock) => {
 export const LineItems: Component = (data: RawReceiptData, strings: LangStrings) =>
 	renderLineItems({
 		lineitems: data.line_items,
-		currencySymbol: data.chain.currency_symbol
+		currencySymbol: data.currency?.currency_symbol ? data.currency.currency_symbol : data.chain.currency_symbol,
 	}, strings.lineitems);
