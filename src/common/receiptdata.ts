@@ -11,7 +11,7 @@ export interface RawLineItemData {
 	metadata: {
 		color: string;
 		size: string;
-		image: string;
+		image_url: string;
 	};
 	sale_discount: string;
 }
