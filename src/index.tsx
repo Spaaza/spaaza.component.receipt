@@ -61,8 +61,8 @@ function redraw(host: HTMLElement, root: HTMLElement) {
 	let contents: JSX.Element | null;
 	if (config.receipt) {
 		const finalStrings = applySubstitutions(config.strings, {
-			$GIVEN_NAME: config.receipt.shopper.first_name,
-			$FAMILY_NAME: config.receipt.shopper.last_name,
+			$GIVEN_NAME: config.receipt.user.first_name,
+			$FAMILY_NAME: config.receipt.user.last_name,
 			$CHAIN_NAME: config.receipt.chain.name,
 		});
 

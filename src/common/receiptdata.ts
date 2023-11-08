@@ -62,7 +62,7 @@ export interface RawChainData {
 	business: RawBusinessData;
 }
 
-export interface RawShopperData {
+export interface RawUserData {
 	id: number;
 	user_name: string;
 	entity_code: string;
@@ -126,7 +126,7 @@ export interface RawReceiptData {
 	payment_methods?: RawPaymentMethodData[];
 
 	chain: RawChainData;
-	shopper: RawShopperData;
+	user: RawUserData;
 	currency?: RawCurrencyData;
 	monetary_wallet?: RawWalletData;
 	points_wallet?: RawWalletData;
