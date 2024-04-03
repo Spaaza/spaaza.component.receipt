@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spaaza Receipt WebComponent</title>
+    <meta charset="utf-8">
+    <style>
+        body {
+            height: 100% !important;
+            width: 100% !important;
+            margin: 0;
+            padding: 0;
+
+            /* these styles should all be reset inside the receipt component */
+            font-family: "Times New Roman", serif;
+            -webkit-font-smoothing: antialiased;
+            font-size: 10px;
+            color: #999999;
+            text-align: center;
+            line-height: 1em;
+        }
+    </style>
+    <script src="dist/spaaza-receipt.js"></script>
+    </head>
+    <body>
+        <section>
+            <header>
+            <h1>Anonymous receipt</h1>
+            <p>download-url="https://services-test01.spaaza.com"</p>
+            </header>
+            <spaaza-receipt download-url="https://services-test01.spaaza.com">
+            <script type="application/json" data-receipt>
+                {
+                    "id": 555703,
+                    "retailer_basket_code": "1707304212592",
+                    "fx_rate": 1,
+                    "currency": {
+                        "id": 0,
+                        "code": "",
+                        "name_en": "",
+                        "symbol": ""
+                    },
+                    "timestamp": "2024-02-07T11:10:17Z",
+                    "type": "in_store",
+                    "quantity": 1,
+                    "subtotal": 50,
+                    "subtotal_converted": 50,
+                    "total_value": 50,
+                    "total_converted": 50,
+                    "shipping_charge": 0,
+                    "shipping_charge_converted": 0,
+                    "tax_lines": [],
+                    "chain": {
+                        "id": 1794,
+                        "name": "SPAR UK",
+                        "email": "info@spar.co.uk",
+                        "logo_url": "https://receipts-chain-logo.s3.eu-west-1.amazonaws.com/SPAR-UK-logo.png/SPAR-UK-logo.png",
+                        "website_url": "https://s3.eu-west-1.amazonaws.com/chain-images-test01.spaaza.com/SPAR-UK-logo.jpg/SPAR-UK-logo.jpg",
+                        "currency": "Pound Sterling",
+                        "currency_code": "GBP",
+                        "currency_symbol": "£",
+                        "business": {
+                            "id": 0,
+                            "name": "",
+                            "address": {
+                                "address_1": "",
+                                "address_2": "",
+                                "address_3": "",
+                                "towncity": "",
+                                "postal_code": "",
+                                "country_code": "",
+                                "region": "",
+                                "location": {
+                                    "lat": 0,
+                                    "lon": 0
+                                },
+                                "google_place_id": ""
+                            },
+                            "phone_number": "",
+                            "email": "",
+                            "branch_code": "",
+                            "website_url": "",
+                            "review_url": ""
+                        },
+                        "receipts_service_active": true
+                    },
+                    "employee": {
+                        "code": "",
+                        "name": ""
+                    },
+                    "notes": "",
+                    "monetary_wallet": {
+                        "contributions": [],
+                        "total": 0,
+                        "title": ""
+                    },
+                    "points_wallet": {
+                        "contributions": [],
+                        "total": 0,
+                        "title": ""
+                    },
+                    "payment_methods": [],
+                    "basket_vouchers": [],
+                    "honour_vouchers": [],
+                    "line_items": [
+                        {
+                            "product_id": 0,
+                            "barcode": "123abc",
+                            "retailer_product_code": "",
+                            "sku": "123abc",
+                            "name": "Milk 1L",
+                            "description": "the best",
+                            "original_price": 50,
+                            "original_price_converted": 50,
+                            "sale_price": 50,
+                            "sale_price_converted": 50,
+                            "quantity": 1,
+                            "quantity_unit": "item",
+                            "product": {
+                                "brand": "",
+                                "category": "food > milk",
+                                "description": "the best",
+                                "id": 291977,
+                                "image_url": "",
+                                "name": "Milk 1L",
+                                "owner_code": "123abc",
+                                "price": 50,
+                                "product_variant": {
+                                    "barcode": [
+                                        {
+                                            "barcode": "123abc",
+                                            "deleted": false,
+                                            "id": 3708929
+                                        }
+                                    ],
+                                    "colour": "",
+                                    "condition": "new",
+                                    "cost_price": 0,
+                                    "id": 3100584,
+                                    "image_url": "",
+                                    "price": 50,
+                                    "size": "",
+                                    "web_url": ""
+                                },
+                                "season": "",
+                                "webshop_url": ""
+                            },
+                            "purchase_progress_distribution": null
+                        }
+                    ],
+                    "user": {
+                        "id": 0,
+                        "user_id": 0,
+                        "firstname": "",
+                        "lastname": "",
+                        "country_code": "",
+                        "gender": "",
+                        "birthday": "",
+                        "signup_channel": "",
+                        "username": "",
+                        "auxiliary_identifier": "",
+                        "authentication_point_identifier": "",
+                        "authentication_point": {
+                            "is_multi": false,
+                            "id": 0
+                        },
+                        "mailing_list": {
+                            "mailing_list_subscribed": false,
+                            "printed_mailing_list_subscribed": false
+                        },
+                        "opt_in_programme": {
+                            "programme_opted_in": false,
+                            "join_date": ""
+                        },
+                        "obfuscated": false,
+                        "is_influencer": false,
+                        "home_store": {
+                            "home_store_id": null,
+                            "home_storename": "",
+                            "home_store_owner_code": ""
+                        },
+                        "Deleted": false,
+                        "address_streetname": "",
+                        "address_housenumber": "",
+                        "address_housenumber_extension": "",
+                        "address_line_2": "",
+                        "address_line_3": "",
+                        "address_towncity": "",
+                        "address_regionstate": "",
+                        "address_latitude": 0,
+                        "address_longitude": 0,
+                        "address_postalcode": "",
+                        "phone_number": "",
+                        "member_number": {
+                            "type": "",
+                            "code": ""
+                        },
+                        "language": "",
+                        "opt_in_secondary": false,
+                        "registered": false,
+                        "is_employee": false,
+                        "push_notification_subscription": {
+                            "subscribed": false,
+                            "subscriptions": null
+                        },
+                        "loyalty_status": {
+                            "campaign_id": 0,
+                            "name": "",
+                            "description": "",
+                            "loyalty_level_id": 0,
+                            "points_balance_current": 0,
+                            "monetary_balance_current": 0,
+                            "points_to_proceed_next_level": 0,
+                            "points_to_remain_current_level": 0,
+                            "last_review_date": "",
+                            "next_review_date": "",
+                            "date_reached": ""
+                        },
+                        "frequency": 0,
+                        "recency": 0,
+                        "monetary": 0,
+                        "overall": 0,
+                        "stores": "",
+                        "last_loyalty_activity_date": "",
+                        "brands": "",
+                        "online_shopper": false,
+                        "offline_shopper": false,
+                        "average_basket_value": "",
+                        "days_since_last_purchase": 0,
+                        "number_of_purchases": 0,
+                        "referral_channel": "",
+                        "referral_code": "",
+                        "referring_user": {
+                            "campaign_id": null,
+                            "id": null,
+                            "authentication_point_identifier": "",
+                            "referral_channel": "",
+                            "referral_code": ""
+                        },
+                        "last_purchase_date": "",
+                        "total_cashback_balance": 0,
+                        "points_wallet_balance": 0,
+                        "signup_store_id": 0,
+                        "signup_storename": "",
+                        "signup_store_owner_code": "",
+                        "created_date": "",
+                        "last_modified_date": "",
+                        "spaaza_join_date": "",
+                        "referred": false,
+                        "last_login_date": ""
+                    }
+                }
+            </script>
+            <script type="application/json" data-strings>
+                { "brand": { "title": "Mijn Bonnetje" } }
+            </script>
+            </spaaza-receipt>
+        </section>
+    </body> 
+</html>
+```        

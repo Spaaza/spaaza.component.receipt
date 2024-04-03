@@ -23,10 +23,13 @@ const renderLineItems = (data: LineItemsData, strings: LangBlock) => {
 					{item.name && <strong>{item.name}</strong>}
 					<div>{item.barcode}</div>
 				</td>
-				<td class="align-center receipt-quantity" >{item.quantity}</td>
+				<td class="align-right receipt-quantity" >{item.quantity}{item.quantity_unit !== "item" ? item.quantity_unit : null}</td>
 				<td class="align-right receipt-price">
-					<span class={{ "receipt-original-price": true, "receipt-line-through": isOnSale }}>{amount(item.original_price, currencySymbol)}</span>
-					<span class="receipt-sale-price receipt-strong">{amount(item.sale_price, currencySymbol)}</span>
+					<div class={{ "receipt-original-price": true, "receipt-line-through": isOnSale }}>{amount(item.original_price, currencySymbol, true)}</div>
+					<div class="receipt-sale-price">{amount(item.sale_price, currencySymbol, true)}</div>
+				</td>
+				<td class="align-right receipt-price">
+					<div class="receipt-sale-price receipt-strong">{amount(item.sale_price * item.quantity, currencySymbol)}</div>
 				</td>
 			</tr>
 		);
@@ -37,8 +40,9 @@ const renderLineItems = (data: LineItemsData, strings: LangBlock) => {
 		<table class="receipt-lineitems">
 			<tr>
 				<th class="align-left receipt-name">{strings.name}</th>
-				<th class="align-center receipt-quantity">{strings.quantity}</th>
+				<th class="align-right receipt-quantity">{strings.quantity}</th>
 				<th class="align-right receipt-price">{strings.price}</th>
+				<th class="align-right receipt-line-total">{strings["line-total"]}</th>
 			</tr>
 			{ data.lineitems.map(renderLineItem) }
 		</table>

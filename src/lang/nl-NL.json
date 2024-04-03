@@ -16,7 +16,8 @@
 	"lineitems": {
 		"name": "Naam",
 		"quantity": "Aantal",
-		"price": "Prijs"
+		"price": "Prijs",
+		"line-total": "Totaal"
 	},
 	"taxes": {
 		"tax-rate": "BTW %",

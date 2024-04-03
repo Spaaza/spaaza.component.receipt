@@ -4,6 +4,7 @@ export interface RawLineItemData {
 	type: string;
 	original_price: number;
 	quantity: number;
+	quantity_unit:string
 	sale_price: number;
 	vouchers: number;
 	distinguisher_type: string;
@@ -66,8 +67,8 @@ export interface RawUserData {
 	id: number;
 	user_name: string;
 	entity_code: string;
-	first_name: string;
-	last_name: string;
+	firstname: string;
+	lastname: string;
 	country_code: string;
 	gender: string;
 	birthday: string;
@@ -126,7 +127,8 @@ export interface RawReceiptData {
 	payment_methods?: RawPaymentMethodData[];
 
 	chain: RawChainData;
-	user: RawUserData;
+	user?: RawUserData;
+	shopper?: RawUserData;
 	currency?: RawCurrencyData;
 	monetary_wallet?: RawWalletData;
 	points_wallet?: RawWalletData;

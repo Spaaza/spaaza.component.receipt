@@ -17,7 +17,8 @@
 	"lineitems": {
 		"name": "Name",
 		"quantity": "Qty",
-		"price": "Price"
+		"price": "Price",
+		"line-total": "Total"
 	},
 	"taxes": {
 		"tax-rate": "VAT Rate",

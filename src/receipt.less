@@ -57,6 +57,7 @@ table {
 }
 table td {
   font-size: 87%;
+
 }
 table th {
   vertical-align: top;
@@ -171,6 +172,11 @@ p {
   font-family: inherit;
   font-weight: normal;
   margin: 0 0 1.2em 0;
+}
+
+div, strong, p, span {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 a {
@@ -294,19 +300,19 @@ table.receipt-linetaxes td {
   width: 33%;
 }
 
-table.receipt-name th,
-table.receipt-name td {
-  width:45%
+table th.receipt-name,
+table td.receipt-name {
+  width:50%
 }
 
-table.receipt-price th,
-table.receipt-price td {
-  width:30%
+table th.receipt-price,
+table td.receipt-price {
+  width:17%
 }
 
-table.receipt-quantity th,
-table.receipt-quantity td {
-  width:10%
+table th.receipt-quantity,
+table td.receipt-quantity {
+  width:5%
 }
 
 /* Brand */
@@ -327,7 +333,7 @@ h1 {
 
 .receipt-original-price.receipt-line-through {
   display: inline;
-  padding-right: .4em;
+  // padding-right: .4em;
 }
 
 /* Download */

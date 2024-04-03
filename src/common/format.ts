@@ -10,17 +10,32 @@ export type ValueComponent = (props: {}) => JSX.Element;
  * @param currencySymbol
  * @returns the formatted amount
  */
-export const amount = (value: number | string, currencySymbol: string) => {
+export const amount = (
+	value: number | string,
+	currencySymbol: string,
+	roundToThree: boolean = false // Optional parameter with default value false
+  ) => {
 	const isPoints = currencySymbol === "pts";
-	const decimals = isPoints ? 0 : 2;
+	// Default decimals is 2 unless it's points, then it's 0.
+	let decimals = isPoints ? 0 : 2;
+  
+	// Determine the number of decimal places in the value
+	const decimalCount = value.toString().split('.')[1]?.length || 0;
+  
+	// If roundToThree is true and there are 3 or more decimal places, use 3 decimals
+	if (!isPoints && roundToThree && decimalCount >= 3) {
+	  decimals = 3;
+	}
+  
 	const symbolInFront = !isPoints;
-
+  
 	const fmtValue = (+value).toFixed(decimals);
 	if (symbolInFront) {
-		return `${currencySymbol} ${fmtValue}`;
+	  return `${currencySymbol} ${fmtValue}`;
 	}
 	return `${fmtValue} ${currencySymbol}`;
-};
+  };
+  
 
 /**
  * Sum the values of the field in every record in an array

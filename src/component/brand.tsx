@@ -1,9 +1,11 @@
 import { Component, h } from "../common/format";
 import { LangBlock, LangStrings } from "../common/language";
-import { RawReceiptData } from "../common/receiptdata";
+import { RawReceiptData, RawUserData } from "../common/receiptdata";
 
 interface BrandData {
 	logoURL: string;
+	user?: RawUserData;
+	shopper?: RawUserData;
 }
 
 const renderBrand = (data: BrandData, strings: LangBlock) => {
@@ -11,7 +13,7 @@ const renderBrand = (data: BrandData, strings: LangBlock) => {
 		<table>
 			{ data.logoURL && <tr><td><img class="brand_logo" src={data.logoURL} /></td></tr> }
 			{ strings.title && <tr><td><h1>{strings.title}</h1></td></tr> }
-			{ strings.message && <tr><td><p>{strings.message}</p></td></tr> }
+			{ strings.message && (data.user?.id || data.shopper?.id) && <tr><td><p>{strings.message}</p></td></tr> }
 		</table>
 	);
 };
@@ -21,5 +23,7 @@ const renderBrand = (data: BrandData, strings: LangBlock) => {
  */
 export const Brand: Component = (data: RawReceiptData, strings: LangStrings) =>
 	renderBrand({
-		logoURL: data.chain.logo_url
+		logoURL: data.chain.logo_url,
+		shopper: data.shopper,
+		user: data.user
 	}, strings.brand);

@@ -14,7 +14,7 @@ const renderBarCode = (data: BarCodeData) => {
 	if (data.environment === "staging" || data.environment === "test01" ) {
 		return (
 			<div class="content barcode">
-				<div class="image" title={"Barcode: " + data.retailerCode} style={"background-image: url(https://missetam-test01.spaaza.com/barcode/" + data.retailerCode + ")"}></div>
+				<div class="image" title={"Barcode: " + data.retailerCode} style={"background-image: url(https://acme-prod.spaaza.com/barcode/" + data.retailerCode + ")"}></div>
 			</div>
 		);
 	}

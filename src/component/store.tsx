@@ -17,6 +17,8 @@ const renderStore = (data: StoreData, strings: LangBlock, langCode: string) => {
 		return null;
 	}
 	
+	//console.log("renderStore data", data);
+
 	return (<table class="receipt-store">
 		<tr><td class="align-left">
 			{ data.name && <div>{data.name}</div> }
@@ -34,7 +36,11 @@ const renderStore = (data: StoreData, strings: LangBlock, langCode: string) => {
  */
 export const Store: Component = (data: RawReceiptData, strings: LangStrings, langCode: string) => {
 	const business = data.chain.business;
-
+	
+	if (!business) {
+		return null;
+	}
+	
 	return renderStore({
 		name: business.name,
 		contact: business.phone_number,

@@ -60,9 +60,22 @@ function redraw(host: HTMLElement, root: HTMLElement) {
 	const config = getConfig(host);
 	let contents: JSX.Element | null;
 	if (config.receipt) {
+		let givenName:string
+		let familyName:string
+		if (config.receipt.user) {
+			givenName = config.receipt.user.firstname
+			familyName = config.receipt.user.lastname
+		} else if (config.receipt.shopper) {
+			givenName = config.receipt.shopper.firstname
+			familyName = config.receipt.shopper.lastname
+		} else {
+			givenName = ""
+			familyName = ""
+		}
+		//console.log('givenName', givenName);
 		const finalStrings = applySubstitutions(config.strings, {
-			$GIVEN_NAME: config.receipt.user.first_name,
-			$FAMILY_NAME: config.receipt.user.last_name,
+			$GIVEN_NAME: givenName,
+			$FAMILY_NAME: familyName,
 			$CHAIN_NAME: config.receipt.chain.name,
 		});
 
