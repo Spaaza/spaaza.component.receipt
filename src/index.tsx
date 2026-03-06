@@ -1,157 +1,108 @@
 import { RawReceiptData } from "./common/receiptdata";
 import getStrings, { applySubstitutions, overrideStrings, LangStrings } from "./common/language";
-import { h, renderJSX } from "./common/format";
+import { renderJSX } from "./common/format";
 import { Receipt } from "./component/receipt";
 import { ReceiptError } from "./component/error";
 import styles from "./receipt.less";
-import {installPolyfills} from './common/polyfill';
 
-function getConfig(host: HTMLElement) {
-	const getJSONBlock = (type: string) => {
-		const dataNode = host.querySelector(`script[data-${type}]`);
-		if (dataNode && dataNode.textContent) {
-			try {
-				return JSON.parse(dataNode.textContent);
-			} catch (err) {
-				console.warn(`Failed to parse ${type} data: `, err);
+class SpaazaReceiptElement extends HTMLElement {
+	static get observedAttributes() {
+		return ["language", "walletpointsratio", "customnotes", "showpoints"];
+	}
+
+	private shadow: ShadowRoot;
+	private _receipt: RawReceiptData | null = null;
+	private _strings: LangStrings | null = null;
+
+	constructor() {
+		super();
+		this.shadow = this.attachShadow({ mode: "open" });
+	}
+
+	get receipt(): RawReceiptData | null {
+		return this._receipt;
+	}
+
+	set receipt(data: RawReceiptData | null) {
+		this._receipt = data;
+		this.render();
+	}
+
+	get strings(): LangStrings | null {
+		return this._strings;
+	}
+
+	set strings(data: LangStrings | null) {
+		this._strings = data;
+		this.render();
+	}
+
+	connectedCallback() {
+		if (!this._receipt) {
+			return;
+		}
+		this.render();
+	}
+
+	attributeChangedCallback() {
+		if (this._receipt) {
+			this.render();
+		}
+	}
+
+	private render() {
+		if (!this.isConnected) {
+			return;
+		}
+
+		const lang = this.getAttribute("language") || "";
+		const langStrings = getStrings(lang);
+		const combinedStrings = this._strings ? overrideStrings(langStrings, this._strings) : langStrings;
+
+		const receipt = this._receipt;
+
+		// Clear shadow DOM
+		this.shadow.innerHTML = "";
+
+		// Add styles
+		const styleEl = document.createElement("style");
+		styleEl.textContent = styles;
+		this.shadow.appendChild(styleEl);
+
+		// Build content
+		let contents: JSX.Element | null;
+		if (receipt) {
+			receipt.wallet_points_ratio = Math.max(0, parseFloat(this.getAttribute("walletpointsratio") || "") || 0);
+			receipt.custom_notes = this.getAttribute("customnotes") || "";
+			receipt.show_points = this.getAttribute("showpoints") !== "false";
+
+			let givenName = "";
+			let familyName = "";
+			if (receipt.user) {
+				givenName = receipt.user.firstname;
+				familyName = receipt.user.lastname;
+			} else if (receipt.shopper) {
+				givenName = receipt.shopper.firstname;
+				familyName = receipt.shopper.lastname;
 			}
-		}
-		return undefined;
-	};
 
-	// get the built-in and user provided strings
-	const lang = host.getAttribute("language") || "";
-	const langStrings = getStrings(lang);
-	const userStrings = getJSONBlock("strings") as LangStrings;
-	const combinedStrings = (userStrings) ? overrideStrings(langStrings, userStrings) : langStrings;
+			const finalStrings = applySubstitutions(combinedStrings, {
+				$GIVEN_NAME: givenName,
+				$FAMILY_NAME: familyName,
+				$CHAIN_NAME: receipt.chain.name,
+			});
 
-	// load receipt data and overrides
-	const receipt = getJSONBlock("receipt") as RawReceiptData;
-	if (receipt) {
-		// override: show monetary wallet value as points?
-		const walletPointsRatio = Math.max(0, parseFloat(host.getAttribute("walletpointsratio") || "") || 0);
-		receipt.wallet_points_ratio = walletPointsRatio;
-		// show custom notes text
-		const customNotes = host.getAttribute("customnotes") || "";
-		receipt.custom_notes = customNotes;
-		//allow developer to change environment, e.g. URL used for barcode
-		const environment = host.getAttribute("environment") || "";
-		receipt.environment = environment;
-		// show or don't show the points block
-		//set to true by default
-		var showPoints = true;
-		if (host.getAttribute("showpoints")) {
-			//if the showpoints attribute is included then set the value of showPoints to that
-			showPoints = (host.getAttribute("showpoints") === 'true');
-		}
-		receipt.show_points = showPoints;
-	}
-
-	receipt.download_url = host.getAttribute("download-url") || "https://services-prod.spaaza.com";
-
-	return {
-		receipt,
-		langCode: langStrings.langCode,
-		strings: combinedStrings
-	};
-}
-
-function redraw(host: HTMLElement, root: HTMLElement) {
-	const config = getConfig(host);
-	let contents: JSX.Element | null;
-	if (config.receipt) {
-		let givenName:string
-		let familyName:string
-		if (config.receipt.user) {
-			givenName = config.receipt.user.firstname
-			familyName = config.receipt.user.lastname
-		} else if (config.receipt.shopper) {
-			givenName = config.receipt.shopper.firstname
-			familyName = config.receipt.shopper.lastname
+			contents = Receipt(receipt, finalStrings, langStrings.langCode);
 		} else {
-			givenName = ""
-			familyName = ""
+			console.warn("Could not render receipt");
+			contents = ReceiptError({} as RawReceiptData, combinedStrings, langStrings.langCode);
 		}
-		//console.log('givenName', givenName);
-		const finalStrings = applySubstitutions(config.strings, {
-			$GIVEN_NAME: givenName,
-			$FAMILY_NAME: familyName,
-			$CHAIN_NAME: config.receipt.chain.name,
-		});
 
-		contents = Receipt(config.receipt, finalStrings, config.langCode);
-	}
-	else {
-		console.warn("Could not render receipt", config);
-		contents = ReceiptError({} as RawReceiptData, config.strings, config.langCode);
-	}
-
-	root.appendChild(renderJSX(
-		<div class="spaaza-receipt">
-			<style>{styles}</style>
-			{contents}
-		</div>
-	)!);
-}
-
-// ----
-
-function connect(receipt: HTMLElement) {
-	if (!receipt.querySelector(".receipt-body")) {
-		const rbody = document.createElement("div");
-		rbody.className = "receipt-body";
-		receipt.appendChild(rbody);
-		redraw(receipt, rbody);
-	}
-}
-
-function init() {
-	installPolyfills();
-
-	const receipts: HTMLElement[] = [].slice.call(document.querySelectorAll("spaaza-receipt"), 0);
-	for (const receipt of receipts) {
-		connect(receipt);
-	}
-
-	startObserving();
-}
-
-function startObserving() {
-	if (! ("MutationObserver" in window)) {
-		return;
-	}
-
-	const callback = (mutations: MutationRecord[]) => {
-		for (const mut of mutations) {
-
-			const tryWireNodeList = (nl: NodeList) => {
-				const nodes: Node[] = Array.prototype.slice.call(nl, 0);
-
-				for (const n of nodes) {
-					if (n.nodeType === Node.ELEMENT_NODE && n.nodeName.toLowerCase() === "spaaza-receipt") {
-						connect(n as HTMLElement);
-					}
-					else if (n.hasChildNodes()) {
-						tryWireNodeList(n.childNodes);
-					}
-				}
-			};
-
-			tryWireNodeList(mut.addedNodes);
+		const contentNode = renderJSX(contents!);
+		if (contentNode) {
+			this.shadow.appendChild(contentNode);
 		}
-	};
-	const observer = new MutationObserver(callback);
-	observer.observe(document, {
-		childList: true,
-		subtree: true
-	});
+	}
 }
 
-if (document.readyState === "loading") {
-	document.addEventListener("readystatechange", () => {
-		if (document.readyState !== "loading")
-			init();
-	})
-} else {
-	init();
-}
+customElements.define("spaaza-receipt", SpaazaReceiptElement);

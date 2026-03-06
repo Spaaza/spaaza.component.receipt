@@ -37,10 +37,6 @@
 		"spent": "spent",
 		"new-balance": "Your new balance"
 	},
-	"download": {
-		"label": "Download a PDF Receipt"
-	},
-
 	"store": {
 		"message": "Thank you!"
 	},

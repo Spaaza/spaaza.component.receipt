@@ -9,7 +9,6 @@ import { Taxes } from "./taxes";
 import { PaymentMethods } from "./paymentmethods";
 import { Totals } from "./totals";
 import { MonetaryWallet, PointsWallet } from "./wallet";
-// import { Download } from "./download";
 import { Store } from "./store";
 import { BarCode } from "./barcode";
 import { Divider } from "./divider";
@@ -40,10 +39,6 @@ export const Receipt: Component = (data: RawReceiptData, strings: LangStrings, l
 			{rc(PaymentMethods)}
 			{rcDiv(MonetaryWallet)}
 			{rcDiv(PointsWallet)}
-			{/* <div class="download">
-				<Divider />
-				{rc(Download)}
-			</div> */}
 		</section>
 		<section>
 			{rcDiv(Store)}

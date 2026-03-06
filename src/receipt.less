@@ -1,40 +1,24 @@
-// since we can't always count on shadow dom embedding etc.,
-// wrap all styles in a .spaaza-receipt namespace
+// Styles are scoped to the shadow DOM of <spaaza-receipt>
 
-.spaaza-receipt {
+:host {
+  display: block;
+  font-size: 16px;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6em;
+  color: black;
+  text-align: left;
+}
 
-// large screen font-size
-font-size: 16px;
-
-// for browser print function
 @media print {
-  font-size: 7pt;  
-  div.download {
-    display: none;
+  :host {
+    font-size: 7pt;
   }
 }
-
-// wkhtmltopdf on alpine linux does not support print media
-// so duplicate this as a class
-html#pdf {
-  font-size: 9pt;  
-  div.download {
-    display: none;
-  }
-}
-
 
 /* -------------------------------------
     GLOBAL RESETS
 ------------------------------------- */
-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
--webkit-font-smoothing: antialiased;
-line-height: 1.6em;
--ms-text-size-adjust: 100%;
--webkit-text-size-adjust: 100%;
-color: black;
-text-align: left;
-
 section {
   margin: 0;
 }
@@ -47,7 +31,6 @@ a {
 }
 
 img {
-  -ms-interpolation-mode: bicubic;
   max-width: 100%;
 }
 
@@ -57,7 +40,6 @@ table {
 }
 table td {
   font-size: 87%;
-
 }
 table th {
   vertical-align: top;
@@ -67,38 +49,9 @@ table th {
   color: #aaaaaa;
 }
 
-
-.ExternalClass {
-  width: 100%;
-}
-.ExternalClass,
-.ExternalClass p,
-.ExternalClass span,
-.ExternalClass font,
-.ExternalClass td,
-.ExternalClass div {
-  line-height: 100%; }
-
 /* -------------------------------------
     BODY & CONTAINER
 ------------------------------------- */
-.body {
-  background-color: #f6f6f6;
-  width: 100%; }
-
-/* Set a max-width, and make it display as block so it will
-   automatically stretch to that width, but will also shrink
-   down on a phone or something */
-.container {
-  display: block;
-  margin: 0 auto; // center in enclosing container
-  max-width: 36em;
-  padding: 0.6em;
-  width: auto;
-}
-
-/* This should also be a block element,
-  so that it will fill 100% of the .container */
 .content {
   display: block;
   max-width: 36em;
@@ -107,7 +60,7 @@ table th {
 }
 
 /* -------------------------------------
-    HEADER, FOOTER, MAIN
+    MAIN
 ------------------------------------- */
 .main {
   background: #ffffff;
@@ -117,56 +70,20 @@ table th {
   padding: 2em;
 }
 
-.wrapper {
-  padding: 2em; }
-
-.content-block {
-  padding: 0 0 2em; }
-
-.header {
-  margin-bottom: 2em;
-  margin-top: 1.5em;
-  width: 100%; }
-
-.footer {
-  clear: both;
-  width: 100%;
-  font-size: 75%; 
-  color: #999999;
-}
-
-.footer td {
-  padding: 2em 0;
-}
-
 /* -------------------------------------
     TYPOGRAPHY
 ------------------------------------- */
-h1,
-h2,
-h3,
-h4 {
+h1 {
   color: #111111 !important;
   font-family: inherit;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.4em;
   margin: 0;
-  margin-bottom: 2em; }
-
-h1 {
+  margin-bottom: 2em;
   font-size: 230%;
   text-transform: capitalize;
-  font-weight: 300; }
-
-h2 {
-  font-size: 150%; }
-
-h3 {
-  font-size: 120%; }
-
-h4 {
-  font-size: 87%;
-  font-weight: 500; }
+  text-align: center;
+}
 
 p {
   font-family: inherit;
@@ -181,24 +98,18 @@ div, strong, p, span {
 
 a {
   color: black;
-  text-decoration: underline; }
-
-code,
-pre,
-.word-wrap {
-  word-break: break-word;
-  word-wrap: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  hyphens: auto; }
+  text-decoration: underline;
+}
 
 /* -------------------------------------
   DIVIDERS
 ------------------------------------- */
 .divider {
-  border-collapse: separate; }
+  border-collapse: separate;
+}
 .divider-spacer {
-  padding: 1.5em 0; }
+  padding: 1.5em 0;
+}
 
 .divider td {
   border-top: 1px solid #ccc;
@@ -206,71 +117,35 @@ pre,
   font-size: 0;
   height: 1px;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 /* -------------------------------------
-    OTHER STYLES THAT MIGHT BE USEFUL
+    UTILITY CLASSES
 ------------------------------------- */
-.last {
-  margin-bottom: 0; }
-
-.first {
-  margin-top: 0; }
-
 .align-center {
-  text-align: center; }
+  text-align: center;
+}
 
 .align-right {
-  text-align: right; }
+  text-align: right;
+}
 
 .align-left {
-  text-align: left; }
-
-.clear {
-  clear: both; }
-
-.mt0 {
-  margin-top: 0; }
-
-.mb0 {
-  margin-bottom: 0; }
-
-.preheader {
-  color: transparent;
-  display: none;
-  height: 0;
-  max-height: 0;
-  max-width: 0;
-  opacity: 0;
-  overflow: hidden;
-  mso-hide: all;
-  visibility: hidden;
-  width: 0; }
+  text-align: left;
+}
 
 /* -------------------------------------
-    RESPONSIVE AND MOBILE FRIENDLY STYLES
+    RESPONSIVE
 ------------------------------------- */
 @media only screen and (max-width: 620px) {
-  table[class=body] h1,
-  table[class=body] h2,
-  table[class=body] h3,
-  table[class=body] h4 {
-    font-weight: 600 !important; }
-  table[class=body] h1 {
-    font-size: 22px !important; }
-  table[class=body] h2 {
-    font-size: 18px !important; }
-  table[class=body] h3 {
-    font-size: 16px !important; }
-  table[class=body] .content,
-  table[class=body] .wrapper {
-    padding: 10px !important; }
-  table[class=body] .container {
-    padding: 0 !important;
-    width: 100% !important; }
-  table[class=body] .btn table,
-  table[class=body] .btn a {
-    width: 100% !important; }
+  h1 {
+    font-weight: 600 !important;
+    font-size: 22px !important;
+  }
+  .content {
+    padding: 10px !important;
+  }
 }
 
 /* -------------------------------------
@@ -278,19 +153,18 @@ pre,
 ------------------------------------- */
 .receipt-strong {
   font-weight: bold;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+}
 
-.receipt-total { 
+.receipt-total {
   td {
     font-size: inherit;
   }
 }
 
-.receipt-emphasis {
-  font-style: italic; }
-
 .receipt-line-through {
-  text-decoration: line-through; }
+  text-decoration: line-through;
+}
 
 /**
 * Table layout fix
@@ -302,17 +176,17 @@ table.receipt-linetaxes td {
 
 table th.receipt-name,
 table td.receipt-name {
-  width:50%
+  width: 50%;
 }
 
 table th.receipt-price,
 table td.receipt-price {
-  width:17%
+  width: 17%;
 }
 
 table th.receipt-quantity,
 table td.receipt-quantity {
-  width:5%
+  width: 5%;
 }
 
 /* Brand */
@@ -322,10 +196,6 @@ img.brand_logo {
   height: 6em;
 }
 
-h1 {
-  text-align: center;
-}
-
 /* LineItems */
 .receipt-original-price {
   display: none;
@@ -333,46 +203,9 @@ h1 {
 
 .receipt-original-price.receipt-line-through {
   display: inline;
-  // padding-right: .4em;
 }
 
-/* Download */
-.btn-download {
-  width: 100%;
-  background-color: black;
-  color: white;
-  border-radius: 0.2em;
-  border: solid 1px black;
-  text-align: center;
-  font-weight: bold;
-  font-family: inherit;
-  -webkit-font-smoothing: antialiased;
-  font-size: 87%;
-  height: 45px !important;
-  margin: 0;
-  padding: 0;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1em;
-
-  a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-    display: inline-block;
-    margin: 0;
-    padding: 0 1.5em;
-  }
-}
-
-/* Footer */
-.receipt-footer-message {
-  text-align: center;
-}
-
+/* Notes */
 .receipt-notes {
   p {
     text-align: center;
@@ -381,13 +214,12 @@ h1 {
 
 /* Barcode */
 .barcode {
-  padding: 2em 0;
+  padding: 2em;
 
-  .image {
-    background-position: center top;
-    background-repeat: no-repeat;
-    height: 2.8em;
+  .barcode-label {
+    text-align: center;
+    font-family: monospace;
+    font-size: 75%;
+    margin-top: 0.3em;
   }
 }
-
-}  // .spaaza-receipt namespace

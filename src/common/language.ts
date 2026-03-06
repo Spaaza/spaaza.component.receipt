@@ -17,13 +17,12 @@ export interface LangStrings {
 	paymentmethods: LangBlock;
 	totals: LangBlock;
 	wallet: LangBlock;
-	download: LangBlock;
 	store: LangBlock;
 	error: LangBlock;
 }
 
 export interface LangJSON extends LangStrings {
-	langCode: string;	
+	langCode: string;
 }
 
 const stringData: { [lc: string]: LangStrings } = {
@@ -41,7 +40,7 @@ type BlockTransformer = (b: LangBlock, key: string) => LangBlock;
 const mapLangCode = (lang: string) => {
 	let lc = "en-GB";
 	lang = lang.toLowerCase().trim();
-	if (lang === "nl" || lang.substr(0, 3) === "nl-" || lang.substr(0, 3) === "nl_") {
+	if (lang === "nl" || lang.substring(0, 3) === "nl-" || lang.substring(0, 3) === "nl_") {
 		lc = "nl-NL";
 	}
 	return lc;
@@ -89,7 +88,7 @@ export const transformStrings = (strings: LangStrings, fn: StringTransformer) =>
 /**
  * Replace occurences of multiple substrings in a source string, returning
  * a new string with the applied substitutions.
- * @param {string} string The source string
+ * @param {string} str The source string
  * @param {{[search:string]: string}} subst A map whose values will replace the occurences of the keys inside the source string
  */
 const substitute = (str: string, subst: LangSubstitutions) => {

@@ -88,24 +88,30 @@ export function renderJSX(vnode: JSX.Element | string | number | null | undefine
 		return document.createTextNode(vnode + "");
 	}
 
-	const elem = document.createElement(vnode.nodeName);
+	const SVG_NS = "http://www.w3.org/2000/svg";
+	const SVG_ELEMENTS = new Set(["svg", "rect", "text", "g", "path", "line", "circle", "ellipse", "polygon", "polyline", "use", "defs", "symbol", "clipPath", "mask", "pattern", "image", "foreignObject", "tspan"]);
+	const isSVG = SVG_ELEMENTS.has(vnode.nodeName);
+	const elem = isSVG
+		? document.createElementNS(SVG_NS, vnode.nodeName)
+		: document.createElement(vnode.nodeName);
 	if (vnode.attributes) {
 		Object.keys(vnode.attributes).forEach(k => {
 			const attrVal = vnode.attributes![k];
 
 			// event handler, onClick, etc...
 			if (typeof attrVal === "function") {
-				const eventName = k.substr(2).toLowerCase();
+				const eventName = k.substring(2).toLowerCase();
 				elem.addEventListener(eventName, attrVal as EventListener);
 				return;
 			}
 
 			// do something weird with objects (why?)
 			if (typeof attrVal === "object") {
+				const obj = attrVal as Record<string, unknown>;
 				let allBool = true;
-				const srlz = Object.keys(attrVal)
+				const srlz = Object.keys(obj)
 				.map(sk => {
-					const skv = attrVal[sk];
+					const skv = obj[sk];
 					if (skv === true) {
 						return sk;
 					}

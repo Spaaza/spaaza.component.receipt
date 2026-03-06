@@ -114,9 +114,7 @@ export interface RawReceiptData {
 	total_value: number;
 	notes: string;
 	custom_notes: string;
-	environment: string;
 	show_points: boolean;
-	download_url?: string;
 	retailer_basket_code?: string;
 	wallet_points_ratio: number;
 

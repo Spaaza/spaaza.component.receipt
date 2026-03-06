@@ -36,10 +36,6 @@
 		"spent": "uitgegeven",
 		"new-balance": "Jouw nieuwe totaal"
 	},
-	"download": {
-		"label": "Download een bon als PDF"
-	},
-
 	"store": {
 		"message": "Hartelijk bedankt!"
 	},
