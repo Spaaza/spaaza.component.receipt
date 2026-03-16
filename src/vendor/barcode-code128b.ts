@@ -41,32 +41,24 @@ const SYMBOL_PATTERNS = [
 const SVG_NS = "http://www.w3.org/2000/svg";
 
 function encode(data: string): string {
-	const symbolIds = [START_SYMBOL_ID, ...data.split("").map(c => CHARACTERS.indexOf(c))];
+	const symbolIds = [START_SYMBOL_ID, ...data.split("").map(c => CHARACTERS.indexOf(c)).filter(id => id > -1)];
 	const checksum = symbolIds.reduce((sum, id, i) => sum + id * Math.max(i, 1), 0) % 103;
 	return [...symbolIds, checksum, STOP_SYMBOL_ID].map(id => SYMBOL_PATTERNS[id]).join("");
 }
 
 function patternToPathData(pattern: string): string {
-	const fragments: string[] = [];
-	let lastChar: string | undefined;
-	let barStart = 0;
-	let offset = 0;
-	for (let i = 0; i <= pattern.length; i++) {
-		const cur = pattern[i];
-		if (cur !== lastChar) {
-			if (lastChar === "1") {
-				if (offset !== barStart) {
-					fragments.push(`m${barStart - offset},0`);
-					offset = barStart;
-				}
-				fragments.push(`v1h${i - barStart}v-1z`);
-			} else {
-				barStart = i;
-			}
-			lastChar = cur;
+	let d = "";
+	let i = 0;
+	while (i < pattern.length) {
+		if (pattern[i] === "1") {
+			const start = i;
+			while (i < pattern.length && pattern[i] === "1") i++;
+			d += `M${start},0h${i - start}v1h${start - i}z`;
+		} else {
+			i++;
 		}
 	}
-	return fragments.join("");
+	return d;
 }
 
 function createSVGElement(name: string, attrs: Record<string, string | number>, ...children: Element[]): Element {
@@ -96,11 +88,9 @@ customElements.define("code-128b", class extends HTMLElement {
 		return ["data", "height"];
 	}
 
-	private _shadow: ShadowRoot;
-
 	constructor() {
 		super();
-		this._shadow = this.attachShadow({ mode: "open" });
+		this.attachShadow({ mode: "open" });
 	}
 
 	attributeChangedCallback(_name: string, oldValue: string | null, newValue: string | null) {
@@ -110,11 +100,10 @@ customElements.define("code-128b", class extends HTMLElement {
 	}
 
 	private _render() {
-		this._shadow.innerHTML = "";
 		const data = this.getAttribute("data");
-		if (data !== null) {
-			const height = parseInt(this.getAttribute("height") || "50", 10) || 50;
-			this._shadow.appendChild(renderBarcode(data, height));
-		}
+		const height = parseInt(this.getAttribute("height") || "50", 10) || 50;
+		this.shadowRoot!.replaceChildren(
+			...(data !== null ? [renderBarcode(data, height)] : []),
+		);
 	}
 });
