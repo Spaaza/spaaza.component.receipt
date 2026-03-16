@@ -5,33 +5,26 @@
   <meta charset="utf-8">
   <style>
     body {
-        height: 100% !important;
-        width: 100% !important;
-        margin: 0;
-        padding: 0;
-
         /* these styles should all be reset inside the receipt component */
         font-family: "Times New Roman", serif;
-        -webkit-font-smoothing: antialiased;
         font-size: 10px;
         color: #999999;
         text-align: center;
         line-height: 1em;
     }
   </style>
-  <script src="dist/spaaza-receipt.js"></script>
+  <script src="../dist/spaaza-receipt.js"></script>
 </head>
 <body>
   <!-- <section>
     <header>
       <h1>Steps</h1>
     </header>
-    <spaaza-receipt language="nl" walletpointsratio="40" showpoints="false" customnotes="Bedankt voor jouw aankoop. Ruilen of retourneren is mogelijk binnen 30 dagen (afgeprijsde artikelen binnen 7 dagen), met kassabon, mits ongedragen en met aangehecht prijskaartje, alleen in het land van aankoop.">
-      <script type="application/json" data-strings="data-strings">
-        { "brand": { "title": "Bon" } }
-      </script>
-      <script type="application/json" data-receipt="data-receipt">
-	{
+    <spaaza-receipt id="receipt-1" language="nl" walletpointsratio="40" showpoints="false" customnotes="Bedankt voor jouw aankoop. Ruilen of retourneren is mogelijk binnen 30 dagen (afgeprijsde artikelen binnen 7 dagen), met kassabon, mits ongedragen en met aangehecht prijskaartje, alleen in het land van aankoop."></spaaza-receipt>
+    <script>
+        const el1 = document.getElementById("receipt-1");
+        el1.strings = { "brand": { "title": "Bon" } };
+        el1.receipt = {
 		"id": 335639,
 		"retailer_basket_code": "97124319000100004103",
 		"timestamp": "2018-04-11T14:50:58Z",
@@ -159,23 +152,18 @@
 			"subject": "",
 			"background_color": ""
 		}
-	}
-      </script>
-    </spaaza-receipt>
+	};
+    </script>
   </section> -->
   <section>
     <header>
       <h1>Wellness</h1>
-      <p>download-url="http://localhost:8000"</p>
     </header>
-<!--    <spaaza-receipt language="nl" showpoints="false" download-url="http://localhost:8000">-->
-    <spaaza-receipt language="en" showpoints="false" download-url="https://services-test01.spaaza.com">
-
-      <script type="application/json" data-strings="data-strings">
-        { "brand": { "title": Wellness" } }
-      </script>
-      <script type="application/json" data-receipt="data-receipt">
-        {
+    <spaaza-receipt id="receipt-2" language="en" showpoints="false"></spaaza-receipt>
+    <script>
+        const el2 = document.getElementById("receipt-2");
+        el2.strings = { "brand": { "title": "Wellness" } };
+        el2.receipt = {
             "id": 49728528,
             "chain_id": 1783,
             "retailer_basket_code": "344019045",
@@ -616,19 +604,19 @@
                 "user_is_new": false,
                 "username": "micah@wellnesswarehouse.com"
             }
-        }
-      </script>
-    </spaaza-receipt>
+        };
+    </script>
   </section>
 
   <section>
     <header>
       <h1>Anonymous receipt</h1>
-      <p>download-url="https://services-test01.spaaza.com"</p>
     </header>
-    <spaaza-receipt download-url="https://services-test01.spaaza.com">
-      <script type="application/json" data-receipt>
-        {
+    <spaaza-receipt id="receipt-3"></spaaza-receipt>
+    <script>
+        const el3 = document.getElementById("receipt-3");
+        el3.strings = { "brand": { "title": "Mijn Bonnetje" } };
+        el3.receipt = {
           "id": 555679,
           "retailer_basket_code": "7725060043952481619",
           "fx_rate": 1,
@@ -1075,27 +1063,19 @@
               "referred": false,
               "last_login_date": "2024-02-02T15:55:29Z"
           }
-      }
-      </script>
-      <script type="application/json" data-strings>
-        { "brand": { "title": "Mijn Bonnetje" } }
-      </script>
-    </spaaza-receipt>
+      };
+    </script>
   </section>
-
 
   <section>
     <header>
       <h1>Test Return  Receipt</h1>
-      <p>download-url="http://localhost:8000"</p>
     </header>
-    <spaaza-receipt language="nl" showpoints="true" download-url="https://services-test01.spaaza.com">
-
-      <script type="application/json" data-strings="data-strings">
-        { "brand": { "title": "Test" } }
-      </script>
-      <script type="application/json" data-receipt="data-receipt">
-        {
+    <spaaza-receipt id="receipt-4" language="nl" showpoints="true"></spaaza-receipt>
+    <script>
+        const el4 = document.getElementById("receipt-4");
+        el4.strings = { "brand": { "title": "Test" } };
+        el4.receipt = {
           "id": 437981,
           "retailer_basket_code": "20190912-testing-R1",
           "timestamp": "2019-09-12T15:22:00Z",
@@ -1235,23 +1215,19 @@
               "subject": "",
               "background_color": ""
           }
-      }
-      </script>
-    </spaaza-receipt>
+      };
+    </script>
   </section>
 
   <section>
     <header>
       <h1>Test Return  Receipt</h1>
-      <p>download-url="http://localhost:8000"</p>
     </header>
-    <spaaza-receipt language="nl" showpoints="true" download-url="https://services-test01.spaaza.com">
-
-      <script type="application/json" data-strings="data-strings">
-        { "brand": { "title": "Test" } }
-      </script>
-      <script type="application/json" data-receipt="data-receipt">
-        {
+    <spaaza-receipt id="receipt-5" language="nl" showpoints="true"></spaaza-receipt>
+    <script>
+        const el5 = document.getElementById("receipt-5");
+        el5.strings = { "brand": { "title": "Test" } };
+        el5.receipt = {
           "id": 535142,
           "retailer_basket_code": "xfcoyt",
           "fx_rate": 0.977899,
@@ -1965,9 +1941,8 @@
           },
           "basket_vouchers": [],
           "honour_vouchers": []
-      }
-      </script>
-    </spaaza-receipt>
+      };
+    </script>
   </section>
 
 </body>

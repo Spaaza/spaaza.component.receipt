@@ -3,31 +3,23 @@
     "target": "ES2020",
     "module": "ES2020",
     "lib": ["DOM", "ES2020"],
-    "jsx": "react",
-    "jsxFactory": "h",
-
-    "allowJs": false,
-    "checkJs": false,
-    "rootDir": "src",
-    "outDir": "dist",
-
-    "removeComments": false,
-    "importHelpers": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
 
     "strict": true,
     "noImplicitThis": true,
-
     "noUnusedLocals": true,
     "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
 
-    "moduleResolution": "node",
     "sourceMap": true,
-    "noEmitOnError": true,
     "skipLibCheck": true
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "src/**/*.svelte"
   ]
 }

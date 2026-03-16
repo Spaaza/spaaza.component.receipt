@@ -1,79 +1,84 @@
 # Spaaza Receipt Component
 
-The receipt component is a standard way to render a receipt using data from the Spaaza receipts service.
+A web component that renders a receipt using data from the Spaaza receipts service. Built with Svelte 5 and compiled as a custom element (`<spaaza-receipt>`).
 
 ## Development
 
-To install project dependencies run:
+Install dependencies:
 
-``` yarn ```
+```
+pnpm install
+```
 
-Open receipt.html in a browser to test. No hot-reload right now.
+Build:
 
-This component seems to be written in a custom lightweight framework that seems to be
-a mix between preact and "Stateless Functional Component" as described at:
+```
+pnpm build
+```
 
-https://apimirror.com/typescript/handbook/jsx#value-based-elements
+Build with watch mode:
+
+```
+pnpm dev
+```
+
+Open the test HTML files in `test/` in a browser to verify the component visually.
 
 ## Usage
 
-### Build production bundle
-
-``` yarn build ```
-
 Include the receipt JS in your site:
 
-``` <script src="https://my-domain/js/spaaza-receipt.js"></script> ```
-
-Then when you get receipt data from the Spaaza API, provide it to a spaaza-receipt component:
-
-```
-<spaaza-receipt>
-  <script type="application/json" data-receipt>
-    Insert the receipt JSON here as the only contents of this script element.
-  </script>
-</spaaza-receipt>
+```html
+<script src="https://my-domain/js/spaaza-receipt.js"></script>
 ```
 
-Note the `data-receipt` attribute on the script element, it is mandatory.
+Add a `<spaaza-receipt>` element and set its `receipt` and optionally `strings` properties via JavaScript:
 
-### Setting the Language
-
-You can specify the language the component should use by adding a `language` attribute to the component:
-
-```
-<spaaza-receipt language="nl">...</spaaza-receipt>
-```
-
-You may specify a language by its country code or a full language code like `nl-NL`.
-
-The default language is `en-GB`. Currently `en-GB` and `nl-NL` are provided.
-
-### Setting the PDF Conversion endpoint
-
-```
-<spaaza-receipt download-url="http://localhost:8000">...</spaaza-receipt>
+```html
+<spaaza-receipt id="receipt" language="en"></spaaza-receipt>
+<script>
+    const el = document.getElementById("receipt");
+    el.receipt = { /* receipt JSON from the Spaaza API */ };
+    el.strings = { "brand": { "title": "My Receipt" } };
+</script>
 ```
 
-Defaults to `https://services-prod.spaaza.com`.
+### Attributes
 
-Note: omit the trailing slash.
+| Attribute | Type | Default | Description |
+|---|---|---|---|
+| `language` | string | `"en-GB"` | Language code (e.g. `"nl"`, `"nl-NL"`, `"en-GB"`) |
+| `showpoints` | string | `"true"` | Set to `"false"` to hide the points wallet |
+| `walletpointsratio` | string | `""` | Ratio to convert monetary wallet values to points |
+| `customnotes` | string | `""` | Custom notes to display on the receipt |
 
-### Overriding Specific Strings
+### Properties
 
-If you wish you can further customize the language used in the component by providing an optional second
-JSON script element with any overrides. For the format of the strings JSON see the src/lang directory.
+| Property | Type | Description |
+|---|---|---|
+| `receipt` | object | Receipt data from the Spaaza API |
+| `strings` | object | Optional language string overrides (see `src/lang/` for format) |
 
+### Setting the language
+
+You can specify the language via the `language` attribute:
+
+```html
+<spaaza-receipt id="receipt" language="nl"></spaaza-receipt>
 ```
-<spaaza-receipt language="en">
-  <script type="application/json" data-receipt>...</script>
-  <script type="application/json" data-strings>
-  {
-    "brand": { "title": "My Receipt" }
-  }
-  </script>
-</spaaza-receipt>
+
+You may use a country code or a full language code like `nl-NL`. The default is `en-GB`. Currently `en-GB` and `nl-NL` are provided.
+
+### Overriding specific strings
+
+Provide a `strings` object to customize any of the built-in language strings. See the `src/lang/` directory for the full string format.
+
+```html
+<script>
+    el.strings = {
+        "brand": { "title": "Mijn Bonnetje" }
+    };
+</script>
 ```
 
-Note again the special mandatory attribute on the script element, this time: `data-strings`.
 You can override as few or as many of the pre-provided strings as needed.
