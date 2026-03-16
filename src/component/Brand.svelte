@@ -10,17 +10,17 @@
 	} = $props();
 </script>
 
-<table role="presentation"><tbody>
+<div>
 	{#if logoURL}
-		<tr><td><img class="brand_logo" src={logoURL} alt={strings.title || "Logo"} /></td></tr>
+		<img class="brand_logo" src={logoURL} alt={strings.title || "Logo"} />
 	{/if}
 	{#if strings.title}
-		<tr><td><h1>{strings.title}</h1></td></tr>
+		<h1>{strings.title}</h1>
 	{/if}
 	{#if strings.message && (user?.id || shopper?.id)}
-		<tr><td><p>{strings.message}</p></td></tr>
+		<p>{strings.message}</p>
 	{/if}
-</tbody></table>
+</div>
 
 <style>
 	img.brand_logo {

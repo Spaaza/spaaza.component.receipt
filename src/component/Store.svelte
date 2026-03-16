@@ -14,25 +14,23 @@
 	let city = $derived(business.address.towncity);
 </script>
 
-<table class="receipt-store" role="presentation"><tbody>
-	<tr><td class="align-left">
-		{#if business.name}
-			<div>{business.name}</div>
-		{/if}
-		{#if address}
-			<div>{address}</div>
-		{/if}
-		{#if postalCode || city}
-			<div>{postalCode} {city}</div>
-		{/if}
-		{#if business.email}
-			<div><a href={"mailto:" + business.email}>{business.email}</a></div>
-		{/if}
-		{#if business.website_url}
-			<div><a href={business.website_url} target="_blank" rel="noopener noreferrer">{business.website_url}</a></div>
-		{/if}
-		{#if business.phone_number}
-			<a href={"tel:" + business.phone_number}>{business.phone_number}</a>
-		{/if}
-	</td></tr>
-</tbody></table>
+<div class="receipt-store">
+	{#if business.name}
+		<div>{business.name}</div>
+	{/if}
+	{#if address}
+		<div>{address}</div>
+	{/if}
+	{#if postalCode || city}
+		<div>{postalCode} {city}</div>
+	{/if}
+	{#if business.email}
+		<div><a href={"mailto:" + business.email}>{business.email}</a></div>
+	{/if}
+	{#if business.website_url}
+		<div><a href={business.website_url} target="_blank" rel="noopener noreferrer">{business.website_url}</a></div>
+	{/if}
+	{#if business.phone_number}
+		<a href={"tel:" + business.phone_number}>{business.phone_number}</a>
+	{/if}
+</div>

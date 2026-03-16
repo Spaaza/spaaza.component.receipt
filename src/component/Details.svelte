@@ -14,32 +14,54 @@
 	} = $props();
 </script>
 
-<table role="presentation"><tbody>
+<div>
 	{#if strings.message}
-		<tr><td colspan="2">{strings.message}</td></tr>
+		<p>{strings.message}</p>
 	{/if}
-	{#if total}
-		<tr class="receipt-strong">
-			<td>{strings.charged}</td>
-			<td class="align-right">{amount(total, currencySymbol)}</td>
-		</tr>
-	{/if}
-	{#if retailerCode}
-		<tr>
-			<td>{strings["order-number"]}</td>
-			<td class="align-right">#{retailerCode}</td>
-		</tr>
-	{/if}
-	{#if date}
-		<tr>
-			<td>{strings.date}</td>
-			<td class="align-right">{new Date(date).toLocaleString(langCode)}</td>
-		</tr>
-	{/if}
-	{#if employeeName}
-		<tr>
-			<td>{strings["employee-name"]}</td>
-			<td class="align-right">{employeeName}</td>
-		</tr>
-	{/if}
-</tbody></table>
+	<dl class="receipt-details">
+		{#if total}
+			<div class="receipt-strong">
+				<dt>{strings.charged}</dt>
+				<dd>{amount(total, currencySymbol)}</dd>
+			</div>
+		{/if}
+		{#if retailerCode}
+			<div>
+				<dt>{strings["order-number"]}</dt>
+				<dd>#{retailerCode}</dd>
+			</div>
+		{/if}
+		{#if date}
+			<div>
+				<dt>{strings.date}</dt>
+				<dd>{new Date(date).toLocaleString(langCode)}</dd>
+			</div>
+		{/if}
+		{#if employeeName}
+			<div>
+				<dt>{strings["employee-name"]}</dt>
+				<dd>{employeeName}</dd>
+			</div>
+		{/if}
+	</dl>
+</div>
+
+<style>
+	.receipt-details {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		margin: 0;
+	}
+	.receipt-details > div {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1 / -1;
+	}
+	.receipt-details dt,
+	.receipt-details dd {
+		margin: 0;
+	}
+	.receipt-details dd {
+		text-align: right;
+	}
+</style>

@@ -15,36 +15,58 @@
 	} = $props();
 </script>
 
-<table class="receipt-wallet" role="presentation"><tbody>
-	<tr><td class="receipt-strong">{wallet.title}</td></tr>
-	{#if totalEarned}
-		<tr>
-			<td>{wallet.title} {strings.earned}</td>
-			<td align="right">{amount(totalEarned, currencySymbol)}</td>
-		</tr>
-	{/if}
-	{#if wallet.contributions.length > 1}
-		{#each wallet.contributions as contrib}
-			<tr>
-				<td class="wallet-contribution">{contrib.campaign_title}</td>
-				<td align="right">{amount(contrib.amount, currencySymbol)}</td>
-			</tr>
-		{/each}
-	{/if}
-	{#if totalSpent}
-		<tr>
-			<td>{wallet.title} {strings.spent}</td>
-			<td align="right">{amount(totalSpent, currencySymbol)}</td>
-		</tr>
-	{/if}
-	<tr>
-		<td>{strings["new-balance"]}</td>
-		<td align="right" class="receipt-strong">{amount(wallet.total, currencySymbol)}</td>
-	</tr>
-</tbody></table>
+<div class="receipt-wallet">
+	<p class="receipt-strong">{wallet.title}</p>
+	<dl class="wallet-details">
+		{#if totalEarned}
+			<div>
+				<dt>{wallet.title} {strings.earned}</dt>
+				<dd>{amount(totalEarned, currencySymbol)}</dd>
+			</div>
+		{/if}
+		{#if wallet.contributions.length > 1}
+			{#each wallet.contributions as contrib}
+				<div>
+					<dt class="wallet-contribution">{contrib.campaign_title}</dt>
+					<dd>{amount(contrib.amount, currencySymbol)}</dd>
+				</div>
+			{/each}
+		{/if}
+		{#if totalSpent}
+			<div>
+				<dt>{wallet.title} {strings.spent}</dt>
+				<dd>{amount(totalSpent, currencySymbol)}</dd>
+			</div>
+		{/if}
+		<div>
+			<dt>{strings["new-balance"]}</dt>
+			<dd class="receipt-strong">{amount(wallet.total, currencySymbol)}</dd>
+		</div>
+	</dl>
+</div>
 
 <style>
+	.wallet-details {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		margin: 0;
+	}
+	.wallet-details > div {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1 / -1;
+	}
+	.wallet-details dt,
+	.wallet-details dd {
+		margin: 0;
+	}
+	.wallet-details dd {
+		text-align: right;
+	}
 	.wallet-contribution {
 		padding-left: 1.5em;
+	}
+	.receipt-wallet p {
+		margin: 0;
 	}
 </style>
