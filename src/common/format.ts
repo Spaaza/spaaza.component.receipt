@@ -28,8 +28,8 @@ export const amount = (
  */
 export const sumFieldValues = <T extends object, K extends keyof T>(arr: T[], fieldName: K) =>
 	(arr || [])
-		.map((i) => i[fieldName])
-		.reduce((s, v) => (s as any) + v, 0);
+		.map((i) => i[fieldName] as number)
+		.reduce((s, v) => s + v, 0);
 
 /**
  * Sum the values of the field in every record in an array if another field has a specified value
@@ -42,5 +42,5 @@ export const sumFieldValuesConditional = <T extends object, K extends keyof T, K
 ) =>
 	(arr || [])
 		.filter((i) => i[ifFieldName] === isValue)
-		.map((i) => i[fieldName])
-		.reduce((s, v) => (s as any) + v, 0);
+		.map((i) => i[fieldName] as number)
+		.reduce((s, v) => s + v, 0);

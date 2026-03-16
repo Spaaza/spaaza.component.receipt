@@ -95,7 +95,7 @@
 			},
 			totalEarned,
 			totalSpent,
-			currencySymbol: walletRatio > 0 ? "" : receipt.chain.currency_symbol,
+			currencySymbol: walletRatio > 0 ? "" : currencySymbol,
 		};
 	});
 

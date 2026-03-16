@@ -4,7 +4,7 @@
 	let { code }: { code: string } = $props();
 </script>
 
-<div class="content barcode" title={"Barcode: " + code}>
+<div class="barcode" title={"Barcode: " + code}>
 	<code-128b data={code} height="50"></code-128b>
 </div>
 

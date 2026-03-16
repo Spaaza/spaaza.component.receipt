@@ -29,8 +29,8 @@
 				</td>
 				<td class="align-right receipt-quantity">{item.quantity}{item.quantity_unit !== "item" ? item.quantity_unit : ""}</td>
 				<td class="align-right receipt-price">
-					<div class="receipt-original-price" class:receipt-line-through={isOnSale}>{amount(item.original_price, currencySymbol, true)}</div>
-					<div class="receipt-sale-price">{amount(item.sale_price, currencySymbol, true)}</div>
+					{#if isOnSale}<div class="receipt-line-through">{amount(item.original_price, currencySymbol, true)}</div>{/if}
+					<div>{amount(item.sale_price, currencySymbol, true)}</div>
 				</td>
 				<td class="align-right receipt-price">
 					<div class="receipt-sale-price receipt-strong">{amount(item.sale_price * item.quantity, currencySymbol)}</div>
@@ -52,11 +52,5 @@
 	th.receipt-quantity,
 	td.receipt-quantity {
 		width: 5%;
-	}
-	.receipt-original-price {
-		display: none;
-	}
-	.receipt-original-price.receipt-line-through {
-		display: inline;
 	}
 </style>

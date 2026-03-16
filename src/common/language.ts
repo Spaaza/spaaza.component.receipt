@@ -10,6 +10,7 @@ export interface LangSubstitutions {
 }
 
 export interface LangStrings {
+	langCode: string;
 	brand: LangBlock;
 	details: LangBlock;
 	lineitems: LangBlock;
@@ -19,10 +20,6 @@ export interface LangStrings {
 	wallet: LangBlock;
 	store: LangBlock;
 	error: LangBlock;
-}
-
-export interface LangJSON extends LangStrings {
-	langCode: string;
 }
 
 const stringData: { [lc: string]: LangStrings } = {
@@ -50,7 +47,7 @@ const mapLangCode = (lang: string) => {
  * Returns the base strings for a specified language
  * @param lang a string representation a language
  */
-const getStrings = (lang: string) => stringData[mapLangCode(lang)] as LangJSON;
+const getStrings = (lang: string) => stringData[mapLangCode(lang)];
 export default getStrings;
 
 /**
@@ -58,10 +55,8 @@ export default getStrings;
  */
 export const transformBlock = (block: LangBlock, fn: StringTransformer) => {
 	const res = {} as LangBlock;
-	for (const k in block) {
-		if (block.hasOwnProperty(k)) {
-			res[k] = fn(block[k], k);
-		}
+	for (const k of Object.keys(block)) {
+		res[k] = fn(block[k], k);
 	}
 	return res;
 };
@@ -71,8 +66,8 @@ export const transformBlock = (block: LangBlock, fn: StringTransformer) => {
  */
 export const transformStringBlocks = (strings: LangStrings, blkFn: BlockTransformer) => {
 	const res = {} as LangStrings;
-	for (const section in strings) {
-		if (strings.hasOwnProperty(section) && typeof (strings as any)[section] === "object") {
+	for (const section of Object.keys(strings)) {
+		if (typeof (strings as any)[section] === "object") {
 			(res as any)[section] = blkFn((strings as any)[section], section);
 		}
 	}
@@ -95,10 +90,8 @@ const substitute = (str: string, subst: LangSubstitutions) => {
 	let result = str;
 	const regexify = (text: string) => text.replace(/[\-\[\]\{\}\(\)\*\+\?\.\\\^\$\|\#]/g, s => `\\${s}`);
 
-	for (const k in subst) {
-		if (subst.hasOwnProperty(k)) {
-			result = result.replace(new RegExp(regexify(k), "g"), subst[k]);
-		}
+	for (const k of Object.keys(subst)) {
+		result = result.replace(new RegExp(regexify(k), "g"), subst[k]);
 	}
 	return result;
 };

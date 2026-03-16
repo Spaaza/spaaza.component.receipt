@@ -8,7 +8,7 @@
 	} = $props();
 
 	let address = $derived(
-		`${business.address.address_1} ${business.address.address_2} ${business.address.address_3}`.trim()
+		[business.address.address_1, business.address.address_2, business.address.address_3].filter(Boolean).join(" ")
 	);
 	let postalCode = $derived(business.address.postal_code);
 	let city = $derived(business.address.towncity);

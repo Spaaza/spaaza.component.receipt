@@ -39,7 +39,7 @@
 	{#if employeeName}
 		<tr>
 			<td>{strings["employee-name"]}</td>
-			<td class="align-right">{employeeCode}</td>
+			<td class="align-right">{employeeName}</td>
 		</tr>
 	{/if}
 </tbody></table>
