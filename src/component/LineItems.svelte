@@ -11,6 +11,7 @@
 </script>
 
 <table class="receipt-lineitems">
+	<caption class="sr-only">{strings.caption}</caption>
 	<thead>
 		<tr>
 			<th class="align-left receipt-name">{strings.name}</th>
@@ -29,7 +30,7 @@
 				</td>
 				<td class="align-right receipt-quantity">{item.quantity}{item.quantity_unit !== "item" ? item.quantity_unit : ""}</td>
 				<td class="align-right receipt-price">
-					{#if isOnSale}<div class="receipt-line-through">{amount(item.original_price, currencySymbol, true)}</div>{/if}
+					{#if isOnSale}<div class="receipt-line-through"><span class="sr-only">was </span>{amount(item.original_price, currencySymbol, true)}</div>{/if}
 					<div>{amount(item.sale_price, currencySymbol, true)}</div>
 				</td>
 				<td class="align-right receipt-price">

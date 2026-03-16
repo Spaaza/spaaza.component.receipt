@@ -115,7 +115,7 @@
 
 {#if receipt}
 	<div class="main content">
-		<section>
+		<section aria-label={finalStrings.brand.title}>
 			<Brand
 				logoURL={receipt.chain.logo_url}
 				user={receipt.user}
@@ -133,7 +133,7 @@
 				{langCode}
 			/>
 		</section>
-		<section>
+		<section aria-label={finalStrings.totals.total}>
 			{#if receipt.line_items?.length}
 				<Divider />
 				<LineItems items={receipt.line_items} {currencySymbol} strings={finalStrings.lineitems} />
@@ -166,7 +166,7 @@
 				<Wallet {...pointsWallet} strings={finalStrings.wallet} />
 			{/if}
 		</section>
-		<section>
+		<section aria-label={finalStrings.store.message}>
 			{#if receipt.chain.business}
 				<Divider />
 				<Store business={receipt.chain.business} strings={finalStrings.store} />
@@ -282,6 +282,18 @@
 
 		.receipt-line-through {
 			text-decoration: line-through;
+		}
+
+		.sr-only {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			margin: -1px;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+			white-space: nowrap;
+			border: 0;
 		}
 	}
 

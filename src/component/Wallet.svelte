@@ -15,7 +15,7 @@
 	} = $props();
 </script>
 
-<table class="receipt-wallet"><tbody>
+<table class="receipt-wallet" role="presentation"><tbody>
 	<tr><td class="receipt-strong">{wallet.title}</td></tr>
 	{#if totalEarned}
 		<tr>
@@ -26,7 +26,7 @@
 	{#if wallet.contributions.length > 1}
 		{#each wallet.contributions as contrib}
 			<tr>
-				<td>&nbsp;&nbsp;&nbsp;&nbsp;{contrib.campaign_title}</td>
+				<td class="wallet-contribution">{contrib.campaign_title}</td>
 				<td align="right">{amount(contrib.amount, currencySymbol)}</td>
 			</tr>
 		{/each}
@@ -42,3 +42,9 @@
 		<td align="right" class="receipt-strong">{amount(wallet.total, currencySymbol)}</td>
 	</tr>
 </tbody></table>
+
+<style>
+	.wallet-contribution {
+		padding-left: 1.5em;
+	}
+</style>

@@ -10,7 +10,9 @@
 	} = $props();
 </script>
 
-<table class="receipt-paymentmethods"><tbody>
+<table class="receipt-paymentmethods">
+	<caption class="sr-only">{strings.caption}</caption>
+<tbody>
 	{#each methods as pm}
 		<tr class="payment-method">
 			<td class="var-rate align-left">{pm.payment_method}</td>

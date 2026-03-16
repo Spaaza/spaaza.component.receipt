@@ -15,19 +15,23 @@
 	},
 
 	"lineitems": {
+		"caption": "Items",
 		"name": "Name",
 		"quantity": "Qty",
 		"price": "Price",
 		"line-total": "Total"
 	},
 	"taxes": {
+		"caption": "Tax",
 		"tax-rate": "VAT Rate",
 		"order-value": "Order value",
 		"tax-value": "VAT"
 	},
 	"paymentmethods": {
+		"caption": "Payment methods"
 	},
 	"totals": {
+		"caption": "Totals",
 		"subtotal": "Subtotal",
 		"total": "Total",
 		"voucher": "Voucher"

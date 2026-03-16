@@ -14,7 +14,7 @@
 	} = $props();
 </script>
 
-<table><tbody>
+<table role="presentation"><tbody>
 	{#if strings.message}
 		<tr><td colspan="2">{strings.message}</td></tr>
 	{/if}

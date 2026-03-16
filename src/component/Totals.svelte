@@ -12,7 +12,9 @@
 	} = $props();
 </script>
 
-<table class="receipt-totals"><tbody>
+<table class="receipt-totals">
+	<caption class="sr-only">{strings.caption}</caption>
+<tbody>
 	{#each basketVouchers as vouch}
 		<tr>
 			<td>{strings.voucher}: {vouch.campaign_title}</td>

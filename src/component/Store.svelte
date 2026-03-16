@@ -14,7 +14,7 @@
 	let city = $derived(business.address.towncity);
 </script>
 
-<table class="receipt-store"><tbody>
+<table class="receipt-store" role="presentation"><tbody>
 	<tr><td class="align-left">
 		{#if business.name}
 			<div>{business.name}</div>
@@ -29,7 +29,7 @@
 			<div><a href={"mailto:" + business.email}>{business.email}</a></div>
 		{/if}
 		{#if business.website_url}
-			<div><a href={business.website_url} target="_blank">{business.website_url}</a></div>
+			<div><a href={business.website_url} target="_blank" rel="noopener noreferrer">{business.website_url}</a></div>
 		{/if}
 		{#if business.phone_number}
 			<a href={"tel:" + business.phone_number}>{business.phone_number}</a>

@@ -11,6 +11,7 @@
 </script>
 
 <table class="receipt-linetaxes">
+	<caption class="sr-only">{strings.caption}</caption>
 	<thead>
 		<tr>
 			<th class="align-left">{strings["tax-rate"]}</th>

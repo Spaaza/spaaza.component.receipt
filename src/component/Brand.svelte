@@ -10,9 +10,9 @@
 	} = $props();
 </script>
 
-<table><tbody>
+<table role="presentation"><tbody>
 	{#if logoURL}
-		<tr><td><img class="brand_logo" src={logoURL} alt="" /></td></tr>
+		<tr><td><img class="brand_logo" src={logoURL} alt={strings.title || "Logo"} /></td></tr>
 	{/if}
 	{#if strings.title}
 		<tr><td><h1>{strings.title}</h1></td></tr>

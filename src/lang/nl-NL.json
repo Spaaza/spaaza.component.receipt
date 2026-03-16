@@ -14,19 +14,23 @@
 		"employee-name":"Werknemer"
 	},
 	"lineitems": {
+		"caption": "Artikelen",
 		"name": "Naam",
 		"quantity": "Aantal",
 		"price": "Prijs",
 		"line-total": "Totaal"
 	},
 	"taxes": {
+		"caption": "Belasting",
 		"tax-rate": "BTW %",
 		"order-value": "Waarde",
 		"tax-value": "BTW"
 	},
 	"paymentmethods": {
+		"caption": "Betaalmethoden"
 	},
 	"totals": {
+		"caption": "Totalen",
 		"subtotal": "Subtotaal",
 		"total": "Totaal",
 		"voucher": "Kortingsbon"
