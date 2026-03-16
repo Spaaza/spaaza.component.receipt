@@ -747,5 +747,8 @@ declare namespace JSX {
 		text: SVGAttributes;
 		tspan: SVGAttributes;
 		use: SVGAttributes;
+
+		// Custom elements
+		"code-128b": HTMLAttributes & { height?: string };
 	}
 }
